@@ -79,13 +79,33 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="[TOC] 数据结构字符串对象是五个基本对象中唯一会被其他对象嵌套的对象 Stringintembstr(embstr编码的SDS)条件：短字符串(&lt;&#x3D; 32字节)。 raw会调用两次内存分配函数来创建redisObject和sdshdr,embstr只会调用一次分配一块连续地址空间，来保存redisObject和sdshdr raw(SDS)Listziplist条件：元素长度&lt;64">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis设计与实现-读书笔记">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[TOC] 数据结构字符串对象是五个基本对象中唯一会被其他对象嵌套的对象 Stringintembstr(embstr编码的SDS)条件：短字符串(&lt;&#x3D; 32字节)。 raw会调用两次内存分配函数来创建redisObject和sdshdr,embstr只会调用一次分配一块连续地址空间，来保存redisObject和sdshdr raw(SDS)Listziplist条件：元素长度&lt;64">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="evernotecid://A2DE6E87-E390-4B1F-98E0-0FD7C58E6B54/appyinxiangcom/28827357/ENResource/p134">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Desktop/%E6%88%AA%E5%B1%8F2020-04-1920.23.01.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2314.37.06.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2411.41.04.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2412.02.36.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2412.03.57.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2415.18.43.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2415.25.15.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2415.30.46.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2510.14.52.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2510.34.57.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2510.37.04.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2510.41.22.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2511.04.43.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2511.08.20.png">
+<meta property="article:published_time" content="2020-04-19T18:13:29.933Z">
+<meta property="article:modified_time" content="2020-04-26T13:32:33.746Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="evernotecid://A2DE6E87-E390-4B1F-98E0-0FD7C58E6B54/appyinxiangcom/28827357/ENResource/p134">
 
 
 
@@ -115,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/19/redis设计与实现-读书笔记/"/>
 
 
 
 
 
-  <title>Hexo</title>
+  <title>redis设计与实现-读书笔记 | Hexo</title>
   
 
 
@@ -140,8 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,141 +233,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/30/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-30T08:21:13+02:00">
-                2020-05-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -378,9 +265,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/19/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url">redis设计与实现-读书笔记</a></h1>
+          <h1 class="post-title" itemprop="name headline">redis设计与实现-读书笔记</h1>
         
 
         <div class="post-meta">
@@ -430,9 +315,7 @@
       
 
       
-        
-          
-            <p>[TOC]</p>
+        <p>[TOC]</p>
 <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>字符串对象是五个基本对象中唯一会被其他对象嵌套的对象</p>
 <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><h4 id="int"><a href="#int" class="headerlink" title="int"></a>int</h4><h4 id="embstr-embstr编码的SDS"><a href="#embstr-embstr编码的SDS" class="headerlink" title="embstr(embstr编码的SDS)"></a>embstr(embstr编码的SDS)</h4><p>条件：<strong>短字符串</strong>(&lt;= 32字节)。</p>
 <p>raw会调用两次内存分配函数来创建redisObject和sdshdr,embstr只会调用一次分配一块连续地址空间，来保存redisObject和sdshdr</p>
@@ -1211,8 +1094,6 @@
 <h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><p><strong>单线程</strong>执行事务，事务<strong>不会被中断</strong>，<strong>串行</strong>执行。具有隔离性</p>
 <h3 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h3><p>AOF模式下，appendfsync选项为always，事务具有耐久性</p>
 
-          
-        
       
     </div>
     
@@ -1229,12 +1110,28 @@
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/30/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1244,10 +1141,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -1255,6 +1153,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1275,8 +1177,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1318,6 +1229,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">1.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">1.1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#int"><span class="nav-number">1.1.1.</span> <span class="nav-text">int</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#embstr-embstr编码的SDS"><span class="nav-number">1.1.2.</span> <span class="nav-text">embstr(embstr编码的SDS)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#raw-SDS"><span class="nav-number">1.1.3.</span> <span class="nav-text">raw(SDS)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List"><span class="nav-number">1.2.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ziplist"><span class="nav-number">1.2.1.</span> <span class="nav-text">ziplist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkedList"><span class="nav-number">1.2.2.</span> <span class="nav-text">LinkedList</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HASH"><span class="nav-number">1.3.</span> <span class="nav-text">HASH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ziplist-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">ziplist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HT-字典-（hashtable）"><span class="nav-number">1.3.2.</span> <span class="nav-text">HT 字典 （hashtable）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SET"><span class="nav-number">1.4.</span> <span class="nav-text">SET</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#INTSET整数集合"><span class="nav-number">1.4.1.</span> <span class="nav-text">INTSET整数集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HT-字典"><span class="nav-number">1.4.2.</span> <span class="nav-text">HT 字典</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZSET"><span class="nav-number">1.5.</span> <span class="nav-text">ZSET</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ziplist-2"><span class="nav-number">1.5.1.</span> <span class="nav-text">ziplist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skiplist"><span class="nav-number">1.5.2.</span> <span class="nav-text">skiplist</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型检查"><span class="nav-number">1.6.</span> <span class="nav-text">类型检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多态命令的实现"><span class="nav-number">1.7.</span> <span class="nav-text">多态命令的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于类型的多态"><span class="nav-number">1.7.1.</span> <span class="nav-text">基于类型的多态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于编码的多态"><span class="nav-number">1.7.2.</span> <span class="nav-text">基于编码的多态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象共享"><span class="nav-number">1.8.</span> <span class="nav-text">对象共享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象lru时间"><span class="nav-number">1.9.</span> <span class="nav-text">对象lru时间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number"></span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#过期时间"><span class="nav-number">1.</span> <span class="nav-text">过期时间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置过期时间"><span class="nav-number">1.1.</span> <span class="nav-text">设置过期时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除过期时间"><span class="nav-number">1.2.</span> <span class="nav-text">移除过期时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存过期时间"><span class="nav-number">1.3.</span> <span class="nav-text">保存过期时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回剩余生存时间"><span class="nav-number">1.4.</span> <span class="nav-text">返回剩余生存时间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF和RDB对过期键的处理"><span class="nav-number">2.</span> <span class="nav-text">AOF和RDB对过期键的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成RDB"><span class="nav-number">2.1.</span> <span class="nav-text">生成RDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#载入RDB"><span class="nav-number">2.2.</span> <span class="nav-text">载入RDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF写入"><span class="nav-number">2.3.</span> <span class="nav-text">AOF写入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF重写"><span class="nav-number">2.4.</span> <span class="nav-text">AOF重写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制模式下"><span class="nav-number">2.5.</span> <span class="nav-text">复制模式下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回顾"><span class="nav-number">2.6.</span> <span class="nav-text">回顾</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB持久化"><span class="nav-number">3.</span> <span class="nav-text">RDB持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB文件创建"><span class="nav-number">3.1.</span> <span class="nav-text">RDB文件创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB文件载入"><span class="nav-number">3.2.</span> <span class="nav-text">RDB文件载入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动间隔性保存"><span class="nav-number">4.</span> <span class="nav-text">自动间隔性保存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置保存条件"><span class="nav-number">4.1.</span> <span class="nav-text">设置保存条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查保存条件是否满足"><span class="nav-number">4.2.</span> <span class="nav-text">检查保存条件是否满足</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB文件结构"><span class="nav-number">4.3.</span> <span class="nav-text">RDB文件结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF-持久化"><span class="nav-number">5.</span> <span class="nav-text">AOF 持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令追加"><span class="nav-number">5.1.</span> <span class="nav-text">命令追加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件写入和同步"><span class="nav-number">5.2.</span> <span class="nav-text">文件写入和同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF文件载入和数据还原"><span class="nav-number">5.3.</span> <span class="nav-text">AOF文件载入和数据还原</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF重写-1"><span class="nav-number">5.4.</span> <span class="nav-text">AOF重写</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重写过程中数据不一致"><span class="nav-number">5.4.1.</span> <span class="nav-text">重写过程中数据不一致</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件"><span class="nav-number"></span> <span class="nav-text">事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件事件"><span class="nav-number">1.</span> <span class="nav-text">文件事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IO多路复用程序的实现"><span class="nav-number">1.1.</span> <span class="nav-text">IO多路复用程序的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件类型"><span class="nav-number">1.2.</span> <span class="nav-text">事件类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同文件事件处理器"><span class="nav-number">1.3.</span> <span class="nav-text">不同文件事件处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整的客户端与服务端连接事件示例"><span class="nav-number">1.4.</span> <span class="nav-text">完整的客户端与服务端连接事件示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间事件"><span class="nav-number">2.</span> <span class="nav-text">时间事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.1.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#serverCron函数职责"><span class="nav-number">2.2.</span> <span class="nav-text">serverCron函数职责</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件的调度与执行"><span class="nav-number">3.</span> <span class="nav-text">事件的调度与执行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端"><span class="nav-number"></span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端属性"><span class="nav-number">1.</span> <span class="nav-text">客户端属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#套接字描述符"><span class="nav-number">1.1.</span> <span class="nav-text">套接字描述符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标志"><span class="nav-number">1.2.</span> <span class="nav-text">标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入缓冲区"><span class="nav-number">1.3.</span> <span class="nav-text">输入缓冲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出缓冲区"><span class="nav-number">1.4.</span> <span class="nav-text">输出缓冲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#身份验证"><span class="nav-number">1.5.</span> <span class="nav-text">身份验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端的创建和关闭"><span class="nav-number">2.</span> <span class="nav-text">客户端的创建和关闭</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建普通客户端"><span class="nav-number">2.1.</span> <span class="nav-text">创建普通客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭普通客户端"><span class="nav-number">2.2.</span> <span class="nav-text">关闭普通客户端</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器"><span class="nav-number"></span> <span class="nav-text">服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令请求执行过程"><span class="nav-number">1.</span> <span class="nav-text">命令请求执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发送命令"><span class="nav-number">1.1.</span> <span class="nav-text">发送命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取命令"><span class="nav-number">1.2.</span> <span class="nav-text">读取命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令执行器（1）：查找命令实现"><span class="nav-number">1.3.</span> <span class="nav-text">命令执行器（1）：查找命令实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令执行器（2）：执行预备操作"><span class="nav-number">1.4.</span> <span class="nav-text">命令执行器（2）：执行预备操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令执行器（3）：调用命令实现函数"><span class="nav-number">1.5.</span> <span class="nav-text">命令执行器（3）：调用命令实现函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令执行器（4）：执行后续工作"><span class="nav-number">1.6.</span> <span class="nav-text">命令执行器（4）：执行后续工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令回复发送给客户端"><span class="nav-number">1.7.</span> <span class="nav-text">命令回复发送给客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端接收并打印"><span class="nav-number">1.8.</span> <span class="nav-text">客户端接收并打印</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#serverCron函数"><span class="nav-number">2.</span> <span class="nav-text">serverCron函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新服务器时间缓存"><span class="nav-number">2.1.</span> <span class="nav-text">更新服务器时间缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新LRU时钟"><span class="nav-number">2.2.</span> <span class="nav-text">更新LRU时钟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新服务器每秒执行命令次数"><span class="nav-number">2.3.</span> <span class="nav-text">更新服务器每秒执行命令次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新服务器内存峰值记录"><span class="nav-number">2.4.</span> <span class="nav-text">更新服务器内存峰值记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理SIGTERM信号"><span class="nav-number">2.5.</span> <span class="nav-text">处理SIGTERM信号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理客户端资源"><span class="nav-number">2.6.</span> <span class="nav-text">管理客户端资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行被延迟的BGREWRITEAOF"><span class="nav-number">2.7.</span> <span class="nav-text">执行被延迟的BGREWRITEAOF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查持久化操作的运行状态"><span class="nav-number">2.8.</span> <span class="nav-text">检查持久化操作的运行状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将AOF缓冲区内容写入AOF文件"><span class="nav-number">2.9.</span> <span class="nav-text">将AOF缓冲区内容写入AOF文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加cronloops计数器"><span class="nav-number">2.10.</span> <span class="nav-text">增加cronloops计数器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化服务器"><span class="nav-number">3.</span> <span class="nav-text">初始化服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化服务器状态结构"><span class="nav-number">3.1.</span> <span class="nav-text">初始化服务器状态结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#载入配置选项"><span class="nav-number">3.2.</span> <span class="nav-text">载入配置选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化服务器数据结构"><span class="nav-number">3.3.</span> <span class="nav-text">初始化服务器数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#还原数据库状态"><span class="nav-number">3.4.</span> <span class="nav-text">还原数据库状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行事件循环"><span class="nav-number">3.5.</span> <span class="nav-text">执行事件循环</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复制"><span class="nav-number"></span> <span class="nav-text">复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#旧版复制"><span class="nav-number">0.1.</span> <span class="nav-text">旧版复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步"><span class="nav-number">0.2.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令传播"><span class="nav-number">0.3.</span> <span class="nav-text">命令传播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺陷"><span class="nav-number">0.4.</span> <span class="nav-text">缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新版复制"><span class="nav-number">1.</span> <span class="nav-text">新版复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#部分重同步的实现"><span class="nav-number">1.1.</span> <span class="nav-text">部分重同步的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#复制偏移量"><span class="nav-number">1.1.1.</span> <span class="nav-text">复制偏移量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制积压缓冲区"><span class="nav-number">1.1.2.</span> <span class="nav-text">复制积压缓冲区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器运行ID"><span class="nav-number">1.1.3.</span> <span class="nav-text">服务器运行ID</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PSYNC命令实现"><span class="nav-number">2.</span> <span class="nav-text">PSYNC命令实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制的实现"><span class="nav-number">3.</span> <span class="nav-text">复制的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心跳检测"><span class="nav-number">4.</span> <span class="nav-text">心跳检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测主从网络状态"><span class="nav-number">4.1.</span> <span class="nav-text">检测主从网络状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助实现min-slaves选项"><span class="nav-number">4.2.</span> <span class="nav-text">辅助实现min slaves选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测命令丢失"><span class="nav-number">4.3.</span> <span class="nav-text">检测命令丢失</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sentinel"><span class="nav-number"></span> <span class="nav-text">Sentinel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动并初始化Sentinel"><span class="nav-number">1.</span> <span class="nav-text">启动并初始化Sentinel</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化服务器-1"><span class="nav-number">1.1.</span> <span class="nav-text">初始化服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用sentinel专用代码"><span class="nav-number">1.2.</span> <span class="nav-text">使用sentinel专用代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化sentinel状态"><span class="nav-number">1.3.</span> <span class="nav-text">初始化sentinel状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化sentinel状态的masters属性"><span class="nav-number">1.4.</span> <span class="nav-text">初始化sentinel状态的masters属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建连接主服务器的网络连接"><span class="nav-number">1.5.</span> <span class="nav-text">创建连接主服务器的网络连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取主服务器信息"><span class="nav-number">2.</span> <span class="nav-text">获取主服务器信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取从服务器信息"><span class="nav-number">3.</span> <span class="nav-text">获取从服务器信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向主服务器和从服务器发送信息"><span class="nav-number">4.</span> <span class="nav-text">向主服务器和从服务器发送信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接收来自主服务器和从服务器的频道信息"><span class="nav-number">5.</span> <span class="nav-text">接收来自主服务器和从服务器的频道信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新sentinels字典"><span class="nav-number">5.1.</span> <span class="nav-text">更新sentinels字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和其他sentinel的命令连接"><span class="nav-number">5.2.</span> <span class="nav-text">和其他sentinel的命令连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查主观下线状态"><span class="nav-number">6.</span> <span class="nav-text">检查主观下线状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查客观下线状态"><span class="nav-number">7.</span> <span class="nav-text">检查客观下线状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选举领头sentinel"><span class="nav-number">8.</span> <span class="nav-text">选举领头sentinel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#故障转移"><span class="nav-number">9.</span> <span class="nav-text">故障转移</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选出新的主服务器"><span class="nav-number">9.1.</span> <span class="nav-text">选出新的主服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改从服务器的复制目标"><span class="nav-number">9.2.</span> <span class="nav-text">修改从服务器的复制目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将旧的主服务器变成从服务器"><span class="nav-number">9.3.</span> <span class="nav-text">将旧的主服务器变成从服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集群"><span class="nav-number"></span> <span class="nav-text">集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#节点"><span class="nav-number">1.</span> <span class="nav-text">节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CLUSTER-MEET的实现"><span class="nav-number">1.1.</span> <span class="nav-text">CLUSTER MEET的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#槽指派"><span class="nav-number">2.</span> <span class="nav-text">槽指派</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#记录节点的槽指派信息"><span class="nav-number">2.1.</span> <span class="nav-text">记录节点的槽指派信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传播节点的槽指派信息"><span class="nav-number">2.2.</span> <span class="nav-text">传播节点的槽指派信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录集群所有槽的指派信息"><span class="nav-number">2.3.</span> <span class="nav-text">记录集群所有槽的指派信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群中执行命令"><span class="nav-number">3.</span> <span class="nav-text">集群中执行命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算键属于那个槽"><span class="nav-number">3.1.</span> <span class="nav-text">计算键属于那个槽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点数据库的实现"><span class="nav-number">4.</span> <span class="nav-text">节点数据库的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新分片"><span class="nav-number">5.</span> <span class="nav-text">重新分片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">5.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ASK错误"><span class="nav-number">5.2.</span> <span class="nav-text">ASK错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ASK错误和MOVED错误区别"><span class="nav-number">5.3.</span> <span class="nav-text">ASK错误和MOVED错误区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制与故障转移"><span class="nav-number">6.</span> <span class="nav-text">复制与故障转移</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置从节点"><span class="nav-number">6.1.</span> <span class="nav-text">设置从节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#故障检测"><span class="nav-number">6.2.</span> <span class="nav-text">故障检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#故障转移-1"><span class="nav-number">6.3.</span> <span class="nav-text">故障转移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选举新的主节点"><span class="nav-number">6.4.</span> <span class="nav-text">选举新的主节点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息"><span class="nav-number">7.</span> <span class="nav-text">消息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#独立功能"><span class="nav-number"></span> <span class="nav-text">独立功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#发布与订阅"><span class="nav-number">1.</span> <span class="nav-text">发布与订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#频道的订阅与退订"><span class="nav-number">1.1.</span> <span class="nav-text">频道的订阅与退订</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#订阅频道"><span class="nav-number">1.1.1.</span> <span class="nav-text">订阅频道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#退订频道"><span class="nav-number">1.1.2.</span> <span class="nav-text">退订频道</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式的订阅与退订"><span class="nav-number">1.2.</span> <span class="nav-text">模式的订阅与退订</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#订阅模式"><span class="nav-number">1.2.1.</span> <span class="nav-text">订阅模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#退订模式"><span class="nav-number">1.2.2.</span> <span class="nav-text">退订模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发送消息"><span class="nav-number">1.3.</span> <span class="nav-text">发送消息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看订阅信息"><span class="nav-number">2.</span> <span class="nav-text">查看订阅信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-number"></span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事务的实现"><span class="nav-number">1.</span> <span class="nav-text">事务的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务开始"><span class="nav-number">1.1.</span> <span class="nav-text">事务开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令入队"><span class="nav-number">1.2.</span> <span class="nav-text">命令入队</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务队列"><span class="nav-number">1.3.</span> <span class="nav-text">事务队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行事务"><span class="nav-number">1.4.</span> <span class="nav-text">执行事务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WATCH的实现"><span class="nav-number">2.</span> <span class="nav-text">WATCH的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WATCH监视数据库键"><span class="nav-number">2.1.</span> <span class="nav-text">WATCH监视数据库键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监视机制的触发"><span class="nav-number">2.2.</span> <span class="nav-text">监视机制的触发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断事务是否安全"><span class="nav-number">2.3.</span> <span class="nav-text">判断事务是否安全</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ACID性质"><span class="nav-number">3.</span> <span class="nav-text">ACID性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原子性"><span class="nav-number">3.1.</span> <span class="nav-text">原子性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一致性"><span class="nav-number">3.2.</span> <span class="nav-text">一致性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#入队错误"><span class="nav-number">3.2.1.</span> <span class="nav-text">入队错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行错误"><span class="nav-number">3.2.2.</span> <span class="nav-text">执行错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器停机"><span class="nav-number">3.2.3.</span> <span class="nav-text">服务器停机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隔离性"><span class="nav-number">3.3.</span> <span class="nav-text">隔离性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久性"><span class="nav-number">3.4.</span> <span class="nav-text">持久性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1451,6 +1378,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
