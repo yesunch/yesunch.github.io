@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="海量服务的技术价值观有损服务*有损服务经历了3个阶段的演变: *  ACID事务保证阶段(金融，电信，石油，银行)  特点：通过硬件中间件、数据库（支持事务）的层层事务保障，提供给用户非此即彼的服务结果，数据一致性优先于反应速度。  缺点：系统冗余高，架构复杂，开发维护及运营成本非常高。  BASE理论阶段(电商)  特点：BASE是Basically Available、Soft state、E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="海量服务">
+<meta property="og:url" content="http://yoursite.com/2020/05/30/%E6%B5%B7%E9%87%8F%E6%9C%8D%E5%8A%A1/index.html">
+<meta property="og:site_name" content="叶子冲冲冲">
+<meta property="og:description" content="海量服务的技术价值观有损服务*有损服务经历了3个阶段的演变: *  ACID事务保证阶段(金融，电信，石油，银行)  特点：通过硬件中间件、数据库（支持事务）的层层事务保障，提供给用户非此即彼的服务结果，数据一致性优先于反应速度。  缺点：系统冗余高，架构复杂，开发维护及运营成本非常高。  BASE理论阶段(电商)  特点：BASE是Basically Available、Soft state、E">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Library/Application%20Support/typora-user-images/%E6%88%AA%E5%B1%8F2020-05-2916.12.31.png">
+<meta property="article:published_time" content="2020-05-30T14:51:00.000Z">
+<meta property="article:modified_time" content="2020-05-30T14:51:46.680Z">
+<meta property="article:author" content="叶子">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/Users/yesun/Library/Application%20Support/typora-user-images/%E6%88%AA%E5%B1%8F2020-05-2916.12.31.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/30/海量服务/"/>
+
+
+
+
+
+  <title>海量服务 | 叶子冲冲冲</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">叶子冲冲冲</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">相信你，你可以的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/%E6%B5%B7%E9%87%8F%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="叶子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶子冲冲冲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">海量服务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-30T16:51:00+02:00">
+                2020-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">系统设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="海量服务的技术价值观"><a href="#海量服务的技术价值观" class="headerlink" title="海量服务的技术价值观"></a>海量服务的技术价值观</h1><h2 id="有损服务"><a href="#有损服务" class="headerlink" title="有损服务"></a>有损服务</h2><p>*<em>有损服务经历了3个阶段的演变: *</em></p>
+<ol>
+<li><p>ACID事务保证阶段(金融，电信，石油，银行) </p>
+<p>特点：通过硬件中间件、数据库（支持事务）的层层事务保障，提供给用户非此即彼的服务结果，数据一致性优先于反应速度。 </p>
+<p>缺点：系统冗余高，架构复杂，开发维护及运营成本非常高。</p>
+</li>
+<li><p>BASE理论阶段(电商) </p>
+<p>特点：BASE是Basically Available、Soft state、Eventually consistent三个词组的简写。通过牺牲【强一致性】，获得基本可用性和柔性可靠性并要求达到【最终一致性】 </p>
+<p>缺点：牺牲部分一致性，只能保证最终一致性。</p>
+</li>
+<li><p>*<em>有损服务阶段(UGC) *</em></p>
+<p>特点： </p>
+<p>a.<strong>放弃绝对一致，追求速度极致</strong>； </p>
+<p>b.万有一失，让用户<strong>重试</strong>；</p>
+<p> c.<strong>伸缩调度，降级服务</strong>；</p>
+</li>
+</ol>
+<h2 id="动态运营"><a href="#动态运营" class="headerlink" title="动态运营"></a>动态运营</h2><p>核心思想就是<strong>敏捷迭代</strong>， 所谓小步快跑，对用户的需求快速反应。简而言之就是<strong>“快速求证对用户猜想”</strong>的过程。</p>
+<h1 id="海量服务的7个技术手段"><a href="#海量服务的7个技术手段" class="headerlink" title="海量服务的7个技术手段"></a>海量服务的7个技术手段</h1><h2 id="容灾"><a href="#容灾" class="headerlink" title="容灾"></a>容灾</h2><h3 id="业务逻辑层容灾"><a href="#业务逻辑层容灾" class="headerlink" title="业务逻辑层容灾"></a>业务逻辑层容灾</h3><ul>
+<li><p><strong>独立逻辑</strong>的逻辑层，被接入层负载均衡地调用</p>
+<p>通过<strong>监控及时扩容</strong>，保证系统整体负载能力有冗余，一台服务器死机时，配置系统将其状态置为不可用，将其上的<strong>流量（平均）分给系统中其他服务器(s)上</strong>。</p>
+</li>
+<li><p><strong>分号段</strong>的逻辑层，每个逻辑层只能处理指定号段的请求。</p>
+<p><strong>n+n容灾</strong>：1对1容灾，比较奢侈，备份系统要么热备（平时负担50%请求）要么冷备（平时不工作，空跑），事故发生时，备机承担全部请求。 </p>
+<p><strong>n+1容灾</strong>：备机平时冷备，拥有全局号段路由表，任何一台主机死亡后，备机都可以转成死亡主机的角色，负责相应号段的逻辑工作。</p>
+</li>
+</ul>
+<h3 id="业务数据层容灾"><a href="#业务数据层容灾" class="headerlink" title="业务数据层容灾"></a>业务数据层容灾</h3><ul>
+<li><p><strong>写唯一式同步</strong></p>
+<p>业务写请求只发给数据层主机，由主机采用快、慢同步结合的方式同步给各台备机。</p>
+</li>
+<li><p><strong>同时写式同步</strong></p>
+<p>业务将写请求发给所有数据层服务器，得到所有/多数ack才算写完成。类似投票表决的方式被验证过可以严格保证数据一致性</p>
+</li>
+</ul>
+<h2 id="过载保护"><a href="#过载保护" class="headerlink" title="过载保护"></a>过载保护</h2><p>在分布式集群系统中，某台设备故障，会造成系统整体的繁忙不可用。用户群越大，系统规模越大，负载超限的情况扩散的就越快，最终会造成系统整体崩溃。<strong>雪崩</strong></p>
+<ul>
+<li><p><strong>轻重分离</strong></p>
+<p>对服务的内容进行<strong>细分</strong>，按照<strong>高内聚低耦合</strong>的方式部署服务，使得<strong>局部的过载不扩散</strong>到整个系统。</p>
+</li>
+<li><p><strong>及早拒绝</strong></p>
+<p>系统的设计原则：【<strong>前端保护后端，后端不信任前端</strong>】，在发现系统有过载趋势时，前端系统就要开始拒绝新的用户请求接入。</p>
+</li>
+<li><p><strong>量力而为</strong></p>
+<p>运营时要有<strong>容量管理（即容量监控）</strong>。一般而言，建议容量管理按照<strong>70%预警，过载保护按照90%启动</strong>。</p>
+</li>
+<li><p><strong>动态调节</strong></p>
+<p>通过<strong>持续监控业务状态数据寻找【平衡点】</strong>，形成一个<strong>正向动态反馈</strong>的循环： </p>
+<p><strong>业务正常状态-&gt; 过载保护状态 -&gt; 业务灰度恢复直到完全解除过保</strong>。</p>
+</li>
+</ul>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>负载均衡和过载保护机制很像，其实两者的<strong>目地是一样</strong>的，即都<strong>有效保护后台服务，减轻后台服务的压力</strong>。</p>
+<p>但<strong>实现的手段和方法是不一样的</strong>。而且即使实现了负载均衡，也是需要提供过载保护机制。<strong>负载均衡考虑的是把请求合理分配到后台服务器上。 过载保护考虑的是防止后面的服务器的雪崩。</strong></p>
+<h3 id="负载均衡算法"><a href="#负载均衡算法" class="headerlink" title="负载均衡算法"></a>负载均衡算法</h3><ul>
+<li><p><strong>轮询均衡 Round Robin</strong></p>
+<p>每一次来自网络的<strong>请求轮流分配</strong>给内部中的服务器，从1至N然后重新开始。</p>
+<p>适合于服务器组中的所有服务器都有<strong>相同的软硬件配置</strong>并且<strong>平均服务请求相对均衡</strong>的情况。</p>
+</li>
+<li><p><strong>权重轮询均衡 Weighted Round Robin</strong></p>
+<p>根据服务器的<strong>不同处理能力</strong>，给每个服务器分配<strong>不同的权值</strong>，使其能够接受相应<strong>权值数的服务请求</strong>。</p>
+<p>能确保<strong>高性能的服务器得到更多的使用率，避免低性能的服务器负载过重</strong>。</p>
+</li>
+<li><p><strong>随机均衡</strong></p>
+<p>把来自网络的请求*<em>随机分配</em>8给内部的多个服务器</p>
+</li>
+<li><p><strong>权重随机均衡</strong></p>
+<p>在处理请求分担时是个随机选择的过程。</p>
+</li>
+<li><p><strong>处理能力均衡</strong></p>
+<p>把服务请求<strong>分配给内部中处理负荷最轻</strong>（根据服务器CPU型号、CPU数量、内存大小及当前连接数等换算而成）的服务器</p>
+</li>
+</ul>
+<p>软件、硬件方式都可以实现负载均衡。通过<strong>反向代理方式实现负载均衡</strong>：</p>
+<p><strong>反向代理</strong>：代理服务器接受连接请求，将请求转发给内网的服务器，并将结果返回请求连接的客户端。<strong>提高性能、提高安全性</strong></p>
+<p>软件方式：nginx, apache. 硬件方式：高速缓存器，负载均衡器</p>
+<h2 id="柔性可用"><a href="#柔性可用" class="headerlink" title="柔性可用"></a>柔性可用</h2><p>有损服务价值观支撑下的一种做法：<strong>重点接口重点保障，次要接口有损保障，</strong>不保证完美体验，对非关键路径进行有损，提升系统的可用性。 </p>
+<h2 id="分SET部署"><a href="#分SET部署" class="headerlink" title="分SET部署"></a>分SET部署</h2><p>把<strong>一定号段的用户路由到某个一组指定的服务中</strong>，而这一组服务就是常说的<strong>set</strong>。一个set只服务某个号段的用户群，一旦这个set出异常，则只影响这部分的用户，对其他号段的用户没有影响。同时<strong>部署一个支持全量用户的set</strong>，为了较好的<strong>容灾</strong>，一旦某个(些)set出异常，可以快速通过<strong>变更路由表</strong>的方式，把有异常的set<strong>用户切换到备份set上</strong>，待重新部署后再回迁。</p>
+<p>  需要关注的问题是：</p>
+<pre><code>1，备份set的容量能力是否足够，由于异常时候有可能存在多个号段的set切过去，备份的一个set容量是否能够支撑到。
+
+2，备份set是否正常工作：可以考虑在平时的时候，让备份set跑一部分小号段的业务，即“温备”模式，确保在关键时候可能保证服务是正常的。</code></pre><p>优点：</p>
+<ul>
+<li>有效<strong>防止故障扩散</strong>，单点失效。<strong>高内聚</strong></li>
+<li>应对用户和业务增加带来的压力。可以实现服务的动态伸缩。</li>
+<li>提高海量服务的运营效率。<strong>标准化、模块化、规模化</strong>。一个SET在一个IDC（internet data center机房）内，减少模块调用耗时</li>
+<li>同一业务的不同SET间通信：<strong>SET间专线窄带化</strong>。这是降低业务对专线带宽占用。降低专线抖动对业务的影响，<strong>提高业务的专线抖动免役力</strong>。</li>
+<li>即使<strong>SET间专线故障，独立SET也能至少提供基础服务</strong>，而不致停服。</li>
+</ul>
+<h2 id="灰度发布"><a href="#灰度发布" class="headerlink" title="灰度发布"></a>灰度发布</h2><p>需求：</p>
+<ul>
+<li><p>从运维的角度讲，</p>
+<ul>
+<li>任何一次上线都是有风险的，<strong>控制风险</strong>的办法就是<strong>小批量上线，验证之后在全部更新</strong>。</li>
+<li>一些稳定性和性能的<strong>问题在开发测试环境很难复现</strong>，因此这一类的修复和功能只能<strong>到生产环境来验证</strong>，同样由于效果的未知也不可能全量更新。</li>
+<li><strong>大的重构</strong>，比如编程语言的变化，框架的变化，基础库的更新，操作系统的更新都会有未知的影响，而这些影响<strong>也需要生产的检验</strong>。</li>
+</ul>
+</li>
+<li><p>从产品的角度：</p>
+<ul>
+<li><strong>哪种设计更好</strong>并没有理论上的最佳实践，需要大家分别<strong>作出自己的方案</strong>，去<strong>线上收集</strong>真实的用户数据作对比。也就是硅谷里常说的** A/B testing**。基于数据驱动来作抉择。</li>
+</ul>
+</li>
+</ul>
+<p>灰度发布的要求：</p>
+<ul>
+<li><strong>精确的流量分发控制</strong>：需要<strong>把受影响的流量控制在一个精确的范围内</strong>，在上线前就<strong>知道哪部分用户会有问题</strong>，而不是真出问题谁受到影响都不知道。常见场景是新版本只让公司内部的员工能访问到，再一个市，一个省的一点点推上去。</li>
+<li><strong>监控系统的支撑</strong>：** 获得多个版本的关键指标**。对运维来说可能是看错误率，吞吐量，延迟，cpu 内存消耗这些系统层面指标。对于产品来说可能是要看点击率，pv，uv 等业务指标的变化。需要能把数据收集并作展示</li>
+<li><strong>灵活的发布系统</strong>：有可能整个服务在几个月内都是新旧并存，有可能线上有五六个方案都在收集数据，每天有了一些新想法都要上一些小版本看效果，这种情况<strong>可能线上就永远不会有一个统一的版本</strong>，<strong>灰度反而是个常态</strong>来应对不断变化的需求和挑战。而发布系统也需要做相应的调整，<strong>不能把个服务看成一个单一版本的运行体，只在更新的短时间内出现多版本共存，只允许全量推和回滚这种粗粒度策略</strong>。<strong>而是应该将多版本共存看成常态</strong>，允许每个版本<strong>各自迭代</strong>，版本之间又能<strong>区分对应的监控日志信息</strong>，</li>
+</ul>
+<h2 id="立体监控"><a href="#立体监控" class="headerlink" title="立体监控"></a>立体监控</h2><p>对一个业务或者系统进行完整的监控，而业务从系统层次上又可以分为接入层，逻辑层，数据层</p>
+<img src="/Users/yesun/Library/Application Support/typora-user-images/截屏2020-05-2916.12.31.png" alt="截屏2020-05-2916.12.31" style="zoom:50%;" />
+
+<h2 id="报警"><a href="#报警" class="headerlink" title="报警"></a>报警</h2><p><strong>设置告警</strong>，当某个监控指标不正常时，通过向相关负责人发送告警，以便及时处理。</p>
+<h1 id="海量服务的四个意识"><a href="#海量服务的四个意识" class="headerlink" title="海量服务的四个意识"></a>海量服务的四个意识</h1><h2 id="大系统做小"><a href="#大系统做小" class="headerlink" title="大系统做小"></a>大系统做小</h2><p>将功能复杂较大的系统，化大为小，减少模块耦合，降低相关联性，用多个独立的模块来实现整体系统的功能。</p>
+<p>这样做本身<strong>容易开发</strong>，还有一点就是为以后<strong>系统的扩展和做灰度升级</strong>提供方便。即可以只灰度发布某一个模块，</p>
+<h2 id="先扛住再优化"><a href="#先扛住再优化" class="headerlink" title="先扛住再优化"></a>先扛住再优化</h2><h2 id="干干净净"><a href="#干干净净" class="headerlink" title="干干净净"></a>干干净净</h2><ul>
+<li>对产品：不要一味地堆叠功能，用减法的思路对待产品</li>
+<li>对架构：运营过程中，应对一些特殊情况，新的架构因素不断被引入，架构层次及定位逐渐不再清晰，最终很大程度上造成架构效率的降低。</li>
+<li>对开发：及时清理带个人风格的代码库、中间件</li>
+<li>对运营：</li>
+</ul>
+<h2 id="边重构边生活"><a href="#边重构边生活" class="headerlink" title="边重构边生活"></a>边重构边生活</h2><p>要有勇气和自信重构服务，提供更先进更优秀的系统。</p>
+<h1 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h1><h2 id="高并发下的性能优化"><a href="#高并发下的性能优化" class="headerlink" title="高并发下的性能优化"></a>高并发下的性能优化</h2><ul>
+<li><strong>微服务架构</strong> 拆分服务，部署在不同的服务节点，避免单节点宕机引起的服务不可用</li>
+<li><strong>数据库</strong>： 主从复制，读写分离，分库分表，关键字段加索引，sql避免复合函数，避免组合排序，避免使用非索引字段作为条件分组</li>
+<li><strong>加缓存</strong> ：缓存数据库定义表，结果表，数据库的中间数据放缓存，避免多次访问修改表数据！登录信息session等放缓存实现共享！诸如商品分类，省市区，年龄分类等不常改变的数据，放缓存，不要放数据库！同时避免缓存雪崩和缓存穿透</li>
+<li><strong>增量统计</strong> 采用<strong>晚间定时任务统计，增量统计</strong>等方式提前进行统计，避免实时统计，减小CPU压力</li>
+<li><strong>加图片服务器</strong>： 图片等大文件，一定要单独经过文件服务器，避免IO速度对动态数据的影响</li>
+<li><strong>负载均衡</strong>：使用nginx等对访问量过大的服务采用负载均衡，实现服务集群，提高服务的最大并发数。</li>
+<li><strong>消息中间件</strong>： 服务之间数据的传输，使用诸如rabbit mq，kafka等等分布式消息队列异步传输，防止同步传输数据的阻塞和数据丢失！</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/30/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/" rel="next" title="微服务架构">
+                <i class="fa fa-chevron-left"></i> 微服务架构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM/" rel="prev" title="深入理解JVM-自动内存管理机制">
+                深入理解JVM-自动内存管理机制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">叶子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/catagories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yesunch" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:sun.ye@hotmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#海量服务的技术价值观"><span class="nav-number">1.</span> <span class="nav-text">海量服务的技术价值观</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#有损服务"><span class="nav-number">1.1.</span> <span class="nav-text">有损服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态运营"><span class="nav-number">1.2.</span> <span class="nav-text">动态运营</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#海量服务的7个技术手段"><span class="nav-number">2.</span> <span class="nav-text">海量服务的7个技术手段</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#容灾"><span class="nav-number">2.1.</span> <span class="nav-text">容灾</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#业务逻辑层容灾"><span class="nav-number">2.1.1.</span> <span class="nav-text">业务逻辑层容灾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务数据层容灾"><span class="nav-number">2.1.2.</span> <span class="nav-text">业务数据层容灾</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过载保护"><span class="nav-number">2.2.</span> <span class="nav-text">过载保护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡"><span class="nav-number">2.3.</span> <span class="nav-text">负载均衡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#负载均衡算法"><span class="nav-number">2.3.1.</span> <span class="nav-text">负载均衡算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#柔性可用"><span class="nav-number">2.4.</span> <span class="nav-text">柔性可用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分SET部署"><span class="nav-number">2.5.</span> <span class="nav-text">分SET部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#灰度发布"><span class="nav-number">2.6.</span> <span class="nav-text">灰度发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#立体监控"><span class="nav-number">2.7.</span> <span class="nav-text">立体监控</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报警"><span class="nav-number">2.8.</span> <span class="nav-text">报警</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#海量服务的四个意识"><span class="nav-number">3.</span> <span class="nav-text">海量服务的四个意识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#大系统做小"><span class="nav-number">3.1.</span> <span class="nav-text">大系统做小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先扛住再优化"><span class="nav-number">3.2.</span> <span class="nav-text">先扛住再优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#干干净净"><span class="nav-number">3.3.</span> <span class="nav-text">干干净净</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边重构边生活"><span class="nav-number">3.4.</span> <span class="nav-text">边重构边生活</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他问题"><span class="nav-number">4.</span> <span class="nav-text">其他问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#高并发下的性能优化"><span class="nav-number">4.1.</span> <span class="nav-text">高并发下的性能优化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">叶子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
