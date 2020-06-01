@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java容器有哪些？哪些是同步容器,哪些是并发容器？容器，两个接口，Collection, Map  Collection  List  LinkedList: 双向链表，顺序访问，快速中间插入和删除元素。可以用作栈、队列和双向队列。  ArrayList: 基于动态数组实现，支持随机访问  Vector: 和ArrayList 类似，但它是线程安全的  Stack  Set  HashSet：哈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题总结">
+<meta property="og:url" content="http://yoursite.com/2020/06/01/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93%E7%AC%AC%E4%B8%80%E7%AF%87/index.html">
+<meta property="og:site_name" content="叶子冲冲冲">
+<meta property="og:description" content="Java容器有哪些？哪些是同步容器,哪些是并发容器？容器，两个接口，Collection, Map  Collection  List  LinkedList: 双向链表，顺序访问，快速中间插入和删除元素。可以用作栈、队列和双向队列。  ArrayList: 基于动态数组实现，支持随机访问  Vector: 和ArrayList 类似，但它是线程安全的  Stack  Set  HashSet：哈">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-03-2917.44.30.png">
+<meta property="og:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-03-2922.51.01.png">
+<meta property="og:image" content="evernotecid://A2DE6E87-E390-4B1F-98E0-0FD7C58E6B54/appyinxiangcom/28827357/ENResource/p12">
+<meta property="og:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-03-3016.12.13.png">
+<meta property="og:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-03-3020.20.07.png">
+<meta property="og:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-03-3021.37.42.png">
+<meta property="og:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-04-0123.31.37.png">
+<meta property="og:image" content="evernotecid://A2DE6E87-E390-4B1F-98E0-0FD7C58E6B54/appyinxiangcom/28827357/ENResource/p44">
+<meta property="og:image" content="evernotecid://A2DE6E87-E390-4B1F-98E0-0FD7C58E6B54/appyinxiangcom/28827357/ENResource/p44">
+<meta property="article:published_time" content="2020-06-01T17:53:45.000Z">
+<meta property="article:modified_time" content="2020-06-01T18:25:25.108Z">
+<meta property="article:author" content="叶子">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-03-2917.44.30.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/06/01/面试题总结第一篇/"/>
+
+
+
+
+
+  <title>面试题总结 | 叶子冲冲冲</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">叶子冲冲冲</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">相信你，你可以的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/01/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93%E7%AC%AC%E4%B8%80%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="叶子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶子冲冲冲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试题总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-01T19:53:45+02:00">
+                2020-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">面经</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Java容器有哪些？哪些是同步容器-哪些是并发容器？"><a href="#Java容器有哪些？哪些是同步容器-哪些是并发容器？" class="headerlink" title="Java容器有哪些？哪些是同步容器,哪些是并发容器？"></a>Java容器有哪些？哪些是同步容器,哪些是并发容器？</h2><p>容器，两个接口，Collection, Map</p>
+<ul>
+<li><p><strong>Collection</strong></p>
+</li>
+<li><p><strong>List</strong></p>
+</li>
+<li><p><strong>LinkedList</strong>: <strong>双向链表</strong>，<strong>顺序访问</strong>，<strong>快速中间插入和删除</strong>元素。可以用<strong>作栈、队列和双向队列。</strong></p>
+</li>
+<li><p><strong>ArrayList</strong>: 基于<strong>动态数组</strong>实现，支持<strong>随机访问</strong></p>
+</li>
+<li><p><strong>Vector</strong>: 和<strong>ArrayList</strong> 类似，但它是<strong>线程安全</strong>的</p>
+</li>
+<li><p>Stack</p>
+</li>
+<li><p><strong>Set</strong></p>
+</li>
+<li><p><strong>HashSet</strong>：<strong>哈希表</strong>，<strong>快速查找</strong>，<strong>不支持有序性</strong>，<strong>失去插入顺序</strong></p>
+</li>
+<li><p><strong>TreeSet</strong>: <strong>红黑树</strong>,<strong>有序性</strong>，例如<strong>根据一个范围查找元素</strong>的操作。<strong>查找效率</strong>不如 <strong>HashSet O(1)，TreeSet O(logN)</strong>.TreeSet 还实现了 SortedSet 接口</p>
+</li>
+<li><p><strong>LinkedHashSet</strong>：<strong>双向链表</strong>， HashSet 的查找效率，<strong>维护插入顺序</strong>。</p>
+</li>
+<li><p><strong>Queue</strong></p>
+</li>
+<li><p><strong>LinkedList</strong> 可以实现双向队列</p>
+</li>
+<li><p><strong>PriorityQueue</strong> 堆，可以实现优先队列</p>
+</li>
+<li><p><strong>Map</strong></p>
+</li>
+<li><p><strong>TreeMap</strong>: <strong>红黑树</strong></p>
+</li>
+<li><p><strong>HashTable</strong> <strong>哈希表</strong> <strong>线程安全</strong> <strong>遗留类</strong> <strong>使用ConcurrentHashMap,使用了分段锁，效率高</strong></p>
+</li>
+<li><p><strong>HashMap</strong>： <strong>哈希表</strong></p>
+</li>
+<li><p><strong>LinkedHashMap</strong> <strong>双向链表</strong> <strong>维护插入顺序或LRU顺序</strong></p>
+</li>
+</ul>
+<h3 id="同步容器"><a href="#同步容器" class="headerlink" title="同步容器"></a>同步容器</h3><p><strong>synchronized关键字修饰</strong>容器保证<strong>同一时刻内只有一个线程在使用容器</strong>。多线程变为串行。<strong>复合操作不能保证线程安全</strong>。举例：A线程第一步获取尾节点，第二步将尾结点的值加1，但在A线程执行完第一步的时候，B线程删除了尾节点，在A线程执行第二步的时候就会报空指针）</p>
+<ul>
+<li><p><strong>Vector</strong></p>
+</li>
+<li><p><strong>Stack</strong></p>
+</li>
+<li><p><strong>HashTable</strong></p>
+</li>
+<li><p><strong>Collections.synchronized方法生成</strong></p>
+</li>
+</ul>
+<h3 id="并发容器"><a href="#并发容器" class="headerlink" title="并发容器"></a>并发容器</h3><p>允许<strong>多线程同时使用</strong>容器，并且保证线程安全。<strong>锁、CAS（无锁）、COW（读写分离）、分段锁</strong>。</p>
+<p><strong>分段锁</strong>：容器里有多把锁，每一把锁用于锁容器其中一部分数据，那么当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争</p>
+<p><strong>COW</strong>：<strong>写复制的数组</strong>上进行，<strong>读原始数组</strong>，读写分离，互不影响。<strong>写操作需要加锁</strong>，防止并发写入时导致写入数据丢失。原始数组指向新的复制数组。</p>
+<ul>
+<li><p><strong>ConcurrentHashMap</strong>：线程安全的HashMap的实现，<strong>1.7分段锁</strong>。 <strong>1.8CAS 红黑树</strong> 更高的并发度，失败时使用内置锁synchronized。1.8会转换为红黑树。</p>
+</li>
+<li><p><strong>CopyOnWriteArrayList</strong>：线程安全且在<strong>读操作时无锁</strong>的ArrayList。<strong>适合读多写少</strong>。缺陷：写操作复制<strong>占用内存</strong>，<strong>不能读取实时性数据</strong>。不适合：内存敏感，对实时性要求高</p>
+</li>
+<li><p><strong>CopyOnWriteArraySet</strong>：基于CopyOnWriteArrayList，不添加重复元素</p>
+</li>
+<li><p><strong>ArrayBlockingQueue</strong>：基于数组、先进先出、线程安全，可实现指定时间的阻塞读写，并且容量可以限制</p>
+</li>
+<li><p><strong>LinkedBlockingQueue</strong>：基于链表实现，读写各用一把锁，在高并发读写操作都多的情况下，性能优于ArrayBlockingQueue</p>
+</li>
+</ul>
+<h2 id="ArrayList和LinkedList的插入和访问的时间复杂度？"><a href="#ArrayList和LinkedList的插入和访问的时间复杂度？" class="headerlink" title="ArrayList和LinkedList的插入和访问的时间复杂度？"></a>ArrayList和LinkedList的插入和访问的时间复杂度？</h2><p>ArrayList 插入O(n)和O(1),删除O(n),访问O(1)</p>
+<p>LinkedList 插入O(n)和O(1),删除O(1),访问O(n)</p>
+<h2 id="Java反射原理-注解原理？"><a href="#Java反射原理-注解原理？" class="headerlink" title="Java反射原理,注解原理？"></a>Java反射原理,注解原理？</h2><p> 反射</p>
+<h3 id="反射获取对象的步骤"><a href="#反射获取对象的步骤" class="headerlink" title="反射获取对象的步骤"></a>反射获取对象的步骤</h3><ul>
+<li><p>获取类的 <strong>Class 对象实例</strong></p>
+</li>
+<li><p>根据 Class 对象实例获取** Constructor 对象**</p>
+</li>
+<li><p>使用 Constructor 对象的 <strong>newInstance 方法</strong>获取反射类对象</p>
+</li>
+</ul>
+<h3 id="反射调用方法步骤"><a href="#反射调用方法步骤" class="headerlink" title="反射调用方法步骤"></a>反射调用方法步骤</h3><p><strong>反射</strong>就是在运行时才知道要操作的类是什么，并且可以在运行时获取类的完整构造，并调用对应的方法</p>
+<ul>
+<li><p>获取类的 <strong>Class 对象实例</strong></p>
+</li>
+<li><p>获取方法的 <strong>Method 对象</strong></p>
+</li>
+<li><p>利用 <strong>invoke 方法</strong>调用方法</p>
+</li>
+</ul>
+<h3 id="反射调用方法实现原理"><a href="#反射调用方法实现原理" class="headerlink" title="反射调用方法实现原理"></a>反射调用方法实现原理</h3><ol>
+<li><p>缓存或JVM中获取该Class中申明的方法列表</p>
+</li>
+<li><p>从返回的方法列表里找到一个匹配名称和参数的方法对象</p>
+</li>
+<li><p>如果找到一个匹配的Method，则重新copy一份返回。新对象的root属性都指向原来的Method对象，如果需要频繁调用，最好把Method对象缓存起来。</p>
+</li>
+</ol>
+<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><p>注解的本质就是一个<strong>继承了 Annotation 接口的接口</strong></p>
+<p>元注解』是用于修饰注解的注解，通常用在注解的定义上，指定某个注解生命周期以及作用目标等信息。</p>
+<ol>
+<li><p>首先，我们通过<strong>键值对的形式可以为注解属性赋值</strong>，像这样：@Hello（value = “hello”）。</p>
+</li>
+<li><p>接着，你用注解修饰某个元素，<strong>编译器</strong>将在编译期扫描每个类或者方法上的注解，会做一个基本的 <strong>检查</strong>，你的这个注解<strong>是否允许作用</strong>在当前位置，最后会<strong>将注解信息写入元素的属性表</strong>。</p>
+</li>
+<li><p>然后，当你<strong>进行反射的时候</strong>，虚拟机将所有<strong>生命周期在 RUNTIME 的注解取出</strong>来放到一个 <strong>map</strong> 中，并创建一个 <strong>AnnotationInvocationHandler</strong> 实例，把这个 <strong>map 传递给它</strong>。</p>
+</li>
+<li><p>最后，虚拟机将采用 <strong>JDK 动态代理机制生成一个目标注解的代理类</strong>，并初始化好处理器。</p>
+</li>
+</ol>
+<p>那么这样，一个注解的实例就创建出来了，它本质上就是一个代理类，</p>
+<h2 id="新生代分为几个区？使用什么算法进行垃圾回收？为什么使用这个算法？"><a href="#新生代分为几个区？使用什么算法进行垃圾回收？为什么使用这个算法？" class="headerlink" title="新生代分为几个区？使用什么算法进行垃圾回收？为什么使用这个算法？"></a>新生代分为几个区？使用什么算法进行垃圾回收？为什么使用这个算法？</h2><h3 id="一个Elden区和两个Survivor（幸存）区。"><a href="#一个Elden区和两个Survivor（幸存）区。" class="headerlink" title="一个Elden区和两个Survivor（幸存）区。"></a>一个Elden区和两个Survivor（幸存）区。</h3><p>在GC中，Eden中的对象会被移动到survivor中，直至对象满足一定的年纪（定义为熬过minor GC的次数），会被移动到老年代。</p>
+<h3 id="新生代采取复制算法，"><a href="#新生代采取复制算法，" class="headerlink" title="新生代采取复制算法，"></a>新生代采取<strong>复制算法</strong>，</h3><ol>
+<li><p>在Minor GC之前，<strong>to survivor区域保持清空</strong>，对象保存在Eden和from survivor区，</p>
+</li>
+<li><p>minor GC运行时，<strong>Eden中的幸存对象会被复制到to Survivor</strong>（同时对象年龄会增加1）。<strong>from survivor区，年龄没达到阈值，复制到to survivor中，否则移到老年代</strong>。 Eden和From幸存区可以视为清空。</p>
+</li>
+<li><p><strong>若to幸存区被填满了，放到老年代</strong>。</p>
+</li>
+<li><p>From survivor和to survivor会<strong>调换一下名字</strong></p>
+</li>
+</ol>
+<p>对象一般出生在Eden区，年轻代GC过程中，对象在2个幸存区之间移动，如果对象活到适当的年龄，会被移到老年代</p>
+<h3 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h3><p><strong>优化GC性能</strong></p>
+<p>新生代需要清理的对象数量十分巨大，复制算法<strong>不需要移动待回收对象</strong>，直接将存活对象复制到另一块空闲内存区域中，<strong>减小了时间复杂度</strong></p>
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><h3 id="在什么情况下会扩容？"><a href="#在什么情况下会扩容？" class="headerlink" title="在什么情况下会扩容？"></a>在什么情况下会扩容？</h3><p>size 大于等于 threshold 就必须进行扩容操作</p>
+<p>threshold = (int)(capacity* loadFactor)</p>
+<h3 id="HashMap-put方法的执行过程？"><a href="#HashMap-put方法的执行过程？" class="headerlink" title="HashMap put方法的执行过程？"></a>HashMap put方法的执行过程？</h3><ol>
+<li><p>若键为null，使用第 0 个桶存放键为 null 的键值对</p>
+</li>
+<li><p>求key值的hash</p>
+</li>
+<li><p>根据hash计算桶下标。hash%capacity。如果能保证capacity为2的n次方，h&amp;(capacity-1)</p>
+</li>
+<li><p>是否已经存在键为 key 的键值对，如果存在的话就更新这个键值对的值为 value</p>
+</li>
+<li><p>插入新键值对。头插法（1.7之前）尾插法(1.7之后)。</p>
+</li>
+</ol>
+<h3 id="HashMap检测到hash冲突后，将元素插入在链表的末尾还是开头？"><a href="#HashMap检测到hash冲突后，将元素插入在链表的末尾还是开头？" class="headerlink" title="HashMap检测到hash冲突后，将元素插入在链表的末尾还是开头？"></a>HashMap检测到hash冲突后，将元素插入在链表的末尾还是开头？</h3><p>在jdk1.8之前是插入头部的，在jdk1.8中是插入尾部的。</p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>红黑树的特性:</p>
+<ul>
+<li><p>每个节点<strong>或黑色或红</strong>。</p>
+</li>
+<li><p><strong>根节点和每个叶子节点（NIL）是黑色</strong>。[注意：这里叶子节点，是指为空(NIL或NULL)的叶子节点！]</p>
+</li>
+<li><p><strong>父红子黑</strong>。</p>
+</li>
+<li><p><strong>父到子孙</strong>的所有路径上包含<strong>相同数目的黑节点</strong>。</p>
+</li>
+</ul>
+<h3 id="为什么用红黑树"><a href="#为什么用红黑树" class="headerlink" title="为什么用红黑树"></a>为什么用红黑树</h3><p>在<strong>CurrentHashMap</strong>中是<strong>加锁</strong>了的，实际上是读写锁，如果<strong>写冲突就会等待</strong>，</p>
+<p>如果插入时间过长必然等待时间更长，而<strong>红黑树的插入</strong>更快！插入和删除方面，AVL树速度较慢：需要<strong>更高的旋转次数</strong>才能重新平衡数据结构。</p>
+<p>BST：</p>
+<ul>
+<li><p>查找 lgn n</p>
+</li>
+<li><p>插入 lgn</p>
+</li>
+<li><p>删除 lgn</p>
+</li>
+</ul>
+<p>AVL：</p>
+<ul>
+<li><p>查找 lgn</p>
+</li>
+<li><p>插入 lgn</p>
+</li>
+<li><p><strong>删除 2lgn</strong> (删除后还有lgn次旋转)</p>
+</li>
+</ul>
+<p>红黑树：</p>
+<ul>
+<li><p>查找 lgn</p>
+</li>
+<li><p>插入 lgn</p>
+</li>
+<li><p><strong>删除 lgn + 3</strong>(3次旋转)</p>
+</li>
+</ul>
+<p>红黑树对比AVL树：</p>
+<ul>
+<li><p>AVL树严格平衡，和B树一样适合查找密集型数据</p>
+</li>
+<li><p>红黑树适合插入密集型。插入，删除，查找性能好</p>
+</li>
+</ul>
+<h3 id="相比于BST和AVL树有什么优点"><a href="#相比于BST和AVL树有什么优点" class="headerlink" title="相比于BST和AVL树有什么优点"></a>相比于BST和AVL树有什么优点</h3><ul>
+<li><p>它的<strong>查找效果是有最低保证</strong>的。在最坏的情况下也可以保证O(logN)，好于二叉查找树的。</p>
+</li>
+<li><p><strong>删除操作代价低</strong></p>
+</li>
+</ul>
+<h2 id="https和http区别"><a href="#https和http区别" class="headerlink" title="https和http区别"></a>https和http区别</h2><p>HTTP 有以下安全性问题：</p>
+<ul>
+<li><p>使用明文进行通信，内容可能会被<strong>窃听</strong>；</p>
+</li>
+<li><p>不验证通信方的身份，通信方的身份有可能遭遇<strong>伪装</strong>；</p>
+</li>
+<li><p>无法证明报文的完整性，<strong>报文有可能遭篡改</strong></p>
+</li>
+</ul>
+<p>HTTPS 具有了<strong>加密（防窃听）、认证（防伪装）和完整性保护（防篡改）</strong>。</p>
+<p><strong>混合加密机制</strong>：使用对称加密机制，但是用非对称加密机制加密密钥。</p>
+<p><strong>CA认证机制</strong>： 向CA提出公开密钥的申请，CA 在判明提出申请者的身份之后，会对已申请的公开密钥做数字签名，</p>
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><img src="/assets/截屏2020-03-2917.44.30.png" style="zoom:50%;" />
+
+<p><strong>主要参数：</strong></p>
+<ul>
+<li><p>corePoolSize</p>
+</li>
+<li><p>maxPoolSize</p>
+</li>
+<li><p>keepAliveTime</p>
+<p>当线程<strong>空闲时间达到keepAliveTime，该线程会退出</strong>，直到线程<strong>数量等于corePoolSize</strong>。如果allowCoreThreadTimeout设置为true，则所有线程均会退出直到线程数量为0。</p>
+</li>
+<li><p>allowCoreThreadTimeout</p>
+<p>是否允许核心线程空闲退出，默认值为false。</p>
+</li>
+<li><p>queueCapacity</p>
+<p>任务队列容量</p>
+</li>
+</ul>
+<p><strong>如何来设置：</strong></p>
+<p>需要根据几个值来决定</p>
+<ul>
+<li><p><strong>tasks</strong> ：每秒的任务数，假设为500~1000</p>
+</li>
+<li><p><strong>taskcost</strong>：每个任务花费时间，假设为0.1s</p>
+</li>
+<li><p><strong>responsetime</strong>：系统允许容忍的最大响应时间，假设为1s</p>
+</li>
+</ul>
+<p>做几个计算</p>
+<ul>
+<li>corePoolSize = 每秒需要多少个线程处理？</li>
+</ul>
+<ul>
+<li><p><strong>threadcount = tasks/(1/taskcost)</strong> =tasks<em>taskcout = (500~1000)</em>0.1 = 50~100 个线程。corePoolSize设置应该大于50</p>
+</li>
+<li><p>根据8020原则，如果80%的每秒任务数小于800，那么corePoolSize设置为80即可</p>
+</li>
+</ul>
+<p>- queueCapacity = (coreSizePool/taskcost)*responsetime</p>
+<ul>
+<li><p>计算可得 queueCapacity = 80/0.1*1 = 800。意思是队列里的线程可以等待1s，超过了的需要新开线程来执行</p>
+</li>
+<li><p>切记不能设置为Integer.MAX_VALUE，这样队列会很大，线程数只会保持在corePoolSize大小，当任务陡增时，不能新开线程来执行，响应时间会随之陡增</p>
+</li>
+</ul>
+<h3 id="饱和策略"><a href="#饱和策略" class="headerlink" title="饱和策略"></a>饱和策略</h3><ul>
+<li><p>AbortPolicy</p>
+<p>丢弃任务并抛出RejectedExecutionException异常。</p>
+</li>
+<li><p>DiscardPolicy</p>
+<p>丢弃任务，不抛出异常</p>
+</li>
+<li><p>DiscardOldestPolicy</p>
+<p>丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）</p>
+</li>
+<li><p>CallerRunsPolicy</p>
+<p>由调用线程处理该任务</p>
+</li>
+<li><p>用户自定义拒绝策略（最常用）</p>
+<p>实现RejectedExecutionHandler，并自己定义策略模式</p>
+</li>
+</ul>
+<h2 id="Linux怎么查看系统负载情况"><a href="#Linux怎么查看系统负载情况" class="headerlink" title="Linux怎么查看系统负载情况"></a>Linux怎么查看系统负载情况</h2><p>Linux的负载高，主要是由于<strong>CPU使用、内存使用、IO消耗</strong>三部分构成</p>
+<p><strong>w或者uptime</strong></p>
+<p><strong>top命令</strong>能够清晰的展现出系统的状态，而且它是实时的监控</p>
+<h2 id="springmvc处理请求全流程"><a href="#springmvc处理请求全流程" class="headerlink" title="springmvc处理请求全流程"></a>springmvc处理请求全流程</h2><ol>
+<li><p><strong>请求从浏览器到达DispatcherServlet</strong>。DispatcherServlet是一个<strong>单例的前端控制器</strong>（所有的请求都通过前端控制器）。它的任务是把<strong>请求发给SpringMVC控制器</strong></p>
+</li>
+<li><p><strong>确定处理请求的控制器</strong>。<strong>处理器映射</strong>会根据URL信息来决策</p>
+</li>
+<li><p><strong>DispatcherServelet</strong>将<strong>请求发给控制器</strong>，请求卸下负载。</p>
+</li>
+<li><p>控制器将<strong>产生的模型数据</strong>打包，标示出用于<strong>渲染的视图名</strong>。将请求、模型、逻辑视图名<strong>返回DispatcherServlet</strong>。</p>
+</li>
+<li><p>DispatcherServlet<strong>使用视图解析器将逻辑视图名匹配为一个特定视图</strong></p>
+</li>
+<li><p>DispatcherServlet将<strong>模型交付给视图</strong></p>
+</li>
+<li><p><strong>视图将模型数据渲染输出</strong>，把输出通过响应对象<strong>传递给客户端</strong>。</p>
+</li>
+</ol>
+<h2 id="AtomicInteger为什么要用CAS而不是synchronized？"><a href="#AtomicInteger为什么要用CAS而不是synchronized？" class="headerlink" title="AtomicInteger为什么要用CAS而不是synchronized？"></a>AtomicInteger为什么要用CAS而不是synchronized？</h2><p>CAS是一种<strong>乐观锁，依赖于处理器的底层实现原语</strong>保证CAS的原子性。</p>
+<p><strong>使用场景</strong>：线程对于共享资源的竞争不激烈,使用共享资源的时间非常短,不适合Synchronized.因为Synchronized会<strong>频繁的切换上下文</strong>让执行的线程<strong>被阻塞并被挂起</strong>,而<u><strong>这种操作消耗的时间远大于共享资源使用的时间</strong></u>的时候就应该使用<strong>CAS</strong></p>
+<p><strong>CAS只适合于线程冲突较少的情况使用</strong></p>
+<p><strong>CAS缺点</strong></p>
+<ul>
+<li><p><strong>ABA问题</strong>： 解决思路就是使用版本号。在变量前面追加上版本号，每次变量更新的时候把版本号加一，那么A－B－A 就会变成1A-2B－3A</p>
+</li>
+<li><p><strong>若循环时间长，开销大</strong>： 自旋CAS如果长时间不成功，会给CPU带来非常大的执行开销</p>
+</li>
+<li><p><strong>只能保证一个共享变量</strong>的原子操作</p>
+</li>
+</ul>
+<h2 id="查询中哪些情况不会使用索引"><a href="#查询中哪些情况不会使用索引" class="headerlink" title="查询中哪些情况不会使用索引"></a>查询中哪些情况不会使用索引</h2><ol>
+<li><p>如果查询条件用or，<strong>必须or条件中的每个列都加上索引</strong>，否则无效。</p>
+</li>
+<li><p>对于<strong>复合索引</strong>（又叫多列索引或者联合索引），如果<strong>查询的列不使用复合索引的第一部分</strong>，则不使用索引。例如，tb表的复合索引为（key1，key2，key3），则查询select * from tb where key2=1 and key2&gt;5将不会使用索引。</p>
+</li>
+<li><p>如果<strong>like是以%开头的</strong>，则<strong>该列上的索引不会被使用</strong>。例如：select * from tb where key1 like “%a”; 即使key1列上建立了索引，该查询也不会使用索引。</p>
+</li>
+<li><p>存在<strong>索引列的数据类型隐形转换</strong>，则不使用索引。例如：列key1的数据类型为字符串，select * from tb where key1=1; 将不会使用索引。要想使用索引，必须将字符串用引号印起来。</p>
+</li>
+<li><p><strong>where字句里对索引列有数学运算或者使用函数</strong>，则不使用索引。</p>
+</li>
+</ol>
+<h2 id="数据库索引底层为什么要用B树索引"><a href="#数据库索引底层为什么要用B树索引" class="headerlink" title="数据库索引底层为什么要用B树索引"></a>数据库索引底层为什么要用B树索引</h2><img src="/assets/截屏2020-03-2922.51.01.png" style="zoom:50%;" />
+
+<p><strong>B+树特点：</strong></p>
+<ul>
+<li><p>非叶子结点，关键字数=子树指针树</p>
+</li>
+<li><p>非叶子结点不含实际数据指针或实际数据，所有关键字都在叶子结点</p>
+</li>
+<li><p>所有叶子结点增加了一个链指针。遍历整棵树只要遍历所有叶子结点即可</p>
+</li>
+</ul>
+<p><strong>为什么更适合数据库</strong>：</p>
+<ul>
+<li><p><strong>磁盘读写代价更低：</strong>内部节点没有指向关键字的指针，<strong>内部节点比B树更小</strong>，盘块所能<strong>容纳的关键字多</strong>，<strong>一次性读入内存的关键字也就越多</strong>，相对<strong>IO读写次数就降低</strong>了。</p>
+</li>
+<li><p><strong>查询效率更加稳定：</strong> 所有关键字查询的路径长度相同，<strong>每一个数据的查询效率相当</strong></p>
+</li>
+<li><p><strong>方便扫库：</strong> 只需要遍历一遍叶子结点</p>
+</li>
+</ul>
+<h2 id="Mysql主从同步的实现原理？"><a href="#Mysql主从同步的实现原理？" class="headerlink" title="Mysql主从同步的实现原理？"></a>Mysql主从同步的实现原理？</h2><p><strong>主从同步：</strong> 当master(主)库的数据发生变化的时候，变化会实时的同步到slave(从)库。</p>
+<p>在master机器上，<strong>主从同步事件</strong>会被写到特殊的log文件中(<strong>binary-log</strong>);</p>
+<p>主从同步事件有3种形式:<strong>statement、row、mixed</strong>。</p>
+<ul>
+<li><p>statement：会将对数据库操作的<strong>sql语句写入到binlog中</strong>。</p>
+</li>
+<li><p>row：会将<strong>每一条数据的变化写入到binlog中</strong>。</p>
+</li>
+<li><p>mixed：statement与row的混合。Mysql决定什么时候写statement格式的，什么时候写row格式的binlog。</p>
+</li>
+</ul>
+<p><strong>主从同步：</strong></p>
+<ol>
+<li><p>当master上的数据发生改变的时候，该<strong>事件(insert、update、delete)变化会按照顺序写入到binlog中</strong>。</p>
+</li>
+<li><p>当slave连接到master的时候，master机器会<strong>为slave开启<u>binlog dump</u></strong>线程。当master 的 <strong>binlog发生变化</strong>的时候，binlog dump线程会通知slave，并<strong>将binlog发送给slave</strong>。</p>
+</li>
+<li><p>slave的<u><strong>I/O线程</strong></u>接收到binlog后，再将内容<strong>写入到本地的relay log</strong>。</p>
+</li>
+<li><p>slave的<u><strong>SQL线程</u>读取relay log</strong>，<strong>更新数据库</strong>。</p>
+</li>
+</ol>
+<p><img src="evernotecid://A2DE6E87-E390-4B1F-98E0-0FD7C58E6B54/appyinxiangcom/28827357/ENResource/p12" alt="d1150d18012395e3be0c03b5960e61de.png"></p>
+<h2 id="谈谈数据库乐观锁与悲观锁？"><a href="#谈谈数据库乐观锁与悲观锁？" class="headerlink" title="谈谈数据库乐观锁与悲观锁？"></a>谈谈数据库乐观锁与悲观锁？</h2><h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>假设最坏的情况，<strong>每次去拿数据的时候都认为别人会修改</strong>，所以每次拿数据的时候都会<strong>上锁</strong>，这样别人想拿这个数据就会阻塞直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如<strong>行锁，表锁等，读锁，写锁</strong>等，都是在做<strong>操作之前先上锁</strong>。Java中<strong>synchronized和ReentrantLock等独占锁</strong>就是悲观锁思想的实现。</p>
+<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>总是假设最好的情况，<strong>每次去拿数据的时候都认为别人不会修改，所以不会上锁</strong>，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号机制和CAS算法实现。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于write_condition机制，其实都是提供的乐观锁。在Java中java.util.concurrent.atomic包下面的原子变量类就是使用了乐观锁的一种实现方式CAS实现的。</p>
+<h2 id="MongoDB和Redis适用哪些场景"><a href="#MongoDB和Redis适用哪些场景" class="headerlink" title="MongoDB和Redis适用哪些场景"></a>MongoDB和Redis适用哪些场景</h2><p><strong>Redis</strong>：适用于对<strong>读写效率</strong>要求高，<strong>数据处理业务</strong>复杂和对<strong>安全性</strong>要求高的系统（如新浪微博的计数和微博发布部分系统，对数据安全性、读写要求都很高）。</p>
+<p><strong>MongoDB</strong>:主要解决<strong>海量数据的访问效率</strong>问题。</p>
+<h2 id="Hbase与传统数据库的区别？与Hive呢？"><a href="#Hbase与传统数据库的区别？与Hive呢？" class="headerlink" title="Hbase与传统数据库的区别？与Hive呢？"></a>Hbase与传统数据库的区别？与Hive呢？</h2><h5 id="与传统数据库的区别："><a href="#与传统数据库的区别：" class="headerlink" title="与传统数据库的区别："></a><strong>与传统数据库的区别：</strong></h5><p>1.<strong>数据类型</strong>：Hbase只有简单的数据类型，只保留<strong>字符串</strong>；传统数据库有<strong>丰富的数据类型</strong>。</p>
+<p>2.<strong>数据操作</strong>：Hbase只有简单的<strong>插入、查询、删除、清空</strong>等操作，表和表之间是分离的，没有复杂的表和表之间的关系；传统数据库通常<strong>有各式各样的函数和连接操作</strong>。</p>
+<p>3.<strong>存储模式</strong>：Hbase是基于列存储的，每个列族都由几个文件保存，不同列族的文件是分离的，这样的好处是数据即是索引，访问查询涉及的列大量降低系统的I/O，并且每一列由一个线索来处理，可以实现查询的并发处理；传统数据库是基于表格结构和行存储，其没有建立索引将耗费大量的I/O并且建立索引和物化试图需要耗费大量的时间和资源。</p>
+<p>4.<strong>数据维护</strong>：Hbase的更新实际上是<strong>插入了新的数据</strong>；传统数据库只是替换和修改。</p>
+<p>5.<strong>可伸缩性</strong>：Hbase可以轻松的增加或减少硬件的数目，并且对错误的兼容性比较高；传统数据库需要增加中间层才能实现这样的功能。</p>
+<p>6.<strong>事务</strong>：Hbase只可以实现<strong>单行事务性</strong>，意味着行与行之间、表与表之前不必满足事务性；传统数据库是可以实现跨行的事务性。</p>
+<h5 id="列式存储的好处"><a href="#列式存储的好处" class="headerlink" title="列式存储的好处"></a>列式存储的好处</h5><p>更适合OLAP的业务 联机分析处理（Online Analytical Processing）</p>
+<h5 id="Hbase与Hive"><a href="#Hbase与Hive" class="headerlink" title="Hbase与Hive"></a>Hbase与Hive</h5><ul>
+<li><p><strong>Hive适合分析时间段数据,不适合实时数据查询</strong>。Hbase适合实时数据查询</p>
+</li>
+<li><p>HBase 本身只提供了Java的API接口，并<strong>不直接支持SQL</strong>的语句查询，<strong>Hive支持Hql</strong></p>
+</li>
+<li><p>默认存储层都是 HDFS。但是<strong>HBase也可以直接使用本机的文件系统</strong>。</p>
+</li>
+</ul>
+<p>Redis和memcache有什么区别？Redis为什么比memcache有优势？</p>
+<p>考虑redis的时候，有没有考虑容量？大概数据量会有多少？</p>
+<p>谈谈分布式锁、以及分布式全局唯一ID的实现比较？</p>
+<p>虚函数的调用</p>
+<h2 id="TCP的传输可靠性"><a href="#TCP的传输可靠性" class="headerlink" title="TCP的传输可靠性"></a>TCP的传输可靠性</h2><ul>
+<li><p><strong>数据包校验</strong>：检测数据<strong>是否被篡改</strong>，若有错，则<strong>丢弃</strong>报文段并且<strong>不给出响应</strong>，这时TCP发送数据端超时后会<strong>重发</strong>数据；</p>
+</li>
+<li><p><strong>丢弃重复数据</strong></p>
+</li>
+<li><p>失序的数据包<strong>重排列</strong></p>
+</li>
+<li><p><strong>超时重传</strong></p>
+</li>
+<li><p><strong>流量控制</strong>： <strong>滑动窗口协议</strong>。TCP连接的每一方都有固定大小的缓冲空间。TCP的接收端只允许另一端发送接收端缓冲区所能接纳的数据，这可以防止较快主机致使较慢主机的缓冲区溢出。</p>
+</li>
+<li><p><strong>ACK机制</strong></p>
+</li>
+</ul>
+<h2 id="客户端不断进行请求链接会怎样？DDos-Distributed-Denial-of-Service-攻击？"><a href="#客户端不断进行请求链接会怎样？DDos-Distributed-Denial-of-Service-攻击？" class="headerlink" title="客户端不断进行请求链接会怎样？DDos(Distributed Denial of Service)攻击？"></a>客户端不断进行请求链接会怎样？DDos(Distributed Denial of Service)攻击？</h2><p>答：服务器端会为每个请求创建一个链接，并向其发送确认报文，然后等待客户端进行确认</p>
+<h5 id="1-DDos-攻击："><a href="#1-DDos-攻击：" class="headerlink" title="(1). DDos 攻击："></a>(1). DDos 攻击：</h5><ol>
+<li><p>客户端向服务端发送请求链接数据包</p>
+</li>
+<li><p>服务端向客户端发送确认数据包</p>
+</li>
+<li><p>客户端不向服务端发送确认数据包，<strong>服务器一直等待来自客户端的确认</strong></p>
+</li>
+</ol>
+<h5 id="2-DDos-预防：（没有彻底根治的办法，除非不使用TCP）"><a href="#2-DDos-预防：（没有彻底根治的办法，除非不使用TCP）" class="headerlink" title="(2). DDos 预防：（没有彻底根治的办法，除非不使用TCP）"></a>(2). DDos 预防：（没有彻底根治的办法，除非不使用TCP）</h5><ul>
+<li><p><strong>限制同时打开SYN半链接的数目</strong></p>
+</li>
+<li><p>缩短SYN半链接的<strong>Time out 时间</strong></p>
+</li>
+</ul>
+<h2 id="GET-与-POST-的区别"><a href="#GET-与-POST-的区别" class="headerlink" title="GET 与 POST 的区别"></a>GET 与 POST 的区别</h2><p>答：GET与POST是我们常用的两种HTTP Method，二者之间的区别主要包括如下五个方面：</p>
+<ul>
+<li><p>从<strong>功能上</strong>讲，GET一般用来从服务器上<strong>获取</strong>资源，POST一般用来<strong>更新</strong>服务器上的资源；</p>
+</li>
+<li><p><strong>改变资源</strong>：GET不会改变服务器上的资源，而POST会对服务器资源进行改变；</p>
+</li>
+<li><p><strong>请求参数形式上</strong>看，GET请求的数据会附在URL之后，在HTTP报文的<strong>请求头</strong>中，以?分割URL和传输数据，参数之间以&amp;相连。而POST请求会把提交的数据则放置在是HTTP请求报文的<strong>请求体</strong>中。</p>
+</li>
+<li><p>就<strong>安全性</strong>而言，<strong>POST的安全性高</strong>，因为GET请求提交的数据将<strong>明文出现在URL上</strong>，而且POST请求参数则被<strong>包装到请求体</strong>中，相对更安全。</p>
+</li>
+<li><p>从<strong>请求的大小</strong>看，GET请求的长度受限于浏览器或服务器对<strong>URL长度的限制</strong>，允许发送的数据量比较小，而POST请求则是<strong>没有大小限制</strong>的。</p>
+</li>
+</ul>
+<h2 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h2><p>答：TCP (Transmission Control Protocol)和UDP(User Datagram Protocol)协议属于传输层协议，它们之间的区别包括：</p>
+<ul>
+<li><p>TCP是<strong>面向连接</strong>的，UDP是无连接的；</p>
+</li>
+<li><p>TCP是<strong>可靠</strong>的，UDP是不可靠的；</p>
+</li>
+<li><p>TCP只支持<strong>点对点</strong>通信，UDP支持<strong>一对一、一对多、多对一、多对多</strong>的通信模式；</p>
+</li>
+<li><p>TCP是<strong>面向字节流</strong>的，UDP是<strong>面向报文</strong>的；</p>
+</li>
+<li><p>TCP有<strong>拥塞控制</strong>机制;UDP没有拥塞控制，适合媒体通信；</p>
+</li>
+<li><p>TCP<strong>首部开销</strong>(20个字节)比UDP的首部开销(8个字节)要大；</p>
+</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>TCP</li>
+</ul>
+<p>当数据传输的性能必须让位于<strong>数据传输的完整性、可控制性和可靠性</strong>时，TCP协议是当然的选择。</p>
+<ul>
+<li>UDP</li>
+</ul>
+<p>当<strong>强调传输性能</strong>而不是传输的完整性时，如：音频和多 媒体应用，UDP是最好的选择。在<strong>数据传输时间很短</strong>，以至于此前的连接过程成为整个流量主体的情况下，UDP也是一个好的选择。</p>
+<h2 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h2><img src="/assets/截屏2020-03-3016.12.13.png" alt="feb445228c98356957596c8753d4bea8" style="zoom:50%;" />
+
+<p><strong>SNMP</strong>：<strong>简单网络管理协议</strong>，使用<strong>161</strong>号端口，是用来<strong>管理网络设备</strong>的。由于网络设备很多，无连接的服务就体现出其优势。</p>
+<h2 id="浏览器打开网页过程"><a href="#浏览器打开网页过程" class="headerlink" title="浏览器打开网页过程"></a>浏览器打开网页过程</h2><p><strong>DNS缓存</strong>： 浏览器缓存 -&gt; 系统缓存 -&gt; host文件 -&gt; 路由器缓存 -&gt; 递归搜索根域名服务器</p>
+<h2 id="什么是-HTTP-协议无状态协议？怎么解决Http协议无状态协议"><a href="#什么是-HTTP-协议无状态协议？怎么解决Http协议无状态协议" class="headerlink" title="什么是 HTTP 协议无状态协议？怎么解决Http协议无状态协议?"></a>什么是 HTTP 协议无状态协议？怎么解决Http协议无状态协议?</h2><p>答：HTTP 是一个无状态的协议，这意味着<strong>每一次的请求都是独立的</strong>，缺少状态意味着<strong>如果后续处理需要前面的信息，则它必须要重传</strong>，这样可能导致每次连接传送的<strong>数据量增大</strong>。另一方面，在服务器不需要先前信息时它的<strong>应答就很快</strong>。</p>
+<p>HTTP 的这种特性有优点也有缺点：</p>
+<ul>
+<li><p><strong>优点</strong>：<strong>解放了服务器</strong>，每一次的请求“点到为止”，<strong>不会造成不必要的连接占用</strong></p>
+</li>
+<li><p><strong>缺点</strong>：每次请求会<strong>传输大量重复的内容信息</strong>，并且，在<strong>请求之间无法实现数据的共享</strong></p>
+</li>
+</ul>
+<p>解决方案：</p>
+<p>使用<strong>参数传递机制解决共享的问题</strong>：</p>
+<p>将参数拼接在请求的 URL 后面，实现数据的传递（GET方式），例如：/param/list?username=wmyskxz</p>
+<p>问题：<strong>一不安全，二数据允许传输量只有1kb</strong></p>
+<p>办法：</p>
+<ul>
+<li>使用 <strong>Cookie</strong> 技术，<u>客户端保存状态</u></li>
+</ul>
+<p>Cookie 是<strong>服务器发送到用户浏览器并保存在本地的一小块数据</strong>，它会在浏览器之后<strong>向同一服务器再次发起请求时被携带上</strong>，用于告知服务端两个请求<strong>是否来自同一浏览器</strong>。会带来<strong>额外的性能开销</strong>（尤其是在移动环境下）</p>
+<ul>
+<li>使用 <strong>Session</strong> 技术，<u>服务端保存状态</u></li>
+</ul>
+<p>如果服务器记录该用户状态，就获取Session来保存状态，这时，如果服务器已经为此客户端创建过session，服务器就<strong>按照sessionid把这个session检索出来</strong>使用；如果客户端请求<strong>不包含sessionid</strong>，则为此客户端<strong>创建</strong>一个session并且生成一个与此session相关联的sessionid，并将这个<strong>sessionid在本次响应中返回给客户端</strong>保存。可以采用<strong>cookie机制保存这个sessionid</strong></p>
+<h2 id="Session-与-Cookie-的对比："><a href="#Session-与-Cookie-的对比：" class="headerlink" title="Session 与 Cookie 的对比："></a>Session 与 Cookie 的对比：</h2><ul>
+<li><p><strong>实现机制</strong>：<strong>Session常常依赖于Cookie机制</strong>，通过Cookie机制<strong>回传SessionID</strong>；</p>
+</li>
+<li><p><strong>大小限制</strong>：Cookie有<strong>大小限制</strong>并且浏览器对每个站点也有<strong>cookie的个数限制</strong>，Session没有大小限制，理论上<strong>只与服务器的内存大小有关</strong>；</p>
+</li>
+<li><p><strong>安全性</strong>：Cookie存在安全隐患，通过<strong>拦截或本地文件</strong>找得到cookie后可以进行攻击，而Session由于保存在服务器端，相对更加安全；</p>
+</li>
+<li><p><strong>服务器资源消耗</strong>：Session是保存在服务器端上会存在一段时间才会消失，如果session过多会增加服务器的压力。</p>
+</li>
+</ul>
+<h2 id="SQL-注入"><a href="#SQL-注入" class="headerlink" title="SQL 注入"></a>SQL 注入</h2><p>答：SQL注入就是通过把<strong>SQL命令插入到Web表单提交、输入域名、页面请求的查询字符串</strong>，最终达到<strong>欺骗服务器</strong>执行恶意的SQL命令。</p>
+<p>免帐号登录：</p>
+<p>用户名：‘or 1 = 1 –</p>
+<p>密 码：</p>
+<p>SELECT * FROM user_table WHERE username=’’or 1 = 1 –- and password=’’</p>
+<h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><h3 id="容易引起内存泄漏的原因"><a href="#容易引起内存泄漏的原因" class="headerlink" title="容易引起内存泄漏的原因"></a>容易引起内存泄漏的原因</h3><h5 id="静态集合类"><a href="#静态集合类" class="headerlink" title="静态集合类"></a>静态集合类</h5><p>静态集合类的使用最容易引起内存泄漏，因为这些静态变量的生命周期与应用程序一致，它将一直存在，而其中所有的对象也不能被释放。</p>
+<h5 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h5><p>释放对象的时候却没有记住去删除这些监听器，从而增加了内存泄漏的机会。</p>
+<h5 id="各种连接"><a href="#各种连接" class="headerlink" title="各种连接"></a>各种连接</h5><p>比如数据库连接和网络连接，除非其显式的关闭了连接，否则是不会自动被GC回收的。对于Resultset 和Statement 对象可以不进行显式回收，但Connection 一定要显式回收，因为Connection 在任何时候都无法自动回收，而Connection一旦回收，Resultset 和Statement 对象就会立即为NULL。</p>
+<p>如果使用连接池，情况就不一样了，除了要显式地关闭Connection ，还必须显式地关闭Resultset 和Statement 对象（关闭其中一个，另外一个也会关闭）</p>
+<h5 id="内部类和外部模块等的引用"><a href="#内部类和外部模块等的引用" class="headerlink" title="内部类和外部模块等的引用"></a>内部类和外部模块等的引用</h5><p>内部类一旦没释放可能导致一系列的后继类对象没有释放。对于程序员而言，自己的程序很清楚，如果发现内存泄漏，自己对这些对象的引用可以很快定位并解决，但是现在的应用软件并非一个人实现，模块化的思想在现代软件中非常明显，所以程序员要小心外部模块不经意的引用，例如程序员A 负责A 模块，调用了B 模块的一个方法如：</p>
+<p>public void registerMsg(Object b);</p>
+<p>这种调用就要非常小心了，传入了一个对象，很可能模块B就保持了对该对象的引用，这时候就需要注意模块B 是否提供相应的操作去除引用。</p>
+<h5 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h5><p>　　不正确使用单例模式是引起内存泄漏的一个常见问题，单例对象在初始化后将在JVM的整个生命周期中存在（以静态变量的方式），如果单例对象持有外部的引用，那么这个对象将不能被JVM正常回收，导致内存泄漏。</p>
+<h2 id="如何避免内存泄漏"><a href="#如何避免内存泄漏" class="headerlink" title="如何避免内存泄漏"></a>如何避免内存泄漏</h2><ul>
+<li><p>尽早释放无用对象的引用</p>
+</li>
+<li><p>字符串处理时，尽量避免使用String，而应该使用StringBuffer</p>
+</li>
+<li><p>尽量少用静态变量</p>
+</li>
+</ul>
+<p>因为静态变量是全局的，存在方法区，用永久代实现的方法区，垃圾回收行为在这个区域是比较少出现的，垃圾回收器的主要目标是<strong>针对常量池和类型的卸载</strong>。</p>
+<h2 id="红黑树-1"><a href="#红黑树-1" class="headerlink" title="红黑树"></a>红黑树</h2><h5 id="红黑树的各种操作的时间复杂度？"><a href="#红黑树的各种操作的时间复杂度？" class="headerlink" title="红黑树的各种操作的时间复杂度？"></a>红黑树的各种操作的时间复杂度？</h5><p><strong>能保证在最坏情况下，查找、插入和删除的时间均为O（lgn）</strong></p>
+<p><strong>AVL PK RBT</strong></p>
+<h2 id="classloader加载机制，是否可以自己定义一个java-lang-String类，为什么？"><a href="#classloader加载机制，是否可以自己定义一个java-lang-String类，为什么？" class="headerlink" title="classloader加载机制，是否可以自己定义一个java.lang.String类，为什么？"></a>classloader加载机制，是否可以自己定义一个java.lang.String类，为什么？</h2><h3 id="类装载器"><a href="#类装载器" class="headerlink" title="类装载器"></a>类装载器</h3><ul>
+<li><strong>启动（Bootstrap）类加载器</strong></li>
+</ul>
+<p>将JAVA_HOME/lib下面的核心类库加载到内存</p>
+<ul>
+<li><strong>扩展（extand）类加载器</strong></li>
+</ul>
+<p>负责将JAVA_HOME /lib/ext中的类库加载到内存，开发者可以直接使用</p>
+<ul>
+<li><strong>系统（System）类加载器</strong></li>
+</ul>
+<p>用户类路径(java -classpath所指的目录）下的类库加载到内存中，开发者可以直接使用</p>
+<h5 id="只有被同一个类加载器实例加载并且文件名相同的class文件才被认为是同一个class-任意一个类，都需要由加载它的类加载器和这个类本身共同确立其在Java虚拟机中的唯一性"><a href="#只有被同一个类加载器实例加载并且文件名相同的class文件才被认为是同一个class-任意一个类，都需要由加载它的类加载器和这个类本身共同确立其在Java虚拟机中的唯一性" class="headerlink" title="只有被同一个类加载器实例加载并且文件名相同的class文件才被认为是同一个class. 任意一个类，都需要由加载它的类加载器和这个类本身共同确立其在Java虚拟机中的唯一性"></a><strong>只有被同一个类加载器实例加载并且文件名相同的class文件才被认为是同一个class.</strong> 任意一个类，都需要由加载它的类加载器和这个类本身共同确立其在Java虚拟机中的唯一性</h5><h3 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h3><img src="/assets/截屏2020-03-3020.20.07.png" alt="8f01068bb734c37ebcbac380417ccbec" style="zoom:50%;" />
+
+<p>父子关系一般通过<strong>组合（Composition）关系</strong>来实现，而不是通过继承（Inheritance）。</p>
+<p>类加载器在接到加载类的请求时，首<strong>先将加载任务委托给父类加载器</strong>，依次递归，如果父类加载器可以完成类加载任务，就成功返回；只有<strong>父类加载器无法完成</strong>此加载任务时，才<strong>自己去加载</strong></p>
+<p><strong>好处</strong>在于<strong>Java类随着它的类加载器一起具备了一种带有优先级的层次关系</strong>。例如类<strong>java.lang.Object，它存在在rt.jar中</strong>，无论哪一个类加载器要加载这个类，<strong>最终都是委派给Bootstrap ClassLoader</strong>进行加载，因此Object类在程序的各种类加载器环境中<strong>都是同一个类</strong>。</p>
+<p><strong>为什么用双亲委派机制:</strong> </p>
+<ul>
+<li><p><strong>避免重复加载，当父亲已经加载了该类的时候，就没有必要子ClassLoader再加载一次</strong>。</p>
+</li>
+<li><p><strong>避免安全隐患</strong>，如果不使用这种委托模式，就可以随时使用自定义的String来动态替代java核心api中定义类型，会存在非常大的安全隐患，而双亲委托的方式，就可以避免这种情况，因为<strong>String已经在启动时被加载，所以用户自定义类是无法加载的。</strong></p>
+</li>
+</ul>
+<h3 id="自定义类加载器"><a href="#自定义类加载器" class="headerlink" title="自定义类加载器"></a>自定义类加载器</h3><p>因为Java中提供的默认ClassLoader，只加载指定目录下的jar和class，如果我们想<strong>加载其它位置的类或jar时</strong>，比如：我要加载<strong>网络上的一个class文件</strong>，通过动态加载到内存之后，要调用这个类中的方法实现我的业务逻辑。在这样的情况下，默认的ClassLoader就不能满足我们的需求了，所以需要定义自己的ClassLoader。</p>
+<p>定义自已的类加载器分为两步：</p>
+<p><strong>1、继承java.lang.ClassLoader</strong></p>
+<p><strong>2、重写findClass方法</strong></p>
+<h2 id="哪几种创建线程类的方法"><a href="#哪几种创建线程类的方法" class="headerlink" title="哪几种创建线程类的方法"></a>哪几种创建线程类的方法</h2><ul>
+<li><p>继承Thread</p>
+</li>
+<li><p>实现Runnable接口</p>
+</li>
+<li><p>通过Callable和FutureTack创建</p>
+</li>
+<li><p>创建实现Callable接口的类A</p>
+</li>
+<li><p>用FutureTask包装A对象</p>
+</li>
+<li><p>将FutureTask对象作为target创建线程</p>
+</li>
+</ul>
+<h2 id="简述一下List、Set、Map的区别"><a href="#简述一下List、Set、Map的区别" class="headerlink" title="简述一下List、Set、Map的区别"></a>简述一下List、Set、Map的区别</h2><p><strong>List：</strong></p>
+<ol>
+<li><p>可以允许<strong>重复</strong>的对象。</p>
+</li>
+<li><p>可以插入多个<strong>null</strong>元素。</p>
+</li>
+<li><p>是一个有序容器，保持了每个元素的插入<strong>顺序</strong>，输出的顺序就是插入的顺序。</p>
+</li>
+<li><p>常用的实现类有 ArrayList、LinkedList 和 Vector。ArrayList 最为流行，它提供了使用索引的随意访问，而 LinkedList 则对于经常需要从 List 中添加或删除元素的场合更为合适。</p>
+</li>
+</ol>
+<p><strong>Set：</strong></p>
+<ol>
+<li><p>不允许重复对象</p>
+</li>
+<li><p>无序容器，你无法保证每个元素的存储顺序，TreeSet通过 Comparator 或者 Comparable 维护了一个排序顺序。</p>
+</li>
+<li><p>只允许一个 null 元素</p>
+</li>
+<li><p>Set 接口最流行的几个实现类是 HashSet、LinkedHashSet 以及 TreeSet。最流行的是基于 HashMap 实现的 HashSet；TreeSet 还实现了 SortedSet 接口，因此 TreeSet 是一个根据其 compare() 和 compareTo() 的定义进行排序的有序容器。</p>
+</li>
+</ol>
+<p><strong>Map</strong></p>
+<ol>
+<li><p>Map不是collection的子接口或者实现类。Map是一个接口。</p>
+</li>
+<li><p>Map存储Key Value，Map 可能会持有相同的值对象但键对象必须是唯一的。</p>
+</li>
+<li><p><strong>TreeMap 也通过 Comparator 或者 Comparable 维护了一个排序顺序</strong>。</p>
+</li>
+<li><p>Map 里你可以拥有<strong>随意个null值</strong>但最多<strong>只能有一个null键</strong>。</p>
+</li>
+<li><p>Map 接口最流行的几个实现类是 HashMap、LinkedHashMap、Hashtable 和 TreeMap。（HashMap、TreeMap最常用）</p>
+</li>
+</ol>
+<h2 id="说出ArrayList-Vector-LinkedList的存储性能和特性"><a href="#说出ArrayList-Vector-LinkedList的存储性能和特性" class="headerlink" title="说出ArrayList,Vector, LinkedList的存储性能和特性"></a>说出ArrayList,Vector, LinkedList的存储性能和特性</h2><p><strong>ArrayList 和Vector</strong>都是使用<strong>数组</strong>方式存储数据，允许直接按序号索引元素，但是插入元素要涉及数组元素移动等内存操作，所以<strong>索引数据快而插入数据慢</strong>。</p>
+<p>Vector中的方法由于添加了synchronized修饰，线程安全，但性能上较ArrayList差，因此已经是Java中的遗留容器。</p>
+<p><strong>LinkedList</strong>使用<strong>双向链表</strong>实现存储（将内存中零散的内存单元通过附加的引用关联起来，形成一个可以按序号索引的线性结构，这种链式存储方式与数组的连续存储方式相比，<strong>内存的利用率</strong>更高），按序号索引数据需要进行前向或后向遍历，但是插入数据时只需要记录本项的前后项即可，所以<strong>插入速度较快</strong>。</p>
+<h2 id="对象序列化机制-Java-的序列化做什么用的-序列化id会出现哪些问题？"><a href="#对象序列化机制-Java-的序列化做什么用的-序列化id会出现哪些问题？" class="headerlink" title="对象序列化机制 Java 的序列化做什么用的 序列化id会出现哪些问题？"></a>对象序列化机制 Java 的序列化做什么用的 序列化id会出现哪些问题？</h2><p><strong>序列化</strong>是指<strong>对象通过写出描述自己状态的数值来记录自己</strong>的过程，即<strong>将对象表示成一系列有序字节，</strong></p>
+<p>Java提供了<strong>将对象写入流和从流中恢复对象</strong>的方法。对象能包含其它的对象，而其它的对象又可以包含另外的对象。</p>
+<p>Java序列化能够自动的处理嵌套的对象。对于一个对象的<strong>简单域，writeObject()直接将其值写入流中</strong>。当遇到一个<strong>对象域时，writeObject()被再次调用</strong>，如果这个对象内嵌另一个对象，那么，writeObject()又被调用，直到对象能被直接写入流为止。程序员所需要做的是<strong>将对象传入ObjectOutputStream的writeObject()方法</strong>剩下的将有系统自动完成。</p>
+<h3 id="为什么要序列化"><a href="#为什么要序列化" class="headerlink" title="为什么要序列化"></a>为什么要序列化</h3><p><strong>分布式环境</strong>中经常需要<strong>将Object从这一端网络或设备传递到另一端</strong>。这就需要有<strong>一种可以在两端传输数据的协议</strong>。Java序列化机制就是为了解决这个问题而产生</p>
+<h3 id="序列化ID"><a href="#序列化ID" class="headerlink" title="序列化ID"></a>序列化ID</h3><p>java的序列化机制是通过在运行时<strong>判断类的serialVersionUID来验证版本一致性</strong>的。在进行<strong>反序列化</strong>时，JVM会把传来的<strong>字节流中的serialVersionUID与本地实体类中的serialVersionUID</strong>进行比较，如果相同则认为是一致的，便可以进行反序列化，否则就会报<strong>序列化版本不一致的异常</strong>。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p><strong>没有显示定义序列化ID，反序列化失败</strong>。Java序列化机制会<strong>根据编译时的class自动生成一个serialVersionUID</strong>作为序列化版本，只有<strong>同一次编译生成的class才会生成相同的serialVersionUID</strong>。一段时间后，本地类中<strong>添加字段</strong>以后，再反序列化时便会出现<strong>serialVersionUID不一致</strong>，导致反序列化失败。</p>
+<p><strong>办法</strong>：<strong>显示定义序列化ID</strong></p>
+<h2 id="hibernate和mibatis区别？"><a href="#hibernate和mibatis区别？" class="headerlink" title="hibernate和mibatis区别？"></a>hibernate和mibatis区别？</h2><ul>
+<li><p>hibernate是全自动，而mybatis是半自动</p>
+<p>hibernate完全可以通过对象关系模型实现对数据库的操作，拥有<strong>完整的JavaBean对象与数据库的映射结构来自动生成sql</strong>。而<strong>mybatis仅有基本的字段映射</strong>，对象数据以及对象实际关系仍然需要通过手写sql来实现和管理。</p>
+</li>
+<li><p>hibernate数据库移植性远大于mybatis</p>
+<p>hibernate通过它强大的映射结构和hql语言，大大降低了对象与数据库（Oracle、MySQL等）的耦合性，而mybatis由于需要手写sql，因此<strong>与数据库的耦合性直接取决于程序员写sql的方法</strong>，如果sql不具通用性而<strong>用了很多某数据库特性</strong>的sql语句的话，<strong>移植性降低</strong>很多，成本很高。</p>
+</li>
+<li><p>hibernate拥有完整的日志系统，mybatis则欠缺一些</p>
+<p>hibernate日志系统非常健全，涉及广泛，包括：sql记录、<strong>关系异常</strong>、<strong>优化警告</strong>、缓存提示、<strong>脏数据警告</strong>等；而mybatis则除了<strong>基本记录功能</strong>外，功能薄弱很多。</p>
+</li>
+<li><p>mybatis相比hibernate需要关心很多细节</p>
+<p>hibernate配置要比mybatis复杂的多，学习成本也比mybatis高。<strong>mybatis开发模式上与传统jdbc区别很小，因此很容易上手</strong>并开发项目，需要<strong>关心很多技术细节</strong>，忽略细节会导致项目前期bug较多，因而<strong>开发出相对稳定的软件很慢，而开发出软件却很快</strong>。</p>
+<p>hibernate则正好与之相反。但是如果使用hibernate很熟练的话，实际上开发效率丝毫不差于甚至超越mybatis。</p>
+</li>
+<li><p>sql直接优化上，mybatis要比hibernate方便很多</p>
+<p>由于<strong>mybatis的sql都是写在xml里，因此优化sql比hibernate方便很多</strong>。而<strong>hibernate的sql很多都是自动生成的，无法直接维护sql</strong>；总之写sql的灵活度上hibernate不及mybatis。</p>
+</li>
+</ul>
+<h2 id="HashMap-、Hashtable和-HashSet的区别？哪个key可以为空？HashMap的内部实现机制，Hash是怎样实现的，什么时候ReHash"><a href="#HashMap-、Hashtable和-HashSet的区别？哪个key可以为空？HashMap的内部实现机制，Hash是怎样实现的，什么时候ReHash" class="headerlink" title="HashMap 、Hashtable和 HashSet的区别？哪个key可以为空？HashMap的内部实现机制，Hash是怎样实现的，什么时候ReHash"></a>HashMap 、Hashtable和 HashSet的区别？哪个key可以为空？HashMap的内部实现机制，Hash是怎样实现的，什么时候ReHash</h2><h3 id="HashTable-和-HashMap"><a href="#HashTable-和-HashMap" class="headerlink" title="HashTable 和 HashMap"></a>HashTable 和 HashMap</h3><p><strong>区别一：继承的父类不同</strong></p>
+<p><strong>Hashtable</strong>继承自<strong>Dictionary</strong>类，而<strong>HashMap继承自AbstractMap</strong>类。但二者都实现了Map接口</p>
+<p><strong>区别二：线程安全性不同</strong></p>
+<p>Hashtable 中的方法是Synchronize的，而HashMap中的方法在缺省情况下是非Synchronize的。</p>
+<p><strong>区别三：是否提供contains方法</strong></p>
+<p><strong>HashMap没有contains方法，改成containsValue和containsKey</strong>，因为contains方法容易让人引起误解。</p>
+<p><strong>Hashtable则保留了这三个方法，其中contains和containsValue功能相同</strong>。</p>
+<p><strong>区别四：key和value是否允许null值</strong></p>
+<p>其中key和value都是对象，并且不能包含重复key，但可以包含重复的value。</p>
+<p><strong>Hashtable中，key和value都不允许出现null值</strong></p>
+<p>HashMap中，null可以作为键，这样的键只有一个；可以有一个或多个键所对应的值为null。当get()方法返回null值时，可能是 HashMap中没有该键，也<strong>可能该键所对应的值为null</strong>。因此，<strong>在HashMap中不能由get()方法来判断HashMap中是否存在某个键</strong>， 而应该用<strong>containsKey</strong>方法来判断。</p>
+<p><strong>区别五：哈希值的计算方法不同</strong>，Hashtable直接使用的是对象的hashCode,而HashMap则是在对象的hashCode的基础上%(length-1)。</p>
+<h3 id="HashMap和HashSet"><a href="#HashMap和HashSet" class="headerlink" title="HashMap和HashSet"></a>HashMap和HashSet</h3><p>当我们提到HashSet时，第一件事情就是在将对象存储在HashSet之前，要先<strong>确保对象重写equals()和hashCode()方法</strong>，这样才能比较对象的值是否相等，以确保set中没有储存相等的对象。</p>
+<img src="/assets/截屏2020-03-3021.37.42.png" alt="e5a9531b6089889263271f54d05fd9ab" style="zoom:50%;" />
+
+<h3 id="ReHash"><a href="#ReHash" class="headerlink" title="ReHash"></a>ReHash</h3><p>HashMap的<strong>容量达到threshold时</strong>就需要进行<strong>扩容</strong>，这个时候就要进行<strong>ReHash</strong>操作了.扩充HashMap的时候，不需要像JDK1.7的实现那样重新计算hash，只需要看看<strong>比原来的hash值新增的那个bit是1还是0</strong>就好了，是0的话索引没变，<strong>是1的话索引变成“原索引+oldCap”</strong></p>
+<p>集合加锁？那synchronized与static synchronized 的区别？</p>
+<p>HashMap、HashTable、ConCurrentHasgMap的区别以及实现原理？</p>
+<h2 id="ConCurrentHasgMap调用get（）方法的时候有锁吗？"><a href="#ConCurrentHasgMap调用get（）方法的时候有锁吗？" class="headerlink" title="ConCurrentHasgMap调用get（）方法的时候有锁吗？"></a>ConCurrentHasgMap调用get（）方法的时候有锁吗？</h2><p>没有。 因为Node结点的value被volatile修饰了，保证了内存可见性。</p>
+<h2 id="HTTP的特点"><a href="#HTTP的特点" class="headerlink" title="HTTP的特点"></a>HTTP的特点</h2><p><strong>无状态，C/S模式，无连接</strong></p>
+<h3 id="无连接"><a href="#无连接" class="headerlink" title="无连接"></a>无连接</h3><p>每进行一次HTTP通信，都要断开一次TCP连接。增加通信量的开销。</p>
+<p>为了解决TCP的连接问题，HTTP1.1提出了持久连接的方法。</p>
+<p>所谓的持久连接，就是<strong>任意一端只要没有明确提出断开连接，则保持TCP连接状态</strong>。</p>
+<h3 id="无状态"><a href="#无状态" class="headerlink" title="无状态"></a>无状态</h3><p>协议对于事务处理没有记忆能力，服务器不知道客户端是什么状态</p>
+<h2 id="JMM在初始化堆内存时，新生代与老年代的默认比例是多少"><a href="#JMM在初始化堆内存时，新生代与老年代的默认比例是多少" class="headerlink" title="JMM在初始化堆内存时，新生代与老年代的默认比例是多少"></a>JMM在初始化堆内存时，新生代与老年代的默认比例是多少</h2><p>默认的，新生代 ( Young ) 与老年代 ( Old ) 的比例的值为 1:2 ( 该值可以通过参数 –XX:NewRatio 来指定 )，</p>
+<p>默认的，Edem : from : to = 8 : 1 : 1 ( 可以通过参数 –XX:SurvivorRatio 来设定</p>
+<h2 id="Spring中控制反转定义？相比于创建对象的好处？AOP编程的优点？"><a href="#Spring中控制反转定义？相比于创建对象的好处？AOP编程的优点？" class="headerlink" title="Spring中控制反转定义？相比于创建对象的好处？AOP编程的优点？"></a>Spring中控制反转定义？相比于创建对象的好处？AOP编程的优点？</h2><h5 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h5><p><strong>资源不由使用资源的双方管理，而由不使用资源的第三方管理</strong>，这可以带来很多好处。</p>
+<ul>
+<li><p>第一，资源集中管理，实现<strong>资源的可配置和易管理</strong>。</p>
+</li>
+<li><p>第二，<strong>降低了使用资源双方的依赖程度</strong>，也就是我们说的耦合度。</p>
+</li>
+</ul>
+<h5 id="AOP好处"><a href="#AOP好处" class="headerlink" title="AOP好处"></a>AOP好处</h5><ul>
+<li><p>切面的内容可以复用，</p>
+</li>
+<li><p>避免使用Proxy、CGLIB生成代理，这方面的工作全部框架去实现，开发者可以专注于切面内容本身</p>
+</li>
+<li><p>代码与代码之间没有耦合，如果拦截的方法有变化修改配置文件即可</p>
+</li>
+</ul>
+<h2 id="SpringMVC中动态代理的实现机制，源码？"><a href="#SpringMVC中动态代理的实现机制，源码？" class="headerlink" title="SpringMVC中动态代理的实现机制，源码？"></a>SpringMVC中动态代理的实现机制，源码？</h2><h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>Spring AOP编程两种方式</p>
+<ul>
+<li><p>方式一：Spring AOP使用纯Java实现，通过代理方式向目标类植入增强代码（编程复杂，不推荐）</p>
+</li>
+<li><p>方式二：使用AspectJ框架</p>
+</li>
+</ul>
+<h3 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h3><p>Spring AOP是基于动态代理的，分别基于两种动态代理机制： <strong>JDK动态代理</strong>和<strong>CGLIB动态代理</strong></p>
+<h4 id="JDK动态代理"><a href="#JDK动态代理" class="headerlink" title="JDK动态代理"></a>JDK动态代理</h4><p>JDK动态代理，<strong>针对目标对象的接口进行代理</strong>，动态生成接口的实现类 <strong>（必须有接口）</strong>。<strong>代理类是接口的实现类</strong></p>
+<p>过程要点</p>
+<ol>
+<li><p>必须对接口生成代理</p>
+</li>
+<li><p><strong>采用Proxy对象，通过newProxyInstance方法为目标创建代理对象</strong>。</p>
+</li>
+</ol>
+<p>该方法接收<strong>三个参数</strong> ：</p>
+<p>（1）<strong>目标对象类加载器</strong></p>
+<p>（2）<strong>目标对象实现的接口</strong></p>
+<p>（3）代理后的<strong>处理程序InvocationHandler</strong></p>
+<ol start="3">
+<li><strong>实现InvocationHandler接口中 invoke方法</strong>，在目标对象每个方法调用时，都会执行invoke</li>
+</ol>
+<h4 id="CGlib代理"><a href="#CGlib代理" class="headerlink" title="CGlib代理"></a>CGlib代理</h4><p>不需要接口也可以代理.运行期间生成的代理对象是针对目标类扩展的子类。<strong>代理类是目标类的子类。</strong></p>
+<ol>
+<li><p><strong>代理工厂</strong>实现MethodInteceptor接口，实现intercept方法</p>
+</li>
+<li><p>获取<strong>代理对象生成器Enhancer</strong></p>
+</li>
+<li><p>给生成器设置<strong>目标类加载器</strong>，设置<strong>目标类</strong>，设置<strong>回调方法</strong>（this.intercept()）</p>
+</li>
+<li><p>创建代理对象。enhancer.create</p>
+</li>
+</ol>
+<h2 id="怎么实现让两个线程交替执行？（用代码实现？）"><a href="#怎么实现让两个线程交替执行？（用代码实现？）" class="headerlink" title="怎么实现让两个线程交替执行？（用代码实现？）"></a>怎么实现让两个线程交替执行？（用代码实现？）</h2><p>CAS + volatile实现两个线程交替输出奇偶数。用原子类当被增加的数，flag用volatile。</p>
+<img src="/assets/截屏2020-04-0123.31.37.png" alt="190a12649aa39310f64694e17fd0478c" style="zoom:50%;" />
+
+<h2 id="使用过哪些写代码的工具？（Myeclipse和IDE），列出你常用的快捷键？"><a href="#使用过哪些写代码的工具？（Myeclipse和IDE），列出你常用的快捷键？" class="headerlink" title="使用过哪些写代码的工具？（Myeclipse和IDE），列出你常用的快捷键？"></a>使用过哪些写代码的工具？（Myeclipse和IDE），列出你常用的快捷键？</h2><p>IDEA</p>
+<p>Control + J 快速查看文档</p>
+<p>Control + O 覆盖方法（重写父类方法）</p>
+<p>Command + Option + T 包围代码（使用if…else、try…catch、for、synchronized等包围选中的代码）</p>
+<p>Control + Option + O 优化 import</p>
+<p>Control + Option + I 自动缩进线</p>
+<p>Command + Option + O 前往指定的变量 / 方法</p>
+<p>Command + O 查找类文件</p>
+<p>各种容器的初始化长度是多少？</p>
+<h2 id="使用ArrayList初始化时注意事项？（自动扩充机制方面，原理实现）？"><a href="#使用ArrayList初始化时注意事项？（自动扩充机制方面，原理实现）？" class="headerlink" title="使用ArrayList初始化时注意事项？（自动扩充机制方面，原理实现）？"></a>使用ArrayList初始化时注意事项？（自动扩充机制方面，原理实现）？</h2><p>创建 ArrayList 对象时就指定大概的容量大小，减少扩容操作的次数。</p>
+<p>加元素时使用 ensureCapacityInternal() 方法来保证容量足够，如果不够时，需要使用 grow() 方法进行扩容，新容量的大小为 oldCapacity + (oldCapacity &gt;&gt; 1)，也就是<strong>旧容量的 1.5 倍。</strong></p>
+<p>扩容操作需要调用 <strong>Arrays.copyOf() 把原数组整个复制到新数组中</strong>，这个操作代价很高</p>
+<p>说一个你最熟悉的设计模式</p>
+<p>堆排序的原理</p>
+<h2 id="抽象工厂和工厂方法模式的区别"><a href="#抽象工厂和工厂方法模式的区别" class="headerlink" title="抽象工厂和工厂方法模式的区别"></a>抽象工厂和工厂方法模式的区别</h2><h3 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h3><p>定义了一个创建对象的接口，但由子类决定要实例化哪个类。工厂方法把实例化操作推迟到子类。</p>
+<h3 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h3><p>提供一个接口，用于创建 相关的对象家族 。抽象工厂模式创建的是对象家族，也就是很多对象而不是一个对象，并且这些对象是相关的，也就是说必须一起创建出来。而工厂方法模式只是用于创建一个对象。</p>
+<p>工厂模式的思想</p>
+<p>分布式了解么</p>
+<p>介绍一下红黑树</p>
+<h2 id="消息队列了解么"><a href="#消息队列了解么" class="headerlink" title="消息队列了解么"></a>消息队列了解么</h2><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li><strong>解耦</strong></li>
+</ul>
+<p><img src="evernotecid://A2DE6E87-E390-4B1F-98E0-0FD7C58E6B54/appyinxiangcom/28827357/ENResource/p44" alt="94afca33c75999f5628e80157ee06e23.png"></p>
+<ul>
+<li><p><strong>异步</strong>，提高用户体验和吞吐量。A不用等B C D</p>
+</li>
+<li><p><strong>削峰</strong></p>
+</li>
+</ul>
+<p><img src="evernotecid://A2DE6E87-E390-4B1F-98E0-0FD7C58E6B54/appyinxiangcom/28827357/ENResource/p44" alt="94afca33c75999f5628e80157ee06e23.png"></p>
+<h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h3><ul>
+<li><p><strong>确保高可用</strong> 支持分布式实现。单机崩了，整个系统会不可用</p>
+</li>
+<li><p><strong>数据丢失</strong> B C没来得及na数据</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/31/Mysql%E6%80%BB%E7%BB%93/" rel="next" title="Mysql总结">
+                <i class="fa fa-chevron-left"></i> Mysql总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">叶子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/catagories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yesunch" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:sun.ye@hotmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java容器有哪些？哪些是同步容器-哪些是并发容器？"><span class="nav-number">1.</span> <span class="nav-text">Java容器有哪些？哪些是同步容器,哪些是并发容器？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步容器"><span class="nav-number">1.1.</span> <span class="nav-text">同步容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发容器"><span class="nav-number">1.2.</span> <span class="nav-text">并发容器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList和LinkedList的插入和访问的时间复杂度？"><span class="nav-number">2.</span> <span class="nav-text">ArrayList和LinkedList的插入和访问的时间复杂度？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java反射原理-注解原理？"><span class="nav-number">3.</span> <span class="nav-text">Java反射原理,注解原理？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射获取对象的步骤"><span class="nav-number">3.1.</span> <span class="nav-text">反射获取对象的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射调用方法步骤"><span class="nav-number">3.2.</span> <span class="nav-text">反射调用方法步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射调用方法实现原理"><span class="nav-number">3.3.</span> <span class="nav-text">反射调用方法实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解"><span class="nav-number">3.4.</span> <span class="nav-text">注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新生代分为几个区？使用什么算法进行垃圾回收？为什么使用这个算法？"><span class="nav-number">4.</span> <span class="nav-text">新生代分为几个区？使用什么算法进行垃圾回收？为什么使用这个算法？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个Elden区和两个Survivor（幸存）区。"><span class="nav-number">4.1.</span> <span class="nav-text">一个Elden区和两个Survivor（幸存）区。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新生代采取复制算法，"><span class="nav-number">4.2.</span> <span class="nav-text">新生代采取复制算法，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么"><span class="nav-number">4.3.</span> <span class="nav-text">为什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">5.</span> <span class="nav-text">HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在什么情况下会扩容？"><span class="nav-number">5.1.</span> <span class="nav-text">在什么情况下会扩容？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-put方法的执行过程？"><span class="nav-number">5.2.</span> <span class="nav-text">HashMap put方法的执行过程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap检测到hash冲突后，将元素插入在链表的末尾还是开头？"><span class="nav-number">5.3.</span> <span class="nav-text">HashMap检测到hash冲突后，将元素插入在链表的末尾还是开头？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-number">6.</span> <span class="nav-text">红黑树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">6.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么用红黑树"><span class="nav-number">6.2.</span> <span class="nav-text">为什么用红黑树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相比于BST和AVL树有什么优点"><span class="nav-number">6.3.</span> <span class="nav-text">相比于BST和AVL树有什么优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https和http区别"><span class="nav-number">7.</span> <span class="nav-text">https和http区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程池"><span class="nav-number">8.</span> <span class="nav-text">线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#饱和策略"><span class="nav-number">8.1.</span> <span class="nav-text">饱和策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux怎么查看系统负载情况"><span class="nav-number">9.</span> <span class="nav-text">Linux怎么查看系统负载情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springmvc处理请求全流程"><span class="nav-number">10.</span> <span class="nav-text">springmvc处理请求全流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AtomicInteger为什么要用CAS而不是synchronized？"><span class="nav-number">11.</span> <span class="nav-text">AtomicInteger为什么要用CAS而不是synchronized？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询中哪些情况不会使用索引"><span class="nav-number">12.</span> <span class="nav-text">查询中哪些情况不会使用索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库索引底层为什么要用B树索引"><span class="nav-number">13.</span> <span class="nav-text">数据库索引底层为什么要用B树索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql主从同步的实现原理？"><span class="nav-number">14.</span> <span class="nav-text">Mysql主从同步的实现原理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谈谈数据库乐观锁与悲观锁？"><span class="nav-number">15.</span> <span class="nav-text">谈谈数据库乐观锁与悲观锁？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#悲观锁"><span class="nav-number">15.1.</span> <span class="nav-text">悲观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#乐观锁"><span class="nav-number">15.2.</span> <span class="nav-text">乐观锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB和Redis适用哪些场景"><span class="nav-number">16.</span> <span class="nav-text">MongoDB和Redis适用哪些场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hbase与传统数据库的区别？与Hive呢？"><span class="nav-number">17.</span> <span class="nav-text">Hbase与传统数据库的区别？与Hive呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#与传统数据库的区别："><span class="nav-number">17.0.0.1.</span> <span class="nav-text">与传统数据库的区别：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#列式存储的好处"><span class="nav-number">17.0.0.2.</span> <span class="nav-text">列式存储的好处</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Hbase与Hive"><span class="nav-number">17.0.0.3.</span> <span class="nav-text">Hbase与Hive</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP的传输可靠性"><span class="nav-number">18.</span> <span class="nav-text">TCP的传输可靠性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端不断进行请求链接会怎样？DDos-Distributed-Denial-of-Service-攻击？"><span class="nav-number">19.</span> <span class="nav-text">客户端不断进行请求链接会怎样？DDos(Distributed Denial of Service)攻击？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-DDos-攻击："><span class="nav-number">19.0.0.1.</span> <span class="nav-text">(1). DDos 攻击：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-DDos-预防：（没有彻底根治的办法，除非不使用TCP）"><span class="nav-number">19.0.0.2.</span> <span class="nav-text">(2). DDos 预防：（没有彻底根治的办法，除非不使用TCP）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET-与-POST-的区别"><span class="nav-number">20.</span> <span class="nav-text">GET 与 POST 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP与UDP的区别"><span class="nav-number">21.</span> <span class="nav-text">TCP与UDP的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层协议"><span class="nav-number">22.</span> <span class="nav-text">应用层协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器打开网页过程"><span class="nav-number">23.</span> <span class="nav-text">浏览器打开网页过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-HTTP-协议无状态协议？怎么解决Http协议无状态协议"><span class="nav-number">24.</span> <span class="nav-text">什么是 HTTP 协议无状态协议？怎么解决Http协议无状态协议?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-与-Cookie-的对比："><span class="nav-number">25.</span> <span class="nav-text">Session 与 Cookie 的对比：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-注入"><span class="nav-number">26.</span> <span class="nav-text">SQL 注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存泄漏"><span class="nav-number">27.</span> <span class="nav-text">内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#容易引起内存泄漏的原因"><span class="nav-number">27.1.</span> <span class="nav-text">容易引起内存泄漏的原因</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#静态集合类"><span class="nav-number">27.1.0.1.</span> <span class="nav-text">静态集合类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#监听器"><span class="nav-number">27.1.0.2.</span> <span class="nav-text">监听器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#各种连接"><span class="nav-number">27.1.0.3.</span> <span class="nav-text">各种连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内部类和外部模块等的引用"><span class="nav-number">27.1.0.4.</span> <span class="nav-text">内部类和外部模块等的引用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#单例模式"><span class="nav-number">27.1.0.5.</span> <span class="nav-text">单例模式</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何避免内存泄漏"><span class="nav-number">28.</span> <span class="nav-text">如何避免内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树-1"><span class="nav-number">29.</span> <span class="nav-text">红黑树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#红黑树的各种操作的时间复杂度？"><span class="nav-number">29.0.0.1.</span> <span class="nav-text">红黑树的各种操作的时间复杂度？</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#classloader加载机制，是否可以自己定义一个java-lang-String类，为什么？"><span class="nav-number">30.</span> <span class="nav-text">classloader加载机制，是否可以自己定义一个java.lang.String类，为什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类装载器"><span class="nav-number">30.1.</span> <span class="nav-text">类装载器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#只有被同一个类加载器实例加载并且文件名相同的class文件才被认为是同一个class-任意一个类，都需要由加载它的类加载器和这个类本身共同确立其在Java虚拟机中的唯一性"><span class="nav-number">30.1.0.1.</span> <span class="nav-text">只有被同一个类加载器实例加载并且文件名相同的class文件才被认为是同一个class. 任意一个类，都需要由加载它的类加载器和这个类本身共同确立其在Java虚拟机中的唯一性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双亲委派机制"><span class="nav-number">30.2.</span> <span class="nav-text">双亲委派机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义类加载器"><span class="nav-number">30.3.</span> <span class="nav-text">自定义类加载器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哪几种创建线程类的方法"><span class="nav-number">31.</span> <span class="nav-text">哪几种创建线程类的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述一下List、Set、Map的区别"><span class="nav-number">32.</span> <span class="nav-text">简述一下List、Set、Map的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说出ArrayList-Vector-LinkedList的存储性能和特性"><span class="nav-number">33.</span> <span class="nav-text">说出ArrayList,Vector, LinkedList的存储性能和特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象序列化机制-Java-的序列化做什么用的-序列化id会出现哪些问题？"><span class="nav-number">34.</span> <span class="nav-text">对象序列化机制 Java 的序列化做什么用的 序列化id会出现哪些问题？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要序列化"><span class="nav-number">34.1.</span> <span class="nav-text">为什么要序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化ID"><span class="nav-number">34.2.</span> <span class="nav-text">序列化ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">34.3.</span> <span class="nav-text">问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hibernate和mibatis区别？"><span class="nav-number">35.</span> <span class="nav-text">hibernate和mibatis区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap-、Hashtable和-HashSet的区别？哪个key可以为空？HashMap的内部实现机制，Hash是怎样实现的，什么时候ReHash"><span class="nav-number">36.</span> <span class="nav-text">HashMap 、Hashtable和 HashSet的区别？哪个key可以为空？HashMap的内部实现机制，Hash是怎样实现的，什么时候ReHash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashTable-和-HashMap"><span class="nav-number">36.1.</span> <span class="nav-text">HashTable 和 HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap和HashSet"><span class="nav-number">36.2.</span> <span class="nav-text">HashMap和HashSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReHash"><span class="nav-number">36.3.</span> <span class="nav-text">ReHash</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConCurrentHasgMap调用get（）方法的时候有锁吗？"><span class="nav-number">37.</span> <span class="nav-text">ConCurrentHasgMap调用get（）方法的时候有锁吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP的特点"><span class="nav-number">38.</span> <span class="nav-text">HTTP的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无连接"><span class="nav-number">38.1.</span> <span class="nav-text">无连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无状态"><span class="nav-number">38.2.</span> <span class="nav-text">无状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JMM在初始化堆内存时，新生代与老年代的默认比例是多少"><span class="nav-number">39.</span> <span class="nav-text">JMM在初始化堆内存时，新生代与老年代的默认比例是多少</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring中控制反转定义？相比于创建对象的好处？AOP编程的优点？"><span class="nav-number">40.</span> <span class="nav-text">Spring中控制反转定义？相比于创建对象的好处？AOP编程的优点？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#IOC"><span class="nav-number">40.0.0.1.</span> <span class="nav-text">IOC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AOP好处"><span class="nav-number">40.0.0.2.</span> <span class="nav-text">AOP好处</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC中动态代理的实现机制，源码？"><span class="nav-number">41.</span> <span class="nav-text">SpringMVC中动态代理的实现机制，源码？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方式"><span class="nav-number">41.1.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现机制"><span class="nav-number">41.2.</span> <span class="nav-text">实现机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JDK动态代理"><span class="nav-number">41.2.1.</span> <span class="nav-text">JDK动态代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CGlib代理"><span class="nav-number">41.2.2.</span> <span class="nav-text">CGlib代理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么实现让两个线程交替执行？（用代码实现？）"><span class="nav-number">42.</span> <span class="nav-text">怎么实现让两个线程交替执行？（用代码实现？）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用过哪些写代码的工具？（Myeclipse和IDE），列出你常用的快捷键？"><span class="nav-number">43.</span> <span class="nav-text">使用过哪些写代码的工具？（Myeclipse和IDE），列出你常用的快捷键？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ArrayList初始化时注意事项？（自动扩充机制方面，原理实现）？"><span class="nav-number">44.</span> <span class="nav-text">使用ArrayList初始化时注意事项？（自动扩充机制方面，原理实现）？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂和工厂方法模式的区别"><span class="nav-number">45.</span> <span class="nav-text">抽象工厂和工厂方法模式的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂方法"><span class="nav-number">45.1.</span> <span class="nav-text">工厂方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象工厂"><span class="nav-number">45.2.</span> <span class="nav-text">抽象工厂</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息队列了解么"><span class="nav-number">46.</span> <span class="nav-text">消息队列了解么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目的"><span class="nav-number">46.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题-1"><span class="nav-number">46.2.</span> <span class="nav-text">问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">叶子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
