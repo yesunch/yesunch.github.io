@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="数据结构字符串对象是五个基本对象中唯一会被其他对象嵌套的对象 Stringintembstr(embstr编码的SDS)条件：短字符串(&lt;&#x3D; 32字节)。 raw会调用两次内存分配函数来创建redisObject和sdshdr,embstr只会调用一次分配一块连续地址空间，来保存redisObject和sdshdr raw(SDS)Listziplist条件：元素长度&lt;64字节，元素个">
+<meta name="description" content="数据结构字符串对象是五个基本对象中唯一会被其他对象嵌套的对象 Stringintembstr(embstr编码的SDS)条件：短字符串(&lt;&#x3D; 32字节)。 raw会调用两次内存分配函数来创建redisObject和sdshdr,embstr只会调用一次分配一块连续地址空间，来保存redisObject和sdshdr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis笔记">
 <meta property="og:url" content="http://yoursite.com/2020/05/30/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="叶子冲冲冲">
-<meta property="og:description" content="数据结构字符串对象是五个基本对象中唯一会被其他对象嵌套的对象 Stringintembstr(embstr编码的SDS)条件：短字符串(&lt;&#x3D; 32字节)。 raw会调用两次内存分配函数来创建redisObject和sdshdr,embstr只会调用一次分配一块连续地址空间，来保存redisObject和sdshdr raw(SDS)Listziplist条件：元素长度&lt;64字节，元素个">
+<meta property="og:description" content="数据结构字符串对象是五个基本对象中唯一会被其他对象嵌套的对象 Stringintembstr(embstr编码的SDS)条件：短字符串(&lt;&#x3D; 32字节)。 raw会调用两次内存分配函数来创建redisObject和sdshdr,embstr只会调用一次分配一块连续地址空间，来保存redisObject和sdshdr">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2412.02.36.png">
 <meta property="og:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-04-2412.02.36.png">
 <meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2415.25.15.png">
 <meta property="og:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-04-2415.25.15.png">
 <meta property="article:published_time" content="2020-05-30T09:48:11.000Z">
-<meta property="article:modified_time" content="2020-06-01T18:29:00.369Z">
+<meta property="article:modified_time" content="2021-02-25T21:40:25.648Z">
 <meta property="article:author" content="叶子">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/Users/yesun/Documents/%E5%AD%A6%E4%B9%A0/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%89%87/redis%E5%9B%BE%E7%89%87/%E6%88%AA%E5%B1%8F2020-04-2412.02.36.png">
@@ -329,6 +329,8 @@
         <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>字符串对象是五个基本对象中唯一会被其他对象嵌套的对象</p>
 <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><h4 id="int"><a href="#int" class="headerlink" title="int"></a>int</h4><h4 id="embstr-embstr编码的SDS"><a href="#embstr-embstr编码的SDS" class="headerlink" title="embstr(embstr编码的SDS)"></a>embstr(embstr编码的SDS)</h4><p>条件：<strong>短字符串</strong>(&lt;= 32字节)。</p>
 <p>raw会调用两次内存分配函数来创建redisObject和sdshdr,embstr只会调用一次分配一块连续地址空间，来保存redisObject和sdshdr</p>
+<a id="more"></a>
+
 <h4 id="raw-SDS"><a href="#raw-SDS" class="headerlink" title="raw(SDS)"></a>raw(SDS)</h4><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><h4 id="ziplist"><a href="#ziplist" class="headerlink" title="ziplist"></a>ziplist</h4><p><strong>条件</strong>：元素长度&lt;64字节，元素个数&lt;512.</p>
 <h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><p>链表里包含了多个字符串对象，里面嵌套着字符串</p>
 <h3 id="HASH"><a href="#HASH" class="headerlink" title="HASH"></a>HASH</h3><h4 id="ziplist-1"><a href="#ziplist-1" class="headerlink" title="ziplist"></a>ziplist</h4><p><strong>条件</strong>：键和值长度都&lt;64字节，键值对个数&lt;512.</p>
@@ -1206,7 +1208,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

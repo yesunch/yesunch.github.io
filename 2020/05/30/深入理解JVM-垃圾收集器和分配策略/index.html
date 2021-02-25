@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="[TOC] 垃圾收集器和内存分配策略对象是否已死引用计数算法问题：对象循环引用。即两个不可访问的对象相互引用，无法回收 可达性分析算法通过一系列称为GC Roots的对象作为起点，从这些起点向下搜索。搜索过的路径称为引用链 可作为GC Roots的对象：  虚拟机栈帧中本地变量表中引用的对象 方法区中类静态属性引用的对象 方法区中常量引用的对象 本地方法栈中JNI（本地方法）引用的对象  引用 强">
+<meta name="description" content="[TOC] 垃圾收集器和内存分配策略对象是否已死引用计数算法问题：对象循环引用。即两个不可访问的对象相互引用，无法回收">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解JVM-垃圾收集器和分配策略">
 <meta property="og:url" content="http://yoursite.com/2020/05/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E5%92%8C%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/index.html">
 <meta property="og:site_name" content="叶子冲冲冲">
-<meta property="og:description" content="[TOC] 垃圾收集器和内存分配策略对象是否已死引用计数算法问题：对象循环引用。即两个不可访问的对象相互引用，无法回收 可达性分析算法通过一系列称为GC Roots的对象作为起点，从这些起点向下搜索。搜索过的路径称为引用链 可作为GC Roots的对象：  虚拟机栈帧中本地变量表中引用的对象 方法区中类静态属性引用的对象 方法区中常量引用的对象 本地方法栈中JNI（本地方法）引用的对象  引用 强">
+<meta property="og:description" content="[TOC] 垃圾收集器和内存分配策略对象是否已死引用计数算法问题：对象循环引用。即两个不可访问的对象相互引用，无法回收">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/Users/yesun/Library/Application%20Support/typora-user-images/%E6%88%AA%E5%B1%8F2020-05-1311.58.03.png">
 <meta property="og:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-05-1311.58.03.png">
@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://yoursite.com/Users/yesun/Library/Application%20Support/typora-user-images/%E6%88%AA%E5%B1%8F2020-05-1511.09.40.png">
 <meta property="og:image" content="http://yoursite.com/assets/%E6%88%AA%E5%B1%8F2020-05-1511.09.40.png">
 <meta property="article:published_time" content="2020-05-30T14:56:42.000Z">
-<meta property="article:modified_time" content="2020-05-31T14:08:43.051Z">
+<meta property="article:modified_time" content="2021-02-25T21:42:25.717Z">
 <meta property="article:author" content="叶子">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/Users/yesun/Library/Application%20Support/typora-user-images/%E6%88%AA%E5%B1%8F2020-05-1311.58.03.png">
@@ -338,6 +338,8 @@
       
         <p>[TOC]</p>
 <h1 id="垃圾收集器和内存分配策略"><a href="#垃圾收集器和内存分配策略" class="headerlink" title="垃圾收集器和内存分配策略"></a>垃圾收集器和内存分配策略</h1><h2 id="对象是否已死"><a href="#对象是否已死" class="headerlink" title="对象是否已死"></a>对象是否已死</h2><h3 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h3><p>问题：对象循环引用。即两个不可访问的对象相互引用，无法回收</p>
+<a id="more"></a>
+
 <h3 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h3><p>通过<strong>一系列称为GC Roots的对象</strong>作为起点，从这些起点向下搜索。搜索过的路径称为<strong>引用链</strong></p>
 <p>可作为GC Roots的对象：</p>
 <ul>
@@ -784,7 +786,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

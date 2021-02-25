@@ -87,7 +87,7 @@
 <meta property="og:description" content="Spring ReactorReactorReactor 框架实现了Reactive Programming思想，符合Reactive Streams规范。 Reactive Programming   event Iterable (pull) Observable (push)    retrieve data T next() onNext(T)   discover error throw">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-16T10:19:52.296Z">
-<meta property="article:modified_time" content="2020-11-16T10:37:12.139Z">
+<meta property="article:modified_time" content="2021-02-25T21:41:13.952Z">
 <meta property="article:author" content="叶子">
 <meta name="twitter:card" content="summary">
 
@@ -325,6 +325,8 @@
 </tr>
 </tbody></table>
 <p>上面表格的中的 Observable 那一列便代表反应式编程的 API 使用方式。可见，它就是常见的<strong>观察者模式的一种延伸。</strong></p>
+<a id="more"></a>
+
 <p>被订阅者（Publisher）主动的推送数据给订阅者（Subscriber），触发 <code>onNext</code> 方法。异常和完成时触发另外两个方法。如果 <u>Publisher 发布消息太快了，超过了 Subscriber 的处理速度</u>，那怎么办。这就是 <strong>Backpressure</strong> 的由来，Reactive Programming 框架需要提供机制，<u>使得 Subscriber 能够控制消费消息的速度。</u></p>
 <p>在 Java 平台上，Netflix（开发了 RxJava）、TypeSafe（开发了 Scala、Akka）、Pivatol（开发了 Spring、Reactor）共同制定了一个被称为 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Freactive-streams%2Freactive-streams-jvm" target="_blank" rel="noopener">Reactive Streams 项目（规范）</a>，用于<strong>制定反应式编程相关的规范以及接口</strong>。其主要的接口有这三个：</p>
 <ul>
@@ -377,8 +379,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/02/25/%E8%8B%8F%E8%BD%BC%E9%9B%86/" rel="prev" title="苏轼集">
-                苏轼集 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/02/25/Docker%20%E7%AC%94%E8%AE%B0/" rel="prev" title="Docker 笔记">
+                Docker 笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -471,7 +473,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

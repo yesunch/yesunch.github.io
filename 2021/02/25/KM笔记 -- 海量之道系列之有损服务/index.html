@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="GIT实用技巧用git rebase合并commit Git rebase -i –root  把要合并的commit前面的pick改成s  输入合并的commit msg  Push   git reflog恢复commit节点或者分支到rebase以前 Git reflog找到合并前的状态的哈希值  再get reset –hard 哈希值   ref是可变指针，指向一个个commit对象，r">
+<meta name="description" content="KM笔记 – 海量之道系列之有损服务海量之道两大技术价值观：有损服务 和 动态运营 有损服务核心思想：  放弃绝对一致，追求速度极致  万有一失，用户重试  伸缩调度，降级服务">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GIT实用技巧">
-<meta property="og:url" content="http://yoursite.com/2020/08/21/GIT%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:title" content="KM笔记 -- 海量之道系列之有损服务">
+<meta property="og:url" content="http://yoursite.com/2021/02/25/KM%E7%AC%94%E8%AE%B0%20--%20%E6%B5%B7%E9%87%8F%E4%B9%8B%E9%81%93%E7%B3%BB%E5%88%97%E4%B9%8B%E6%9C%89%E6%8D%9F%E6%9C%8D%E5%8A%A1/index.html">
 <meta property="og:site_name" content="叶子冲冲冲">
-<meta property="og:description" content="GIT实用技巧用git rebase合并commit Git rebase -i –root  把要合并的commit前面的pick改成s  输入合并的commit msg  Push   git reflog恢复commit节点或者分支到rebase以前 Git reflog找到合并前的状态的哈希值  再get reset –hard 哈希值   ref是可变指针，指向一个个commit对象，r">
+<meta property="og:description" content="KM笔记 – 海量之道系列之有损服务海量之道两大技术价值观：有损服务 和 动态运营 有损服务核心思想：  放弃绝对一致，追求速度极致  万有一失，用户重试  伸缩调度，降级服务">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-08-21T02:25:48.133Z">
-<meta property="article:modified_time" content="2020-09-02T03:35:00.892Z">
+<meta property="article:published_time" content="2021-02-25T21:37:38.162Z">
+<meta property="article:modified_time" content="2021-02-25T21:37:38.162Z">
 <meta property="article:author" content="叶子">
 <meta name="twitter:card" content="summary">
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/08/21/GIT实用技巧/"/>
+  <link rel="canonical" href="http://yoursite.com/2021/02/25/KM笔记 -- 海量之道系列之有损服务/"/>
 
 
 
 
 
-  <title>GIT实用技巧 | 叶子冲冲冲</title>
+  <title>KM笔记 -- 海量之道系列之有损服务 | 叶子冲冲冲</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/21/GIT%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/25/KM%E7%AC%94%E8%AE%B0%20--%20%E6%B5%B7%E9%87%8F%E4%B9%8B%E9%81%93%E7%B3%BB%E5%88%97%E4%B9%8B%E6%9C%89%E6%8D%9F%E6%9C%8D%E5%8A%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="叶子">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GIT实用技巧</h1>
+          <h1 class="post-title" itemprop="name headline">KM笔记 -- 海量之道系列之有损服务</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-21T04:25:48+02:00">
-                2020-08-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-25T22:37:38+01:00">
+                2021-02-25
               </time>
             
 
@@ -299,25 +299,32 @@
       
 
       
-        <h1 id="GIT实用技巧"><a href="#GIT实用技巧" class="headerlink" title="GIT实用技巧"></a>GIT实用技巧</h1><h2 id="用git-rebase合并commit"><a href="#用git-rebase合并commit" class="headerlink" title="用git rebase合并commit"></a>用git rebase合并commit</h2><ul>
-<li><p>Git rebase -i –root</p>
+        <h1 id="KM笔记-–-海量之道系列之有损服务"><a href="#KM笔记-–-海量之道系列之有损服务" class="headerlink" title="KM笔记 – 海量之道系列之有损服务"></a>KM笔记 – 海量之道系列之有损服务</h1><p>海量之道两大技术价值观：<strong>有损服务</strong> 和 <strong>动态运营</strong></p>
+<p>有损服务<strong>核心思想</strong>：</p>
+<ul>
+<li><p><strong>放弃绝对一致，追求速度极致</strong></p>
 </li>
-<li><p>把要合并的commit前面的pick改成s</p>
+<li><p><strong>万有一失，用户重试</strong></p>
 </li>
-<li><p>输入合并的commit msg</p>
+<li><p><strong>伸缩调度，降级服务</strong></p>
+<a id="more"></a>
+<h2 id="CAP理论"><a href="#CAP理论" class="headerlink" title="CAP理论"></a>CAP理论</h2></li>
+<li><p>Consistency</p>
 </li>
-<li><p>Push</p>
+<li><p>Availability</p>
+</li>
+<li><p>Partition Tolerance</p>
 </li>
 </ul>
-<h2 id="git-reflog恢复commit节点或者分支到rebase以前"><a href="#git-reflog恢复commit节点或者分支到rebase以前" class="headerlink" title="git reflog恢复commit节点或者分支到rebase以前"></a>git reflog恢复commit节点或者分支到rebase以前</h2><ul>
-<li><p>Git reflog找到合并前的状态的哈希值</p>
-</li>
-<li><p>再get reset –hard 哈希值</p>
-</li>
+<p>对分布式系统而言，分区容错性是基本要求，可用性和一致性必须有取舍。</p>
+<p>金融行业选择了强一致性，因此投入了巨大的IT成本。而对于很多web应用，并不需要强一致性，可以通过<strong>牺牲实时强一致性，换取高可用性</strong>。</p>
+<h2 id="CAP演化而来的BASE"><a href="#CAP演化而来的BASE" class="headerlink" title="CAP演化而来的BASE"></a>CAP演化而来的BASE</h2><p>核心思想：即便不能达到强一致性，可以采用适当方式<strong>达到最终一致性</strong>。</p>
+<ul>
+<li><strong>Basically Available</strong>: 基本可用</li>
+<li><strong>Soft-state</strong>: 软状态/柔性事务。即状态可以暂时不同步</li>
+<li><strong>Eventual consistency</strong>: 最终一致性</li>
 </ul>
-<p>ref是可变指针，指向一个个commit对象，<strong>reflog就是ref的log</strong>,可以理解成<strong>版本控制的版本控制</strong></p>
-<h2 id="获得干净的工作空间同时保留暂时的变更"><a href="#获得干净的工作空间同时保留暂时的变更" class="headerlink" title="获得干净的工作空间同时保留暂时的变更"></a>获得干净的工作空间同时保留暂时的变更</h2><p>git stash push -u</p>
-<p>git stash pop来恢复刚才的暂存变更</p>
+<p>BASE是反ACID的。</p>
 
       
     </div>
@@ -342,8 +349,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/08/21/KM%E7%AC%94%E8%AE%B0%20--%20%E6%B5%B7%E9%87%8F%E4%B9%8B%E9%81%93%E7%B3%BB%E5%88%97%E4%B9%8B%E6%9C%89%E6%8D%9F%E6%9C%8D%E5%8A%A1/" rel="next" title="KM笔记 -- 海量之道系列之有损服务">
-                <i class="fa fa-chevron-left"></i> KM笔记 -- 海量之道系列之有损服务
+              <a href="/2021/02/25/GIT%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" rel="next" title="GIT实用技巧">
+                <i class="fa fa-chevron-left"></i> GIT实用技巧
               </a>
             
           </div>
@@ -352,8 +359,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/11/02/Docker%20%E7%AC%94%E8%AE%B0/" rel="prev" title="Docker 笔记">
-                Docker 笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/02/25/KM%E7%AC%94%E8%AE%B0%20--%20%E6%B5%B7%E9%87%8F%E4%B9%8B%E9%81%93%E7%B3%BB%E5%88%97%E4%B9%8B%E8%BF%87%E8%BD%BD%E4%BF%9D%E6%8A%A4/" rel="prev" title="KM笔记 -- 海量之道系列之过载保护">
+                KM笔记 -- 海量之道系列之过载保护 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -446,7 +453,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -497,7 +504,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT实用技巧"><span class="nav-number">1.</span> <span class="nav-text">GIT实用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用git-rebase合并commit"><span class="nav-number">1.1.</span> <span class="nav-text">用git rebase合并commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-reflog恢复commit节点或者分支到rebase以前"><span class="nav-number">1.2.</span> <span class="nav-text">git reflog恢复commit节点或者分支到rebase以前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获得干净的工作空间同时保留暂时的变更"><span class="nav-number">1.3.</span> <span class="nav-text">获得干净的工作空间同时保留暂时的变更</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KM笔记-–-海量之道系列之有损服务"><span class="nav-number">1.</span> <span class="nav-text">KM笔记 – 海量之道系列之有损服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP理论"><span class="nav-number">1.1.</span> <span class="nav-text">CAP理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP演化而来的BASE"><span class="nav-number">1.2.</span> <span class="nav-text">CAP演化而来的BASE</span></a></li></ol></li></ol></div>
             
 
           </div>
