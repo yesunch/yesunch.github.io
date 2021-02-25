@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="KM笔记 – 海量之道系列之过载保护过载保护是有损服务方法论之一。海量之道两大技术价值观：有损服务，动态运营 系统过载的后果 分布式集群系统中，某台设备故障，造成系统整体繁忙不可用 营销推广时，某个服务单元负载极大的现象会很快蔓延 用户群越大，系统规模越大，蔓延速度就越快  系统开始分布后，规模扩张后，单点平衡破坏后的传播和放大效应才是致命因素 系统过载的成因四种瓶颈：  CPU： 计算密集型 M">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KM笔记 -- 海量之道系列之过载保护">
+<meta property="og:url" content="http://yoursite.com/2020/08/21/KM%E7%AC%94%E8%AE%B0%20--%20%E6%B5%B7%E9%87%8F%E4%B9%8B%E9%81%93%E7%B3%BB%E5%88%97%E4%B9%8B%E8%BF%87%E8%BD%BD%E4%BF%9D%E6%8A%A4/index.html">
+<meta property="og:site_name" content="叶子冲冲冲">
+<meta property="og:description" content="KM笔记 – 海量之道系列之过载保护过载保护是有损服务方法论之一。海量之道两大技术价值观：有损服务，动态运营 系统过载的后果 分布式集群系统中，某台设备故障，造成系统整体繁忙不可用 营销推广时，某个服务单元负载极大的现象会很快蔓延 用户群越大，系统规模越大，蔓延速度就越快  系统开始分布后，规模扩张后，单点平衡破坏后的传播和放大效应才是致命因素 系统过载的成因四种瓶颈：  CPU： 计算密集型 M">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-21T02:03:23.004Z">
+<meta property="article:modified_time" content="2020-08-21T02:03:23.004Z">
+<meta property="article:author" content="叶子">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/21/KM笔记 -- 海量之道系列之过载保护/"/>
+
+
+
+
+
+  <title>KM笔记 -- 海量之道系列之过载保护 | 叶子冲冲冲</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">叶子冲冲冲</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">相信你，你可以的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/21/KM%E7%AC%94%E8%AE%B0%20--%20%E6%B5%B7%E9%87%8F%E4%B9%8B%E9%81%93%E7%B3%BB%E5%88%97%E4%B9%8B%E8%BF%87%E8%BD%BD%E4%BF%9D%E6%8A%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="叶子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶子冲冲冲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">KM笔记 -- 海量之道系列之过载保护</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-21T04:03:23+02:00">
+                2020-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="KM笔记-–-海量之道系列之过载保护"><a href="#KM笔记-–-海量之道系列之过载保护" class="headerlink" title="KM笔记 – 海量之道系列之过载保护"></a>KM笔记 – 海量之道系列之过载保护</h1><p>过载保护是<strong>有损服务方法论</strong>之一。海量之道两大技术价值观：<strong>有损服务</strong>，<strong>动态运营</strong></p>
+<h2 id="系统过载的后果"><a href="#系统过载的后果" class="headerlink" title="系统过载的后果"></a>系统过载的后果</h2><ul>
+<li>分布式集群系统中，某台设备故障，造成系统<strong>整体繁忙不可用</strong></li>
+<li>营销推广时，某个服务单元负载极大的现象会很快<strong>蔓延</strong></li>
+<li>用户群越大，系统规模越大，<strong>蔓延速度</strong>就越快</li>
+</ul>
+<p>系统开始分布后，规模扩张后，<u>单点平衡破坏后的<strong>传播和放大效应</strong></u>才是致命因素</p>
+<h2 id="系统过载的成因"><a href="#系统过载的成因" class="headerlink" title="系统过载的成因"></a>系统过载的成因</h2><p>四种瓶颈：</p>
+<ul>
+<li>CPU： 计算密集型</li>
+<li>Memory： 内存消耗型</li>
+<li>Load： 大并发型</li>
+<li>IO： 磁盘IO密集型，网络IO密集型</li>
+</ul>
+<p><strong>为什么过载会传播和放大？</strong></p>
+<p>比如北京奥运门票销售事件，卖出9000张票，平均每个用户请求了60次。 </p>
+<p>后端某个单元过载响应变慢 -&gt; 用户失去耐心重新刷新请求 -&gt; 大量无效请求负载均衡到其他逻辑单元 -&gt; 其他逻辑单元过载 -&gt; 整个系统崩溃。</p>
+<h2 id="系统过载的保护"><a href="#系统过载的保护" class="headerlink" title="系统过载的保护"></a>系统过载的保护</h2><h3 id="四个方法"><a href="#四个方法" class="headerlink" title="四个方法"></a>四个方法</h3><h4 id="轻重分离"><a href="#轻重分离" class="headerlink" title="轻重分离"></a>轻重分离</h4><p>细分服务内容，<strong>高内聚低耦合</strong>，在突发流量不可控的前提下实现<strong>系统影响面的可控</strong>。 最理想的情况：物理上隔离（服务器、IDC、带宽等）</p>
+<p>具体实现方法：</p>
+<ul>
+<li><strong>渠道分离</strong>：有线、无线服务分离</li>
+<li><strong>部署分离</strong>：电信、联通、海外服务的分离</li>
+<li><strong>快慢分离</strong>：图片、视频、下载等服务的分离</li>
+<li><strong>用户分离</strong>：按set划分系统为用户提供服务</li>
+</ul>
+<h4 id="及早拒绝"><a href="#及早拒绝" class="headerlink" title="及早拒绝"></a>及早拒绝</h4><p>理论基础：问题解决的阶段越早，成本越低。<strong>前端保护后端，后端不信任前端</strong></p>
+<ul>
+<li>实时（秒级）地了解当前负载情况。后端将负载情况上报给前端，负载状态数据应在系统各层级见有后向前流动</li>
+<li>前端分发请求时，根据负载情况去调度，必要时拒绝。<strong>前端保护后端</strong></li>
+<li>后端也要有机制在超过负载时拒绝请求，<strong>后端不信任前端</strong></li>
+</ul>
+<p>注意：所有独立单元、集成系统都要做<strong>benchmark</strong>(基准)，识别慢速系统</p>
+<h4 id="量力而为"><a href="#量力而为" class="headerlink" title="量力而为"></a>量力而为</h4><p>各层级先做好自我保护，再考虑对关联系统的保护</p>
+<p>容量管理和过载保护机制的启动不能按100%计算单box的负载，此时已经出现拐点，进入过载状态。建议<strong>容量按70%预警</strong>，<strong>过载保护90%启动</strong>。</p>
+<h4 id="动态调节"><a href="#动态调节" class="headerlink" title="动态调节"></a>动态调节</h4><p>联动性质的过载保护。核心思想：运营时通过持续监控业务状态数据<strong>寻找平衡点，正向动态反馈</strong>。</p>
+<p>系统三个状态循环：<strong>正常状态-&gt;过载保护-&gt;灰度恢复-&gt;正常状态</strong></p>
+<h2 id="过载保护的两个误区"><a href="#过载保护的两个误区" class="headerlink" title="过载保护的两个误区"></a>过载保护的两个误区</h2><h3 id="有了负载均衡LB和容灾（HA），不需要过载保护"><a href="#有了负载均衡LB和容灾（HA），不需要过载保护" class="headerlink" title="有了负载均衡LB和容灾（HA），不需要过载保护"></a>有了负载均衡LB和容灾（HA），不需要过载保护</h3><p>LB和容灾解决了大容量业务的平行扩展和可用性问题，有一定应对突发流量的能力。但是<u>LB只做到流量的均衡分布处理，没有实现流量超出系统总体容量时的保护、控制.</u></p>
+<h3 id="有了请求队列，不需要过载保护"><a href="#有了请求队列，不需要过载保护" class="headerlink" title="有了请求队列，不需要过载保护"></a>有了请求队列，不需要过载保护</h3><p>请求队列的目的是通过非阻塞方式实现异步系统，提升系统处理能力，是系统性能提升之道。</p>
+<p>但是请求队列<strong>无法及时剔除无效请求</strong>，<strong>无法控制雪球的增长，无法控制过载的扩散</strong>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/01/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93%E7%AC%AC%E4%B8%80%E7%AF%87/" rel="next" title="面试题总结">
+                <i class="fa fa-chevron-left"></i> 面试题总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/21/%E5%9B%BE%E8%A7%A3http%E7%AC%94%E8%AE%B0/" rel="prev" title="图解http笔记">
+                图解http笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">叶子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yesunch" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:sun.ye@hotmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KM笔记-–-海量之道系列之过载保护"><span class="nav-number">1.</span> <span class="nav-text">KM笔记 – 海量之道系列之过载保护</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统过载的后果"><span class="nav-number">1.1.</span> <span class="nav-text">系统过载的后果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统过载的成因"><span class="nav-number">1.2.</span> <span class="nav-text">系统过载的成因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统过载的保护"><span class="nav-number">1.3.</span> <span class="nav-text">系统过载的保护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#四个方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">四个方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#轻重分离"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">轻重分离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#及早拒绝"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">及早拒绝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#量力而为"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">量力而为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态调节"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">动态调节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过载保护的两个误区"><span class="nav-number">1.4.</span> <span class="nav-text">过载保护的两个误区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有了负载均衡LB和容灾（HA），不需要过载保护"><span class="nav-number">1.4.1.</span> <span class="nav-text">有了负载均衡LB和容灾（HA），不需要过载保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有了请求队列，不需要过载保护"><span class="nav-number">1.4.2.</span> <span class="nav-text">有了请求队列，不需要过载保护</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">叶子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

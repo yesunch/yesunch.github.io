@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="图解HTTP笔记[TOC] 第2章 简单的HTTP协议通过响应和请求的交换达成通信请求报文： 1234567891011&lt;!--方法, URI, 协议版本--&gt;GET &#x2F;index.htm HTTP&#x2F;1.1&lt;!--请求首部字段--&gt;Host: hackr.jpConnection: keep-aliveContent-Type: application&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解http笔记">
+<meta property="og:url" content="http://yoursite.com/2020/08/21/%E5%9B%BE%E8%A7%A3http%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="叶子冲冲冲">
+<meta property="og:description" content="图解HTTP笔记[TOC] 第2章 简单的HTTP协议通过响应和请求的交换达成通信请求报文： 1234567891011&lt;!--方法, URI, 协议版本--&gt;GET &#x2F;index.htm HTTP&#x2F;1.1&lt;!--请求首部字段--&gt;Host: hackr.jpConnection: keep-aliveContent-Type: application&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1809.22.57.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1809.28.32.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1809.31.27.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1809.55.16.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1810.07.52.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1814.25.37.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1814.26.48.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1814.41.00.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1814.42.04.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1814.44.05.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1814.44.25.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1814.44.47.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1815.24.39.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1815.18.48.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Desktop/%E6%88%AA%E5%B1%8F2020-10-12%2015.05.50.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/screenshots/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%A7%A3http/%E6%88%AA%E5%B1%8F2020-10-12%2015.19.59.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/screenshots/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%A7%A3http/%E6%88%AA%E5%B1%8F2020-10-12%2017.20.51.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/screenshots/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%A7%A3http/%E6%88%AA%E5%B1%8F2020-10-12%2017.21.35.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/screenshots/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%A7%A3http/%E6%88%AA%E5%B1%8F2020-10-12%2017.30.54.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/screenshots/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%A7%A3http/%E6%88%AA%E5%B1%8F2020-10-12%2017.38.53.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/screenshots/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%A7%A3http/%E6%88%AA%E5%B1%8F2020-10-23%2008.04.39.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/screenshots/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%A7%A3http/%E6%88%AA%E5%B1%8F2020-10-23%2012.40.19.png">
+<meta property="og:image" content="http://yoursite.com/Users/yesun/Documents/screenshots/%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%A7%A3http/%E6%88%AA%E5%B1%8F2020-10-23%2012.53.40.png">
+<meta property="article:published_time" content="2020-08-21T02:03:23.005Z">
+<meta property="article:modified_time" content="2020-10-27T10:36:12.430Z">
+<meta property="article:author" content="叶子">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/Users/yesun/Documents/study/%E7%AC%94%E8%AE%B0/%E5%8D%9A%E5%AE%A2/source/assets/%E6%88%AA%E5%B1%8F2020-06-1809.22.57.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/21/图解http笔记/"/>
+
+
+
+
+
+  <title>图解http笔记 | 叶子冲冲冲</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">叶子冲冲冲</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">相信你，你可以的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/21/%E5%9B%BE%E8%A7%A3http%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="叶子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶子冲冲冲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图解http笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-21T04:03:23+02:00">
+                2020-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="图解HTTP笔记"><a href="#图解HTTP笔记" class="headerlink" title="图解HTTP笔记"></a>图解HTTP笔记</h1><p>[TOC]</p>
+<h2 id="第2章-简单的HTTP协议"><a href="#第2章-简单的HTTP协议" class="headerlink" title="第2章 简单的HTTP协议"></a>第2章 简单的HTTP协议</h2><h3 id="通过响应和请求的交换达成通信"><a href="#通过响应和请求的交换达成通信" class="headerlink" title="通过响应和请求的交换达成通信"></a>通过响应和请求的交换达成通信</h3><p>请求报文：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--方法, URI, 协议版本--&gt;</span><br><span class="line">GET &#x2F;index.htm HTTP&#x2F;1.1</span><br><span class="line"></span><br><span class="line">&lt;!--请求首部字段--&gt;</span><br><span class="line">Host: hackr.jp</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line">Conted-Length: 16</span><br><span class="line"></span><br><span class="line">&lt;!--内容实体--&gt;</span><br><span class="line">name&#x3D;ueno&amp;age&#x3D;37</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>GET: 请求访问服务器的类型，称为方法</li>
+<li>/index.htm: 请求访问的资源对象</li>
+<li>HTTP/1.1: 客户端使用的HTTP协议版本</li>
+</ul>
+<p>请求报文构成：<strong>请求方法、请求URI、协议版本、可选的请求首部字段、内容实体</strong></p>
+<p>响应报文：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--协议版本，状态码，状态码的原因短语--&gt;</span><br><span class="line">HTTP&#x2F;1.1 200 OK</span><br><span class="line"></span><br><span class="line">&lt;!--响应首部字段--&gt;</span><br><span class="line">Date: Tue, 10 Jul 2012 06:50:15 GMT</span><br><span class="line">Content-Length:362</span><br><span class="line">Content-Type: text&#x2F;html</span><br><span class="line"></span><br><span class="line">&lt;!--主体--&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<h3 id="不保存状态协议"><a href="#不保存状态协议" class="headerlink" title="不保存状态协议"></a>不保存状态协议</h3><p><strong>协议对发送过的请求或响应都不做持久化处理</strong>。 为了更快地处理大量事务，确保协议的可伸缩性</p>
+<h3 id="请求URI定位资源"><a href="#请求URI定位资源" class="headerlink" title="请求URI定位资源"></a>请求URI定位资源</h3><p>客户端发送请求时，URI需要将请求报文中的请求URI包含在内。</p>
+<p><strong>指定URI的方式</strong>：</p>
+<ul>
+<li><p>URI完整: <code>GET http://hackr.jp/index.htm HTTP/1.1</code></p>
+</li>
+<li><p>URI+Host: </p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/index.htm</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: hackr.jp</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>若对服务器本身发起请求，用*代替请求URI</p>
+<h3 id="HTTP方法"><a href="#HTTP方法" class="headerlink" title="HTTP方法"></a>HTTP方法</h3><h4 id="GET：获取资源"><a href="#GET：获取资源" class="headerlink" title="GET：获取资源"></a>GET：获取资源</h4><p>用来请求已被URI识别的资源。请求文本，则原样返回。请求CGI程序（通用网管接口），返回执行后的输出结果。</p>
+<p>请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/index.html</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Hotst</span>: www.hackr.jp</span><br><span class="line"><span class="attribute">If-Modified-Since</span>: Thu. 12 Jul 2012 07:30:00 GMT</span><br></pre></td></tr></table></figure>
+
+<p>响应：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">仅返回2012.7.12，7:30后更新过的资源。若未更新，返回304 Not Modified</span><br></pre></td></tr></table></figure>
+
+
+
+<p>响应：</p>
+<h4 id="POST：传输实体主体"><a href="#POST：传输实体主体" class="headerlink" title="POST：传输实体主体"></a>POST：传输实体主体</h4><p>请求：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/submit.cgi</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.hackr.jp</span><br><span class="line">Content-Length:1560 (1560字节数据)</span><br></pre></td></tr></table></figure>
+
+<p>响应：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回submit.cgi接受数据的处理结果</span><br></pre></td></tr></table></figure>
+
+<h4 id="PUT-传输文件"><a href="#PUT-传输文件" class="headerlink" title="PUT: 传输文件"></a>PUT: 传输文件</h4><p>将请求主体中的文件内容保存到请求URI。</p>
+<p>但是由于PUT方法没有验证机制，任何人都能上传文件，有安全性问题，因此一般不使用</p>
+<p>请求：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">PUT</span> <span class="string">/example.html</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.hackr.jp</span><br><span class="line"><span class="attribute">Content-Type</span>: text/html</span><br><span class="line">Content-Length:1560 (1560字节数据)</span><br></pre></td></tr></table></figure>
+
+<p>响应：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回204 No Content（如果该html已经在服务器上）</span><br></pre></td></tr></table></figure>
+
+<h4 id="DELETE-删除文件"><a href="#DELETE-删除文件" class="headerlink" title="DELETE: 删除文件"></a>DELETE: 删除文件</h4><p>同PUT一样，自身没有验证机制，一般不用。</p>
+<p>请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="string">/example.html</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.hackr.jp</span><br></pre></td></tr></table></figure>
+
+<p>响应：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回204 No Content（如果该html已经被删除）</span><br></pre></td></tr></table></figure>
+
+<h4 id="HEAD：获得响应报文首部"><a href="#HEAD：获得响应报文首部" class="headerlink" title="HEAD：获得响应报文首部"></a>HEAD：获得响应报文首部</h4><p>用于确认URI有效性和资源更新的时间等。</p>
+<p>请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">HEAD</span> <span class="string">/index.html</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.hackr.jp</span><br></pre></td></tr></table></figure>
+
+<p>响应：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回index.html有关的响应首部</span><br></pre></td></tr></table></figure>
+
+<h4 id="OPTIONS：询问支持的方法"><a href="#OPTIONS：询问支持的方法" class="headerlink" title="OPTIONS：询问支持的方法"></a>OPTIONS：询问支持的方法</h4><p>查询请求URI指定资源支持的方法</p>
+<p>请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">OPTIONES</span> <span class="string">/example.html</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.hackr.jp</span><br></pre></td></tr></table></figure>
+
+<p>响应：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Allow</span>: GET,POST,HEAD,OPTIONS</span><br></pre></td></tr></table></figure>
+
+<h4 id="TRACE-追踪路径"><a href="#TRACE-追踪路径" class="headerlink" title="TRACE: 追踪路径"></a>TRACE: 追踪路径</h4><p>将服务器端的请求通信环回给客户端。可以查询请求是怎样被加工的。</p>
+<p>发送请求时，在Max-Forwards首部字段填入数值，每经过一个服务端，就减一，为0时返回200OK的响应。</p>
+<p>容易引发XST攻击（跨站追踪），很少用</p>
+<h4 id="CONNECT：要求用隧道协议连接代理"><a href="#CONNECT：要求用隧道协议连接代理" class="headerlink" title="CONNECT：要求用隧道协议连接代理"></a>CONNECT：要求用隧道协议连接代理</h4><p>要求与代理服务器建立隧道，用隧道协议进行TCP通信。使用<strong>SSL（安全套接层）和TLS协议（传输层安全协议）把通信内容加密</strong>后经隧道传输。</p>
+<p>请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CONNECT</span> <span class="string">proxy.hackr.jp:8080</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.hackr.jp</span><br></pre></td></tr></table></figure>
+
+<p>响应：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK (之后进入网络隧道)</span><br></pre></td></tr></table></figure>
+
+<h3 id="持久连接节省通信量"><a href="#持久连接节省通信量" class="headerlink" title="持久连接节省通信量"></a>持久连接节省通信量</h3><h4 id="持久连接"><a href="#持久连接" class="headerlink" title="持久连接"></a>持久连接</h4><p>只有任意一段没有提出断开连接，则保持TCP连接状态。</p>
+<p>HTTP/1.1中所有连接都默认是持久连接</p>
+<h4 id="管线化"><a href="#管线化" class="headerlink" title="管线化"></a>管线化</h4><p>发送完一个请求后，不用等待响应，就可以发送下一个请求。</p>
+<h3 id="使用Cookie进行状态管理"><a href="#使用Cookie进行状态管理" class="headerlink" title="使用Cookie进行状态管理"></a>使用Cookie进行状态管理</h3><p>Cookie会根据服务端发送的响应报文中Set-Cookie的首部字段信息，通知客户端保存Cookie，下次再发送请求时，自动在请求报文中加入Cookie值。</p>
+<p>服务端发现客户端发送的Cookie后，会检查来自哪一个客户端，再对比服务器上的记录，得到状态信息。</p>
+<p>请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/example.html</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.hackr.jp</span><br></pre></td></tr></table></figure>
+
+<p>响应：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span>: ...</span><br><span class="line"><span class="attribute">Server</span>: Apache</span><br><span class="line">&lt;Set-Cookie: sid=34141341143; path=/; expires=Wed, =&gt; 10-Oct-12 07:33:32 GMT&gt;</span><br><span class="line"><span class="attribute">Content-Type</span>: text/plain; charset=UTF-8</span><br></pre></td></tr></table></figure>
+
+<p>再次请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/example.html</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.hackr.jp</span><br><span class="line"><span class="attribute">Cookie</span>: sid=34141341143</span><br></pre></td></tr></table></figure>
+
+<h2 id="第3章-HTTP报文内的HTTP信息"><a href="#第3章-HTTP报文内的HTTP信息" class="headerlink" title="第3章 HTTP报文内的HTTP信息"></a>第3章 HTTP报文内的HTTP信息</h2><h3 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h3><img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1809.22.57.png" style="zoom:50%;" />
+
+<h3 id="请求报文和响应报文的结构"><a href="#请求报文和响应报文的结构" class="headerlink" title="请求报文和响应报文的结构"></a>请求报文和响应报文的结构</h3><img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1809.28.32.png" alt="截屏2020-06-1809.28.32" style="zoom:50%;" />
+
+<img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1809.31.27.png" alt="截屏2020-06-1809.31.27" style="zoom:50%;" />
+
+<p>四种首部字段：</p>
+<ul>
+<li>通用首部</li>
+<li>请求首部</li>
+<li>响应首部</li>
+<li>实体首部</li>
+</ul>
+<h3 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h3><p>HTTP可以把数据原样传输，也可以通过编码提升传输速率。但是编码需要消耗更多的CPU资源。</p>
+<h4 id="报文主体和实体主体的差异"><a href="#报文主体和实体主体的差异" class="headerlink" title="报文主体和实体主体的差异"></a>报文主体和实体主体的差异</h4><ul>
+<li><p><strong>报文</strong></p>
+<p>HTTP通信中的基本单位，8位组字节流组成。</p>
+</li>
+<li><p><strong>实体</strong></p>
+<p>请求或响应的有效载荷数据。由<strong>实体首部和实体主体</strong>组成。</p>
+</li>
+</ul>
+<p>报文主体用于传输实体主体。通常下两者相等。<strong>只有当编码传输时</strong>，实体主体的内容变化，<strong>才会和报文主体产生差异。</strong></p>
+<h4 id="压缩传输的内容编码"><a href="#压缩传输的内容编码" class="headerlink" title="压缩传输的内容编码"></a>压缩传输的内容编码</h4><p>内容编码指明编码格式，并把实体信息压缩。客户端接受后再解码（解压缩）。</p>
+<p>常用的内容编码：</p>
+<ul>
+<li>gzip</li>
+<li>compress</li>
+<li>deflate (zlib)</li>
+<li>Identity (不编码)</li>
+</ul>
+<h4 id="分割发送的分块传输编码"><a href="#分割发送的分块传输编码" class="headerlink" title="分割发送的分块传输编码"></a>分割发送的分块传输编码</h4><p>分割数据，让浏览器能逐步显示页面。每一块都标记了大小。由客户端解码，恢复实体主体。</p>
+<h3 id="发送多种数据的多部分对象集合"><a href="#发送多种数据的多部分对象集合" class="headerlink" title="发送多种数据的多部分对象集合"></a>发送多种数据的多部分对象集合</h3><p>发送的一份报文主体内可含有多种类型实体。</p>
+<ul>
+<li><p>multipart/form-data</p>
+<p>上传web表单文件时</p>
+<img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1809.55.16.png" alt="截屏2020-06-1809.55.16" style="zoom:50%;" />
+</li>
+<li><p>multipart/byteranges</p>
+<p>响应报文包含多个范围内容时。</p>
+</li>
+</ul>
+<p>每个部分类型中，都可以含有首部字段，而且可以嵌套使用。</p>
+<h3 id="获取部分内容的范围请求"><a href="#获取部分内容的范围请求" class="headerlink" title="获取部分内容的范围请求"></a>获取部分内容的范围请求</h3><p>需要一种<strong>可恢复的机制</strong>，可以从下载中断处恢复下载。</p>
+<p>用<strong>Range首部字段</strong>指定资源的byte范围。</p>
+<p>响应返回状态码<strong>206 Partial Content</strong>的响应报文。若无法响应范围请求，返回状态码200 OK和完整实体内容。</p>
+<h3 id="内容协商返回最合适的内容"><a href="#内容协商返回最合适的内容" class="headerlink" title="内容协商返回最合适的内容"></a>内容协商返回最合适的内容</h3><p>访问相同URI页面时，显示浏览器语言对应的页面。</p>
+<p>内容协商以响应资源的语言、字符集、编码方式作为判断标准。</p>
+<p>3中内容协商：</p>
+<ul>
+<li><strong>服务器驱动协商</strong>：服务端以浏览器发送的信息作为判定依据，但不一定能筛选出最优内容</li>
+<li><strong>客户端驱动协商</strong>：用户从可选列表中手动选择</li>
+<li><strong>透明协商</strong>：以上两者结合体。</li>
+</ul>
+<h2 id="第4章-状态码"><a href="#第4章-状态码" class="headerlink" title="第4章 状态码"></a>第4章 状态码</h2><p>状态码类别：</p>
+<img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1810.07.52.png" alt="截屏2020-06-1810.07.52" style="zoom:50%;" />
+
+<h3 id="2XX-成功"><a href="#2XX-成功" class="headerlink" title="2XX 成功"></a>2XX 成功</h3><h4 id="200-OK"><a href="#200-OK" class="headerlink" title="200 OK"></a>200 OK</h4><p>请求被正常处理了</p>
+<h4 id="204-No-Content"><a href="#204-No-Content" class="headerlink" title="204 No Content"></a>204 No Content</h4><p>请求处理成功，但没有资源可返回。</p>
+<p>在只需要从客户端往服务器发送信息时使用。</p>
+<h4 id="206-Partial-Content"><a href="#206-Partial-Content" class="headerlink" title="206 Partial Content"></a>206 Partial Content</h4><p>表示客户端进行了范围请求，而服务器成功执行了这部分的GET请求。响应报文由Content-Range指定范围的实体内容</p>
+<h3 id="3XX-重定向"><a href="#3XX-重定向" class="headerlink" title="3XX 重定向"></a>3XX 重定向</h3><p>表明浏览器需要执行某些特殊的处理来正确处理请求</p>
+<h4 id="301-Moved-Permanently"><a href="#301-Moved-Permanently" class="headerlink" title="301 Moved Permanently"></a>301 Moved Permanently</h4><p><strong>永久性重定向</strong>。表示请求的资源已经被分配了新的URI，以后应使用资源现在所在的URI。</p>
+<p>若把URI保存为书签了，此时应该按照Location首部字段的提示URI重新保存。</p>
+<h4 id="302-Found"><a href="#302-Found" class="headerlink" title="302 Found"></a>302 Found</h4><p><strong>临时性重定向</strong>。分配了新的URI，希望用户本次使用新的URI访问。</p>
+<p>不会更新书签。</p>
+<h4 id="303-See-Other"><a href="#303-See-Other" class="headerlink" title="303 See Other"></a>303 See Other</h4><p>表示资源有另一个URI，应使用GET方法重新定向获取。</p>
+<p>和302 Found类似，但明确表示了<strong>应采用GET方法</strong>获取资源。</p>
+<p><strong>301，302，303</strong>返回时，几乎所有的浏览器都会<strong>把POST改成GET</strong>，并删除请求报文内的主体，之后请求会再次发送。</p>
+<h4 id="304-Not-Modified"><a href="#304-Not-Modified" class="headerlink" title="304 Not Modified"></a>304 Not Modified</h4><p>和重定向无关。客户端发送带条件的请求时，服务端允许请求访问资源，但不满足条件。不返回响应主体。</p>
+<h4 id="307-Temporary-Redirect"><a href="#307-Temporary-Redirect" class="headerlink" title="307 Temporary Redirect"></a>307 Temporary Redirect</h4><p><strong>临时重定向</strong>。返回307时，不会从POST变成GET。</p>
+<h3 id="4XX-客户端错误"><a href="#4XX-客户端错误" class="headerlink" title="4XX 客户端错误"></a>4XX 客户端错误</h3><h4 id="400-Bad-Request"><a href="#400-Bad-Request" class="headerlink" title="400 Bad Request"></a>400 Bad Request</h4><p>请求报文中包含语法错误。</p>
+<h4 id="401-Unauthorized"><a href="#401-Unauthorized" class="headerlink" title="401 Unauthorized"></a>401 Unauthorized</h4><p>表示请求需要有通过HTTP认证的认知信息或用户认证失败。</p>
+<h4 id="403-Forbidden"><a href="#403-Forbidden" class="headerlink" title="403 Forbidden"></a>403 Forbidden</h4><p>访问被拒绝。服务器端没有必要给出拒绝理由。可能是因为访问权限问题。</p>
+<h4 id="404-Not-Found"><a href="#404-Not-Found" class="headerlink" title="404 Not Found"></a>404 Not Found</h4><p>无法找到资源。也可以在拒绝请求且不想说明理由时使用</p>
+<h3 id="5XX-服务器错误"><a href="#5XX-服务器错误" class="headerlink" title="5XX 服务器错误"></a>5XX 服务器错误</h3><h4 id="500-Internal-Server-Error"><a href="#500-Internal-Server-Error" class="headerlink" title="500 Internal Server Error"></a>500 Internal Server Error</h4><p>服务器端在执行请求时发生了错误</p>
+<h4 id="503-Service-Unabailable"><a href="#503-Service-Unabailable" class="headerlink" title="503 Service Unabailable"></a>503 Service Unabailable</h4><p>服务器暂时超负载或停机维护，步伐处理请求</p>
+<h2 id="第5章-与HTTP协作的Web服务器"><a href="#第5章-与HTTP协作的Web服务器" class="headerlink" title="第5章 与HTTP协作的Web服务器"></a>第5章 与HTTP协作的Web服务器</h2><h3 id="用单台虚拟主机实现多个域名"><a href="#用单台虚拟主机实现多个域名" class="headerlink" title="用单台虚拟主机实现多个域名"></a>用单台虚拟主机实现多个域名</h3><p>主机名=服务器名+域名</p>
+<p>例子：<a href="http://www.sina.com.cn/" target="_blank" rel="noopener">http://www.sina.com.cn/</a></p>
+<p>服务器名：www</p>
+<p>域名：sina.com.cn</p>
+<p>主机名：<a href="http://www.sina.com.cn" target="_blank" rel="noopener">www.sina.com.cn</a></p>
+<p>虚拟主机可以寄存多个不同主机名和域名的Web网站</p>
+<p><a href="http://www.tricorder.jp和www.hackr.jp部署在同一个服务器上，因此域名会解析为相同的IP地址，因此必须在Host首部内完整指定URI。" target="_blank" rel="noopener">www.tricorder.jp和www.hackr.jp部署在同一个服务器上，因此域名会解析为相同的IP地址，因此必须在Host首部内完整指定URI。</a></p>
+<h3 id="通信数据转发程序：代理、网关、隧道"><a href="#通信数据转发程序：代理、网关、隧道" class="headerlink" title="通信数据转发程序：代理、网关、隧道"></a>通信数据转发程序：代理、网关、隧道</h3><ul>
+<li><p><strong>代理</strong>：转发客户端请求，不改变URI。每次通过代理服务器转发时，会追加写入Via首部信息。</p>
+<p>好处：利用缓存减少网络带宽流量，组织内部针对特定网站的访问控制</p>
+<ul>
+<li><strong>缓存代理</strong>：转发响应时，将资源缓存在代理服务器上。</li>
+<li><strong>透明代理</strong>：不对报文加工的代理为透明代理，否则为非透明代理。</li>
+</ul>
+</li>
+<li><p><strong>网关</strong>：网关可以<strong>把HTTP请求转化为其他协议</strong>通信。网关还可以提高安全性，可以加密和客户端的通信线路。</p>
+</li>
+<li><p><strong>隧道</strong>：建立一条使用SSL等加密手段进行通信的通信线路。确保客户端与服务器进行安全的通信。不解析HTTP请求。</p>
+</li>
+</ul>
+<h3 id="保存资源的缓存"><a href="#保存资源的缓存" class="headerlink" title="保存资源的缓存"></a>保存资源的缓存</h3><p>利用代理服务器或本地缓存可以<strong>减少通信流量和通信时间</strong>。</p>
+<h4 id="缓存的有效期限"><a href="#缓存的有效期限" class="headerlink" title="缓存的有效期限"></a>缓存的有效期限</h4><p>判断缓存是否失效，缓存服务器会再次从源服务器上获取新资源。</p>
+<h4 id="客户端的缓存"><a href="#客户端的缓存" class="headerlink" title="客户端的缓存"></a>客户端的缓存</h4><p>判断缓存是否失效，缓存服务器会再次从源服务器上获取新资源。</p>
+<h2 id="第6章-HTTP首部"><a href="#第6章-HTTP首部" class="headerlink" title="第6章 HTTP首部"></a>第6章 HTTP首部</h2><h3 id="报文首部"><a href="#报文首部" class="headerlink" title="报文首部"></a>报文首部</h3><h4 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h4><img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1814.25.37.png" alt="截屏2020-06-1814.25.37" style="zoom:50%;" />
+
+<h4 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h4><img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1814.26.48.png" alt="截屏2020-06-1814.26.48" style="zoom:50%;" />
+
+<h3 id="HTTP首部字段"><a href="#HTTP首部字段" class="headerlink" title="HTTP首部字段"></a>HTTP首部字段</h3><p>首部重复了怎么办：无统一规定。有的浏览器优先处理第一次出现的，有的优先处理最后出现的。</p>
+<h4 id="4种首部字段类型"><a href="#4种首部字段类型" class="headerlink" title="4种首部字段类型"></a>4种首部字段类型</h4><ul>
+<li><strong>通用首部字段</strong>：请求和响应都会用</li>
+<li><strong>请求首部字段</strong>：客户端信息，响应内容相关优先级</li>
+<li><strong>响应首部字段：</strong></li>
+<li><strong>实体首部字段</strong>：资源更新时间等</li>
+</ul>
+<p>通用首部字段：</p>
+<p>Cache-Control, Connection, Date, Via</p>
+<img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1814.41.00.png" alt="截屏2020-06-1814.41.00" style="zoom:50%;" />
+
+<p>请求首部字段：</p>
+<p>Accept, Expecte, From, Host, If-Match, If-Modified-Since</p>
+<img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1814.42.04.png" alt="截屏2020-06-1814.42.04" style="zoom:50%;" />
+
+<p>响应首部字段：</p>
+<p>Accept-Ranges, Age, Location, Server, Vary</p>
+<img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1814.44.05.png" alt="截屏2020-06-1814.44.05" style="zoom:50%;" />
+
+<img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1814.44.25.png" alt="截屏2020-06-1814.44.25" style="zoom:50%;" />
+
+<p>实体首部字段：</p>
+<p>Allow, Content-Encoding, Content-Language, Content-Length, Expires</p>
+<img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1814.44.47.png" alt="截屏2020-06-1814.44.47" style="zoom:50%;" />
+
+<h4 id="非HTTP-1-1首部字段"><a href="#非HTTP-1-1首部字段" class="headerlink" title="非HTTP/1.1首部字段"></a>非HTTP/1.1首部字段</h4><p>Cookie, Set-Cookie, Content-Disposition等</p>
+<h4 id="End-to-end-Hop-by-hop首部"><a href="#End-to-end-Hop-by-hop首部" class="headerlink" title="End-to-end, Hop-by-hop首部"></a>End-to-end, Hop-by-hop首部</h4><ul>
+<li><p>End-to-end:</p>
+<p>转发给最终接受目标</p>
+<p>必须保存在缓存生成的响应中</p>
+<p>必须被转发</p>
+</li>
+<li><p>Hop-by-hop</p>
+<p>只对单次转发有效，通过缓存或代理则不再转发</p>
+<p>需要提供Connection首部</p>
+</li>
+</ul>
+<p>逐条首部字段：</p>
+<ul>
+<li>Connection</li>
+<li>Keep-Alive</li>
+<li>Proxy-Authentivate</li>
+<li>Proxy-Authorization</li>
+<li>Trailer</li>
+<li>TE</li>
+<li>Transfer-Encoding</li>
+<li>Upgrade</li>
+</ul>
+<h3 id="HTTP-1-1通用首部字段"><a href="#HTTP-1-1通用首部字段" class="headerlink" title="HTTP/1.1通用首部字段"></a>HTTP/1.1通用首部字段</h3><h4 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h4><img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1815.24.39.png" alt="截屏2020-06-1815.24.39" style="zoom:50%;" />
+
+<img src="/Users/yesun/Documents/study/笔记/博客/source/assets/截屏2020-06-1815.18.48.png" style="zoom:50%;" />
+
+
+
+<img src="/Users/yesun/Desktop/截屏2020-10-12 15.05.50.png" style="zoom:50%;" />
+
+<ul>
+<li><p><strong>public</strong>：其他用户可以利用缓存</p>
+</li>
+<li><p><strong>private</strong>: 只有特定用户可以用缓存</p>
+</li>
+<li><p><strong>no-cache</strong>(不缓存过期资源): 客户端：我不要缓存过的，要从源服务器拿新的。服务器：你可以缓存，但使用前要先跟我确认。告诉浏览器、缓存服务器，不管本地副本是否过期，使用资源副本前，一定要到源服务器进行副本有效性校验。</p>
+</li>
+<li><p><strong>no-store</strong>（不缓存）: 说明请求或响应中有机密信息，不能本地存储</p>
+</li>
+<li><p><strong>max-age</strong>: 客户端角度：要是缓存过期没超过一周，就把它给我。服务器角度：一周内不必再向我确认，你直接支配缓存。HTTP/1.1中，若Expires首部字段也存在，优先处理max-age，忽略Expires。HTTP/1.0则相反</p>
+</li>
+<li><p><strong>min-fresh</strong>: 至少在未来(s)秒内文档要保持新鲜。若min-fresh为60秒，过了60秒的资源都无法作为响应返回.</p>
+</li>
+<li><p><strong>max-stale</strong> ：过期后的 s 秒内缓存可以继续使用</p>
+</li>
+<li><p><strong>only-if-cached</strong>: 不用重新加载响应，也不用再次确认资源有效性，只返回已经缓存且满足要求的数据，否则的话返回 504 Gateway Timeout 错误。</p>
+</li>
+<li><p><strong>must-revalidate</strong>: 代理再次向服务器验证缓存是否仍然有效。若无法连接服务器，返回504。会忽略max-stale指令.告诉浏览器、缓存服务器，本地副本过期前，可以使用本地副本；本地副本一旦过期，必须去源服务器进行有效性校验。</p>
+</li>
+<li><p><strong>proxy-revalidate</strong>: 和 must-revalidate 类似，只是特定用于公共缓存的。</p>
+</li>
+</ul>
+<p>PS：</p>
+<ul>
+<li><p><strong>max-age，max-stale 和 min-fresh 的关系</strong>：缓存使用期 age 表示缓存自 Server 将其发出（或最后一次被服务器再验证）之后过去的时间，则如果 age + min-fresh &lt; max-age，缓存未过期；如果 age + min-fresh &gt;= max-age &amp;&amp; age + min-fresh &lt; max-age + max-stale，则虽然缓存过期了，但是缓存继续可以使用，只是在头部添加 110 警告码；如果 age + min-fresh &gt;= max-age + max-stale，则缓存过期且不可使用。</p>
+</li>
+<li><p>对一条”HTTP GET”报文的<strong>基本缓存处理过程</strong>包括7个步骤：</p>
+<ul>
+<li><strong>接收</strong>—缓存从网络中读取抵达的请求报文；</li>
+<li><strong>解析</strong>—缓存对报文进行解析，提取出URL和各种首部；</li>
+<li><strong>查询</strong>—缓存查看是否有本地副本可用，如果没有，就获取一份副本(并将其保存在本地)；</li>
+<li><strong>新鲜度检测</strong>—缓存查看已缓存副本是否足够新鲜，如果不是，就询问服务器是否有任何更新；</li>
+<li><strong>创建响应</strong>—缓存会用新的首部和已缓存的主体来构建一条响应报文；</li>
+<li><strong>发送</strong>—缓存通过网络将响应发回给客户端；</li>
+<li><strong>日志</strong>—缓存可选地创建一个日志文件条目来描述这个事务。</li>
+</ul>
+</li>
+<li><p><strong>保持副本的新鲜</strong>的机制：</p>
+<ul>
+<li><strong>文档过期</strong>：通过特殊的HTTP <strong>Cache-Control首部（max-age）和Expires首部</strong>，HTTP让原始服务器向每个文档附加了一个”过期日期”。这些首部说明了在多长时间内可以将这些内容视为新鲜的。在缓存文档过期之前，缓存可以以任意频率使用这些副本，而无需与服务器联系</li>
+<li><strong>服务器再验证</strong>： 仅仅是已缓存文档过期了并不意味着它和原始服务器上目前处于活跃状态的文档有实际的区别；这只是意味着到了要进行核对的时间了。这种情况被称为”服务器再验证”，说明<strong>缓存需要询问原始服务器文档是否发生了变化</strong>。缓存并不一定要为每条请求验证文档的有效性——只有在文档过期时它才需要与服务器进行再验证。这样不会提供陈旧的内容，还可以节省服务器的流量，<ul>
+<li>如果再验证显示内容<strong>发生了变化</strong>，缓存会获取一份新的文档副本，并将其存储在旧文档的位置上，然后将文档发送给客户端。</li>
+<li>如果再验证显示内容<strong>没有发生变化</strong>，缓存只需要获取新的首部，包括一个新的过期日期，并对缓存中的首部进行更新就行了。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>用条件方法进行再验证</strong></p>
+<ul>
+<li>缓存向原始服务器发送一个”<strong>条件GET</strong>“，请求服务器只有在文档与缓存中现有的副本不同时，才回送对象主体。通过这种方式，<strong>将新鲜度检测和对象获取结合成了单个条件GET</strong>。</li>
+<li><strong>If-Modified-Since： Date再验证</strong>：<ul>
+<li>如果自指定日期后，文档被修改了，If-Modified-Since条件就为真，通常GET就会成功执行。携带新首部的新文档会被返回给缓存，新首部除了其他信息之外，还包含了一个新的过期日期。</li>
+<li>如果自指定日期后，文档没被修改过，条件就为假，会向客户端返回一个小的”304 Not Modified”响应报文，为了提高有效性，不会返回文档的主体。这 些首部是放在响应中返回的，但只会返回那些需要在源端更新的首部。一般会发送一个新的过期日期。</li>
+</ul>
+</li>
+<li><strong>If-None-Match：实体标签再验证</strong>：有些情况下仅使用最后修改日期进行再验证是不够的。因此用<strong>Etag实体标签</strong>标识文档，实体标签是附加到文档上的任意标签(引用字符串)。它们可能包含了文档的序列号或版本名。如果Etag被修改了，就重新GET<ul>
+<li>有些文档可能会被周期性地重写(比如，从一个后台进程中写入)，但实际包含的数据常常是一样的。尽管内容没有变化，但修改日期会发生变化。</li>
+<li>有些文档可能被修改了，但所做修改并不重要，不需要让世界范围内的缓存都重装数据(比如对拼写或注释的修改)。</li>
+<li>有些服务器无法准确地判定其页面的最后修改日期。</li>
+<li>有些服务器提供的文档会在亚秒间隙发生变化(比如，实时监视器)，对这些服务器来说，以一秒为粒度的修改日期可能就不够用了。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>试探性过期</strong>：</p>
+<ul>
+<li>如果响应中没有”Cache-Control: max-age”首部，也没有Expires首部，缓存可以计算出一个试探性最大使用期。但如果得到的最大使用期大于24小时，就应该向响应首部添加一个Heuristic Expiration Warning(试探性过期警告，警告13)首部</li>
+</ul>
+</li>
+</ul>
+<h4 id="Connection"><a href="#Connection" class="headerlink" title="Connection"></a>Connection</h4><p>两个作用：</p>
+<ul>
+<li><strong>控制不再转发给代理的首部字段</strong></li>
+<li><strong>管理持久连接</strong></li>
+</ul>
+<h5 id="控制不再转发给代理的首部字段"><a href="#控制不再转发给代理的首部字段" class="headerlink" title="控制不再转发给代理的首部字段"></a>控制不再转发给代理的首部字段</h5><img src="/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-12 15.19.59.png" alt="截屏2020-10-12 15.19.59" style="zoom:50%;" />
+
+<h5 id="管理持久连接"><a href="#管理持久连接" class="headerlink" title="管理持久连接"></a>管理持久连接</h5><p>服务器发送Connection: close来关闭和客户端的持久连接</p>
+<p>HTTP/1.1版本默认都是持久连接，1.0之前默认都是非持久连接，因此旧版本的HTTP协议上维持持续连接，就要指定Connection为Keep-Alive。</p>
+<h4 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h4><p>表明创建HTTP报文的日期和时间</p>
+<h4 id="Trailer"><a href="#Trailer" class="headerlink" title="Trailer"></a>Trailer</h4><p>Trailer事先说明在报文主体后记录了那些首部字段，可用于在HTTP/1.1版本分块传输编码</p>
+<h4 id="Transfer-Encoding"><a href="#Transfer-Encoding" class="headerlink" title="Transfer-Encoding"></a>Transfer-Encoding</h4><p>指定了传输报文主体时采用的编码方式。HTTP/1.1中仅对分块传输编码有效</p>
+<h4 id="Upgrade"><a href="#Upgrade" class="headerlink" title="Upgrade"></a>Upgrade</h4><p>用于检测是否可使用更高版本进行通信，参数可以是一个完全不同的协议。</p>
+<p>使用Upgrade时，还要指定Connection: Upgrade，让Upgrade仅作用于客户端和邻接服务器之间</p>
+<h4 id="Via"><a href="#Via" class="headerlink" title="Via"></a>Via</h4><p>追踪请求和响应的传输路径。还可以避免请求回环的发生。</p>
+<p>报文在经过代理和网关时，会在首部Via字段附加该服务器的信息，再转发。</p>
+<h4 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a>Warning</h4><img src="/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-12 17.20.51.png" alt="截屏2020-10-12 17.20.51" style="zoom:50%;" />
+
+<img src="/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-12 17.21.35.png" alt="截屏2020-10-12 17.21.35" style="zoom:50%;" />
+
+<h3 id="请求首部字段"><a href="#请求首部字段" class="headerlink" title="请求首部字段"></a>请求首部字段</h3><h4 id="Accept"><a href="#Accept" class="headerlink" title="Accept"></a>Accept</h4><p>通知服务器，用户代理能够处理的媒体类型和相对优先级。用q=来表示权重值</p>
+<h4 id="Accept-Charset"><a href="#Accept-Charset" class="headerlink" title="Accept-Charset"></a>Accept-Charset</h4><p>通知服务器用户支持的字符集和相对优先顺序，用q值表示权重。</p>
+<p>用于内容协商机制的服务器驱动协商</p>
+<h4 id="Accept-Encoding"><a href="#Accept-Encoding" class="headerlink" title="Accept-Encoding"></a>Accept-Encoding</h4><p>告知服务器用户支持的内容编码及相对优先级。可以用q值</p>
+<h4 id="Accept-Language"><a href="#Accept-Language" class="headerlink" title="Accept-Language"></a>Accept-Language</h4><p>告知服务器用户支持的自然语言集和相对优先级。可以用q值</p>
+<h4 id="Authorization"><a href="#Authorization" class="headerlink" title="Authorization"></a>Authorization</h4><p>告知服务器用户的认证信息（证书值）。用户在接受到401 Unauthorized响应后，会把首部字段Authorization加入到请求中。</p>
+<img src="/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-12 17.30.54.png" style="zoom:50%;" />
+
+<h4 id="Expect"><a href="#Expect" class="headerlink" title="Expect"></a>Expect</h4><p>告知服务器期望出现的某种特定行为。服务器无法理解时，返回417 Expectation Failed。比如客户端等待状态码100响应，就指定Expect: 100-continue</p>
+<h4 id="From"><a href="#From" class="headerlink" title="From"></a>From</h4><p>告知服务器用户的电子邮件地址</p>
+<h4 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h4><p>虚拟主机运行在同一个IP上，因此使用首部字段Host加以区分。包含主机名和端口号。</p>
+<p>Host首部字段是HTTP/1.1唯一一个必须被包含在请求内的首部字段。</p>
+<h4 id="If-Match"><a href="#If-Match" class="headerlink" title="If-Match"></a>If-Match</h4><p>形如If-xxx的请求首部字段，都可称为条件请求。服务器接受到条件请求后，只有条件为真时，才会执行请求。</p>
+<img src="/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-12 17.38.53.png" alt="截屏2020-10-12 17.38.53" style="zoom:50%;" />
+
+<p>If-Match告知服务器匹配资源的实体标记值ETag。若不匹配，服务器返回413 Precondition Failed。若使用*指定If-Match,就会忽略ETag,资源存在就处理请求。</p>
+<h4 id="If-Modified-Since"><a href="#If-Modified-Since" class="headerlink" title="If-Modified-Since"></a>If-Modified-Since</h4><p>如果在指定日期后，资源发生更新，服务器就接受请求，并返回最后一次更新的时间。否则返回304 Not Modified</p>
+<h4 id="If-None-Match"><a href="#If-None-Match" class="headerlink" title="If-None-Match"></a>If-None-Match</h4><p>只有在字段值与ETag值不一致时，才处理该请求，与If-Match相反</p>
+<p>GET或HEAD方法中使用If-None-Match可获取最新的资源，和If-Modified-Since类似。若服务器通过 If-None-Match 或 If-Modified-Since判断后发现已过期，那么会带有该资源的实体内容返回。</p>
+<h4 id="If-Range"><a href="#If-Range" class="headerlink" title="If-Range"></a>If-Range</h4><img src="/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-23 08.04.39.png"  />
+
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-23 08.07.21.png)</p>
+<p>如果不用If-Range，如果服务器资源更新，那客户端持有的资源的一部分也会无效，范围请求就会无效，服务器就会暂时返回412 Precondition Failed，催促客户端再次发送请求</p>
+<h4 id="If-Unmodified-Since"><a href="#If-Unmodified-Since" class="headerlink" title="If-Unmodified-Since"></a>If-Unmodified-Since</h4><p>和If-Modified-Since作用相反</p>
+<h4 id="Max-Forwards"><a href="#Max-Forwards" class="headerlink" title="Max-Forwards"></a>Max-Forwards</h4><p>控制经过的转发服务器数。服务器转发请求时，Max-Forwards值-1，为0时不转发，直接返回响应。</p>
+<p>当代理服务器转发请求失败时，客户端就得不到响应，可以用Max-Forwards来定位故障，了解传输路径的通信状况。</p>
+<h4 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h4><p>范围请求，请求指定字节范围的资源</p>
+<h4 id="Referer"><a href="#Referer" class="headerlink" title="Referer"></a>Referer</h4><p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-23 08.16.23.png)*</p>
+<p>告诉服务器请求的URI是从哪个Web页面发起的</p>
+<p>但是如果直接在浏览器的地址栏输入URI，出于安全考虑，也可以不发送该首部字段。因为原始资源的URI中的查询字符串可能含有ID、密码等信息，要是写进Referer，可能会信息泄露。</p>
+<h4 id="TE"><a href="#TE" class="headerlink" title="TE"></a>TE</h4><p>TE：gzip, deflate; q=0.5</p>
+<p>告知服务器客户端能够处理的传输编码方式和相对优先级。</p>
+<h4 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h4><p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-23 08.22.08.png)</p>
+<p>将创建请求的浏览器、代理服务器等信息传给服务器</p>
+<h3 id="响应首部字段"><a href="#响应首部字段" class="headerlink" title="响应首部字段"></a>响应首部字段</h3><h4 id="Accept-Ranges"><a href="#Accept-Ranges" class="headerlink" title="Accept-Ranges"></a>Accept-Ranges</h4><p>两个值：bytes/none. 告诉客户端服务器是否能处理范围请求</p>
+<h4 id="Age"><a href="#Age" class="headerlink" title="Age"></a>Age</h4><p>告知客户端，源服务器在多久前响应了，字段值为秒。若是缓存服务器创建了响应，</p>
+<h4 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h4><p>一种实体标识。将资源以字符串形式做唯一性标识。资源可以有相同的URI，但ETag不同。比如英文版google首页和中文版有相同URI，但有不同的ETag。</p>
+<p>下载中断，再连接时，也会根据ETag来指定资源。</p>
+<p><strong>强ETag和弱Etag</strong></p>
+<ul>
+<li>强ETag:不论实体发生多微小的变化，ETag值都会改变</li>
+<li>弱ETag:只有资源发生根本改变时，才会改变ETag值。字段开始处附加W/</li>
+</ul>
+<h4 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h4><p>把请求方引导至另外一个URI。配合3xx: Redirection，提供重定向的URI</p>
+<h4 id="Proxy-Authenticate"><a href="#Proxy-Authenticate" class="headerlink" title="Proxy-Authenticate"></a>Proxy-Authenticate</h4><p>客户端和代理之间的访问认证。把代理服务器要求的认证信息发送给客户端</p>
+<h4 id="Retry-After"><a href="#Retry-After" class="headerlink" title="Retry-After"></a>Retry-After</h4><p>告知客户端多久之后再次发送请求。配合503 Service Unavailable响应或3xx Redirect响应</p>
+<h4 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h4><p>告知客户端服务器上HTTP服务器应用程序的信息，包括软件名称、版本号等</p>
+<h4 id="Vary"><a href="#Vary" class="headerlink" title="Vary"></a>Vary</h4><p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-23 12.11.08.png)</p>
+<p>Vary可对缓存进行控制。代理接收到源服务器返回包含Vary项到响应后，若再要进行缓存，只对请求包含相同Vary字段的请求返回缓存。即使对相同资源发起请求，如果Vary指定字段不同，代理也必须要从源服务器重新获取资源。</p>
+<h4 id="WWW-Authenticate"><a href="#WWW-Authenticate" class="headerlink" title="WWW-Authenticate"></a>WWW-Authenticate</h4><p>用于HTTP访问认证。告知客户端适用于访问请求URI指定资源的认证方案（Basic/Digest）和带参数提示的质询（challenge）。401 Unauthorized响应中，肯定带有WWW-Authenticate字段</p>
+<h3 id="实体首部字段"><a href="#实体首部字段" class="headerlink" title="实体首部字段"></a>实体首部字段</h3><p>是包含在请求报文和响应报文的实体部分使用的首部，用于补充内容的更新时间等与实体相关的信息</p>
+<h4 id="Allow"><a href="#Allow" class="headerlink" title="Allow"></a>Allow</h4><p>通知客户端能够支持Request-URI指定资源的所有HTTP方法。当服务器接受到不支持的HTTP方法时，返回405 Method Not Allowed响应，并把所有的支持的HTTP方法写入Allow后返回</p>
+<h4 id="Content-Encoding"><a href="#Content-Encoding" class="headerlink" title="Content-Encoding"></a>Content-Encoding</h4><p>告知客户端服务器对实体的主体采用的内容编码方式。</p>
+<p><strong>内容编码</strong>：在不丢失实体信息前提下进行的压缩。</p>
+<ul>
+<li>gzip</li>
+<li>compress</li>
+<li>deflate</li>
+<li>Identity</li>
+</ul>
+<p><strong>传输编码</strong>：在HTTP通信过程中，请求的编码实体资源尚未全部传输完成之前，浏览器无法显示请求页面。在传输大量数据时，通过把数据分割成多块，能够让浏览器逐步显示页面。这种把实体主题分块的功能称为分块传输编码。</p>
+<h4 id="Content-Language"><a href="#Content-Language" class="headerlink" title="Content-Language"></a>Content-Language</h4><h4 id="Content-Length"><a href="#Content-Length" class="headerlink" title="Content-Length"></a>Content-Length</h4><p>实体主体部分大小。对实体主体进行内容编码传输时，不能再使用Content-Length字段</p>
+<h4 id="Content-Location"><a href="#Content-Location" class="headerlink" title="Content-Location"></a>Content-Location</h4><p>给出与报文主体对应的URI。请求URI可能与返回对象不同，比如使用首部字段Accept-Language的服务器驱动型请求。</p>
+<h4 id="Content-MD5"><a href="#Content-MD5" class="headerlink" title="Content-MD5"></a>Content-MD5</h4><img src="/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-23 12.40.19.png" style="zoom:50%;" />
+
+<p>一串由MD5算法生成的值，目的是检查报文主体是否保持完整</p>
+<p>但是无法检测出内容的恶意篡改。因为如果内容被篡改了，Content-MD5也会重新计算并被篡改。</p>
+<h4 id="Content-Range"><a href="#Content-Range" class="headerlink" title="Content-Range"></a>Content-Range</h4><p>针对范围请求，返回响应时使用Content-Range,告知客户端返回的实体哪个部分符合范围请求</p>
+<h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4><p>将资源失效日期告知客户端。缓存服务器接受到含有Expires的响应后，用缓存来响应后面的请求。超过指定时间后，缓存服务器在接受到请求后，会转向源服务器请求资源。</p>
+<p>源服务器不希望缓存服务器进行缓存时，应该在Expires字段写入和首部字段Date相同的时间值。</p>
+<p>当首部字段Cache-Control指定了max-age时，优先处理max-age</p>
+<h3 id="为Cookie服务的首部字段"><a href="#为Cookie服务的首部字段" class="headerlink" title="为Cookie服务的首部字段"></a>为Cookie服务的首部字段</h3><p>Cookie的工作机制是用户识别及状态管理。管理服务器和客户端之间的状态。</p>
+<img src="/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-23 12.53.40.png" alt="截屏2020-10-23 12.53.40" style="zoom:50%;" />
+
+<h4 id="Set-Cookie-各字段"><a href="#Set-Cookie-各字段" class="headerlink" title="Set-Cookie 各字段"></a>Set-Cookie 各字段</h4><ul>
+<li><strong>expires</strong>: 指定浏览器可发送Cookie的有效期。默认有效期仅限于维持浏览器会话时间段内，即浏览器被关闭之前</li>
+<li><strong>path</strong>：限制指定Cookie的发送范围的文件目录</li>
+<li><strong>domain</strong>: 指定可以发送Cookie的域名结尾</li>
+<li><strong>secure</strong>: 限制Web页面只在HTTPS安全连接时，才可以发送Cookie。否则服务器不会发生Cookie回收行为。</li>
+<li><strong>HttpOnly</strong>: 使JavaScript脚本无法获得Cookie目的是防止跨站脚本攻击（XSS）窃取Cookie。</li>
+</ul>
+<p><strong>XSS攻击</strong>：它允许攻击者将恶意代码植入到提供给其它用户使用的页面中。不同于大多数攻击(一般只涉及攻击者和受害者)，XSS 涉及到三方，即攻击者、客户端与Web应用。XSS 的攻击目标是为了盗取存储在客户端的 cookie 或者其他网站用于识别客户端身份的敏感信息。一旦获取到合法用户的信息后，攻击者甚至可以假冒合法用户与网站进行交互。<a href="https://www.jianshu.com/p/27da16438d15" target="_blank" rel="noopener">https://www.jianshu.com/p/27da16438d15</a></p>
+<p><strong>总之，XSS 能做用户使用浏览器能做的一切事情。包括获取用户的 cookie 等重要隐私信息的操作。另外，同源策略无法保证不受 XSS 攻击，因为此时攻击者就在同源之内。</strong></p>
+<ul>
+<li>客户端型：<ul>
+<li>客户端型 xss 攻击是一次性的，仅对当次的页面访问产生影响。客户端型 xss 攻击要求用户访问一个被攻击者篡改后的链接，用户访问该链接时，被植入的攻击脚本被用户游览器执行，从而达到攻击目的。</li>
+</ul>
+</li>
+<li>服务端型<ul>
+<li>本质上是注入攻击。区别在于服务端型的恶意代码可以复用，并且不需要引诱用户点击某个连接。黑客将将恶意代码通过某个操作，写入被攻击服务器的数据库中，接着在某个数据列表展示页面中通过嵌入 js 代码，迫使用户的浏览器执行恶意 javascript 代码来达到 XSS 攻击的目的。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Cookie-字段"><a href="#Cookie-字段" class="headerlink" title="Cookie 字段"></a>Cookie 字段</h4><p>Cookie: status=enable</p>
+<p>告知服务器，当客户端想获得HTTP状态管理支持时，会在请求中包含从服务器接受到的Cookie</p>
+<h2 id="第7章-确保Web安全的HTTPS"><a href="#第7章-确保Web安全的HTTPS" class="headerlink" title="第7章 确保Web安全的HTTPS"></a>第7章 确保Web安全的HTTPS</h2><h3 id="HTTP的缺点"><a href="#HTTP的缺点" class="headerlink" title="HTTP的缺点"></a>HTTP的缺点</h3><ul>
+<li>通信使用<strong>明文</strong>，内容可能被窃听</li>
+<li>不验证<strong>通信方的身份</strong>，可能遭遇伪装</li>
+<li>无法证明<strong>报文的完整性</strong>，可能已经被篡改</li>
+</ul>
+<h4 id="使用明文可能被窃听"><a href="#使用明文可能被窃听" class="headerlink" title="使用明文可能被窃听"></a>使用明文可能被窃听</h4><ul>
+<li><p><strong>TCP/IP</strong>是可能被窃听的网络</p>
+<p>互联网上的任何角落都存在通信内容被窃听的风险，抓包</p>
+</li>
+<li><p>加密处理防止被窃听</p>
+<ul>
+<li><p>通信的加密</p>
+<p>用SSL建立安全通信线路后，就可以在其上进行HTTP通信了。SSL+HTTP=HTTPS</p>
+</li>
+<li><p>内容的加密</p>
+<p>客户端需要对报文主体进行加密处理再发送。通信本身不会被加密。</p>
+<p>要求客户端和服务器同时具备加密解密机制，但内容仍然有被篡改的风险</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="不验证通信方的身份，可能遭遇伪装"><a href="#不验证通信方的身份，可能遭遇伪装" class="headerlink" title="不验证通信方的身份，可能遭遇伪装"></a>不验证通信方的身份，可能遭遇伪装</h4><ul>
+<li><p>任何人都可发起请求</p>
+<ul>
+<li>无法确定请求发送的目标服务器是否是返回响应的服务器。可能是假服务器</li>
+<li>无法确定响应返回到的客户端是否就是应该接受响应的客户端。可能是假客户端</li>
+<li>无法确定对方是否具备访问权限。</li>
+<li>无法判定请求是来自何方、出自谁手</li>
+<li>即使是无意义的请求也会照单全收，无法阻止海量请求下的DoS攻击（Denial of Service 拒绝服务攻击）</li>
+</ul>
+</li>
+<li><p>查明对手的证书</p>
+<p>使用SSL就可以确定通信方。SSL不仅提供加密处理，还使用了证书，可用于确定通信方。</p>
+</li>
+</ul>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 13.58.36.png)</p>
+<h4 id="无法证明报文完整性，可能已被篡改"><a href="#无法证明报文完整性，可能已被篡改" class="headerlink" title="无法证明报文完整性，可能已被篡改"></a>无法证明报文完整性，可能已被篡改</h4><ul>
+<li><p>接收到的内容可能有误</p>
+<p>没办法确认发出的就是接受到的。</p>
+<p>像这样，请求或响应在传输途中，被拦截并篡改内容的攻击：<strong>中间人攻击</strong>（Man-in-the-Middle attack, <strong>MITM</strong>）</p>
+</li>
+<li><p>如何防止篡改</p>
+<p>用MD5和SHA-1等散列值校验的方法，以及确认文件的数字签名</p>
+<p>提供文件下载的网站也会提供响应的以PGP(Pretty Good Privacy，完美隐私)创建的数字签名和MD5算法生成的散列值。PGP是用来证明创建文件的数字签名，MD5是单向函数生成的散列值。</p>
+<p>但是需要客户端用户本人亲自检查下载的文件是否是原文件，浏览器无法自动检查。而且没法百分百防止篡改，因为PGP和MD5本身也可能被篡改，而用户没办法觉察到。</p>
+<p>所以需要使用HTTPS。SSL提供认证、加密处理、摘要功能。</p>
+</li>
+</ul>
+<h3 id="HTTP-加密-认证-完整性保护-HTTPS"><a href="#HTTP-加密-认证-完整性保护-HTTPS" class="headerlink" title="HTTP+加密+认证+完整性保护=HTTPS"></a>HTTP+加密+认证+完整性保护=HTTPS</h3><p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 14.11.10.png)</p>
+<h4 id="HTTPS是身披SSL外壳的HTTP"><a href="#HTTPS是身披SSL外壳的HTTP" class="headerlink" title="HTTPS是身披SSL外壳的HTTP"></a>HTTPS是身披SSL外壳的HTTP</h4><p>HTTP通信接口部分用SSL（Secure Socket Layer）和TLS(Transport Layer Security)协议代替</p>
+<p>通常，HTTP直接和TCP通信。使用SSL时，则先和SSL通信，再由SSL和TCP通信。</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 14.13.55.png)</p>
+<p>SSL是独立于HTTP的协议，因此不光是HTTP，其他运行在应用层的SMTP、Telnet等协议都可以配合SSL协议使用。是应用最为广泛的网络安全技术</p>
+<h4 id="相互交换密钥的公开密钥加密技术"><a href="#相互交换密钥的公开密钥加密技术" class="headerlink" title="相互交换密钥的公开密钥加密技术"></a>相互交换密钥的公开密钥加密技术</h4><p>SSL采用<strong>公开密钥加密</strong>。加密算法是公开的，密钥却是保密的。</p>
+<ul>
+<li><p><strong>共享密钥加密</strong>的困境</p>
+<p>加密和解密用同一个密钥，也叫做<strong>对称密钥加密</strong></p>
+<p>用共享密钥加密时，密钥也必须发送给对方。密钥也可能被窃走。</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 14.19.31.png)</p>
+</li>
+<li><p>使用两把密钥的<strong>公开密钥加密</strong></p>
+<p>公开密钥加密解决了这个问题。私有密钥+公有密钥。</p>
+<p>发送方用接收方的公有密钥加密，接收方再用自己的私有密钥进行解密。</p>
+<p>这样就不用发送用来解密的私有密钥，也不用担心密钥被盗走。而且想根据密文和公开密钥恢复信息是异常困难的。如果能对一个非常大的整数进行快速的因式分解，那么就可以破解密码，但是现在的技术是不现实的</p>
+</li>
+</ul>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 14.24.05.png)</p>
+<ul>
+<li><p>HTTPS采用<strong>混合加密机制</strong></p>
+<p>若密钥能够实现安全交换，那么有可能会考虑仅使用公开密钥加密，但是公开密钥加密的处理速度要慢</p>
+<p>因此，<strong>使用公开密钥加密交换密钥，使用共享密钥加密交换报文</strong></p>
+</li>
+</ul>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 14.28.15.png)</p>
+<h4 id="证明公开密钥正确性的证书"><a href="#证明公开密钥正确性的证书" class="headerlink" title="证明公开密钥正确性的证书"></a>证明公开密钥正确性的证书</h4><p>但是公开密钥加密方式还是存在问题，无法证明公开密钥本身是货真价实的。即公开密钥的可靠性问题</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 14.43.02.png)</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 14.45.05.png)</p>
+<p>公钥被调包，也是<strong>中间人攻击</strong></p>
+<p>解决方法：使用由数字证书认证机构颁发的公开密钥证书。</p>
+<p>该机构会对已申请的公开密钥做数字签名，然后分配这个已签名的公开密钥，并将该密钥放入公钥证书后绑定在一起。</p>
+<p>服务器会把这份公钥证书发送给客户端，来进行公开密钥加密通信。客户端接到证书后，可用数字认证机构的公开密钥，对证书的数字签名进行验证，验证通过后，客户端就可明确两件事：1. 认证服务器的公开密钥的是真实有效的认证机构。2. 服务器的公开密钥是值得信赖的。</p>
+<p>此时认证机关的公开密钥必须安全地转交给客户端。多数浏览器会事先在内部植入常用认证机关的公开密钥。</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 16.42.11.png)</p>
+<h4 id="用以确认客户端的客户端证书"><a href="#用以确认客户端的客户端证书" class="headerlink" title="用以确认客户端的客户端证书"></a>用以确认客户端的客户端证书</h4><p>证明服务器正在通信的对方是预料中的客户端。需要用户自行安装客户端证书，但是客户端证书是需要付费购买的。</p>
+<p>例如银行的网上银行就采用了客户端证书。登陆网银时，不仅要求用户输入ID和密码，还会要求用户的客户端证书，来确认用户是否从特定终端访问网银。但不能证明用户本人的真实有效性，只要获得了安装有客户端证书的计算机的使用权限，就拥有了客户端证书的使用权限。</p>
+<h4 id="认证机构信誉第一"><a href="#认证机构信誉第一" class="headerlink" title="认证机构信誉第一"></a>认证机构信誉第一</h4><p>SSL机制中介人认证机构之所以可行，是建立在其信用绝对可行这一前提下，但2011年7月，荷兰一家认证机构曾遭黑客入侵，颁布了google.com, twitter.com等网站的伪造证书。这一事件从根本上撼动了SSL的可信度。</p>
+<h4 id="由自认证机构颁发的证书成为自签名证书"><a href="#由自认证机构颁发的证书成为自签名证书" class="headerlink" title="由自认证机构颁发的证书成为自签名证书"></a>由自认证机构颁发的证书成为自签名证书</h4><p>使用OpenSSL开源程序，每个人都可以构建一套自己的认证机构，然后自己给自己颁发证书，但不能在互联网上作为证书使用。浏览器访问这种服务器时，会显示“无法确认连接安全性”或“该网站的安全证书存在问题”</p>
+<h4 id="中级认证机构的证书可能会变成自认证证书"><a href="#中级认证机构的证书可能会变成自认证证书" class="headerlink" title="中级认证机构的证书可能会变成自认证证书"></a>中级认证机构的证书可能会变成自认证证书</h4><p>有的浏览器会把中级认证机构颁发的服务器证书当作自签名证书</p>
+<h4 id="HTTPS的通信步骤"><a href="#HTTPS的通信步骤" class="headerlink" title="HTTPS的通信步骤"></a>HTTPS的通信步骤</h4><p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 17.03.04.png)</p>
+<ol>
+<li>客户端发送Client Hello开始SSL通信。包含客户端支持的SSL的指定版本、加密组件列表</li>
+<li>服务器可进行SSL通信时，回应Server Hello报文，包含SSL版本和加密组件（从客户端列表中筛选出来的）</li>
+<li>服务器发送Certificate报文，包含公开密钥证书</li>
+<li>最后服务器发送 Server Hello Done通知客户端，最初的SSL握手协商部分结束</li>
+<li>SSL第一次握手结束后，客户端以Client Key Exchange报文回应，包含通信加密中使用的称为Pre-master secret的随机密码串。该报文已经用步骤3中的公开密钥加密。</li>
+<li>客户端继续发送Change Cipher Spec报文，提示服务器，此后的通信采用Pre-master secret密钥加密</li>
+<li>客户端发送finished报文，包含连接至今全部报文的整体校验值。这次握手协商是否成功，要看服务器是否能正确解密该报文</li>
+<li>服务器同样发送Changer Ciper Spec报文</li>
+<li>服务器发送Finished报文</li>
+<li>Finished报文交换完毕后，SSL连接就建立完成。此时开始应用层协议的通信，即HTTP请求</li>
+<li>HTTP响应</li>
+<li>最后由客户端断开连接。发送close notify报文。</li>
+</ol>
+<p>应用层发送数据时会附加<strong>MAC报文摘要</strong>，MAC能够查知报文是否被篡改，保护报文完整性。</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-25 17.20.32.png)</p>
+<h4 id="SSL速度慢吗"><a href="#SSL速度慢吗" class="headerlink" title="SSL速度慢吗"></a>SSL速度慢吗</h4><p>HTTPS的问题：使用SSL时，速度会变慢。<strong>通信慢</strong>（SSL通信量）+<strong>处理速度慢</strong>（加密解密消耗CPU和内存资源）</p>
+<p>因此很多网站不会一直使用HTTPS：消耗太多资源，能够处理的请求亮就会减少。因此非敏感信息使用HTTP，只有包含个人信息等数据时，才使用HTTPS。而且可以节约购买证书等开销</p>
+<h2 id="确认访问用户身份的认证"><a href="#确认访问用户身份的认证" class="headerlink" title="确认访问用户身份的认证"></a>确认访问用户身份的认证</h2><h3 id="何为认证"><a href="#何为认证" class="headerlink" title="何为认证"></a>何为认证</h3><p>确认网络那头到底是谁。核对“登陆者本人才有的信息”：</p>
+<ul>
+<li>密码</li>
+<li>动态令牌：仅限本人持有的设备内的一次性密码</li>
+<li>数字证书：仅限本人终端持有的信息</li>
+<li>生物认证：指纹、虹膜</li>
+<li>IC卡</li>
+</ul>
+<p>HTTP使用的认证方式：</p>
+<ul>
+<li>BASIC认证（基本认证）</li>
+<li>DIGEST认证（摘要认证）</li>
+<li>SSL客户端认证</li>
+<li>FormBase认证（基于表单认证）</li>
+</ul>
+<h3 id="BASIC认证"><a href="#BASIC认证" class="headerlink" title="BASIC认证"></a>BASIC认证</h3><p>仍有一部分网站会使用这种认证方式。Web服务器和通信客户端之间的认证方式</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-27 10.26.51.png)</p>
+<p>BASIC认证虽然采用Base64编码，但<strong>不是加密</strong>， 不需要额外信息就可以对其解码。因此在HTTP等非加密通信等线路上进行BASIC认证，如果被窃听，被盗的可能性极高。</p>
+<h3 id="DIGEST认证"><a href="#DIGEST认证" class="headerlink" title="DIGEST认证"></a>DIGEST认证</h3><p>弥补BASIC认证的缺点。同样适用质询/响应的方式，但不会发送明文密码。安全等级高于BASiC，但仍然弱于HTPS的客户端认证。DIGEST提供防治密码被窃听的机制，但<strong>不提供防止用户伪装的保护机制</strong></p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-27 10.31.08.png)</p>
+<h3 id="SSL客户端认证"><a href="#SSL客户端认证" class="headerlink" title="SSL客户端认证"></a>SSL客户端认证</h3><p>SSL客户端认证利用HTTPS的客户端证书完成认证。</p>
+<h4 id="SSL客户端认证步骤"><a href="#SSL客户端认证步骤" class="headerlink" title="SSL客户端认证步骤"></a>SSL客户端认证步骤</h4><ul>
+<li>接受到对需要认证资源的请求，服务器发送Certificate Request报文，要求客户端提供客户端证书</li>
+<li>用户选择客户端证书，客户端把证书以Client Certificate报文发送给服务器</li>
+<li>服务器验证客户端证书。通过后领取证书内客户端的公开密钥，开始HTTPS加密通信</li>
+</ul>
+<h4 id="SSL客户端采用双因素认证"><a href="#SSL客户端采用双因素认证" class="headerlink" title="SSL客户端采用双因素认证"></a>SSL客户端采用双因素认证</h4><p>SSL客户端证书用来认证客户端计算机，基于表单认证（密码）用来确定这是用户本人</p>
+<h3 id="基于表单认证"><a href="#基于表单认证" class="headerlink" title="基于表单认证"></a>基于表单认证</h3><p>并没有在HTTP协议里定义。客户端向服务器发送登录信息。如登录页面输入用户名、密码。</p>
+<h4 id="认证多半为基于表单认证"><a href="#认证多半为基于表单认证" class="headerlink" title="认证多半为基于表单认证"></a>认证多半为基于表单认证</h4><p>由于便利性和安全性问题，BASIC和DIGEST几乎不怎么使用。SSL客户端因为导入和费用问题，也没有普及</p>
+<p>基于表单认证的安全等级完全依赖于各Web应用程序的实现方式</p>
+<h4 id="Session管理和Cookie应用"><a href="#Session管理和Cookie应用" class="headerlink" title="Session管理和Cookie应用"></a>Session管理和Cookie应用</h4><p>基于表单认证还没有标准规范，一般使用Cookie来管理Session。</p>
+<p>但是HTTP是无状态协议，已认证成功的用户状态无法通过协议层面保存下来。因此使用Cookie来管理Session,弥补HTTP协议中不存在的状态管理功能。</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-27 10.50.13.png)</p>
+<ol>
+<li>客户端把用户ID和密码等信息放入报文的实体部分，以POST方法发送请求。使用HTTPS通信</li>
+<li>服务器发放用来识别用户的SessionID。验证客户端发送过来的登陆信息进行身份认证，然后把认证状态和SessionID绑定记录在服务器端。通过Set-Cookie字段写入Session ID。但是如果SessionID被盗，对方就可以伪装成你进行恶意操作了。因此必须防止Session ID被盗。因此Session ID应使用难以推测的字符串，而且服务器也需要做有效期管理。还应在Cookie里加上httponly属性，减轻跨站脚本攻击（XSS）损失</li>
+<li>客户端接收到Session ID后，作为cookie保存在本地。下次再发送请求时，浏览器自动发送Cookie，因此Session ID也会发送到服务器。服务器通过Session ID识别用户和其认证状态。</li>
+</ol>
+<p>不仅基于表单认证的登陆信息和认证过程没有标准化，服务器如何保存用户提交的密码等登陆信息也没有标准化</p>
+<p>一种安全的保存方法是：<strong>密码加盐</strong>（密码拼接一个足够长的随机字符串），再<strong>使用散列函数计算散列值后保存</strong>。减少密码泄漏的风险</p>
+<h2 id="基于HTTP的功能追加协议"><a href="#基于HTTP的功能追加协议" class="headerlink" title="基于HTTP的功能追加协议"></a>基于HTTP的功能追加协议</h2><h3 id="消除HTTP瓶颈的SPDY"><a href="#消除HTTP瓶颈的SPDY" class="headerlink" title="消除HTTP瓶颈的SPDY"></a>消除HTTP瓶颈的SPDY</h3><p>Google 在2010年发不了SPDY，开发目标旨在解决HTTP的性能瓶颈，缩短Web页面的加载时间50%</p>
+<h4 id="HTTP的瓶颈"><a href="#HTTP的瓶颈" class="headerlink" title="HTTP的瓶颈"></a>HTTP的瓶颈</h4><p>如果要<strong>探知服务器是否有内容更新</strong>，客户端就必须频繁地向服务器确认。如果没有内容更新，就会有大量<strong>无效通信</strong></p>
+<ul>
+<li>一条连接只可发送一个请求</li>
+<li>请求只能从客户端开始</li>
+<li>请求/响应首部未经压缩就发送。首部信息越多延迟越大</li>
+<li>每次互相发送冗长的首部造成的浪费较多</li>
+<li>非强制压缩发送</li>
+</ul>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-27 11.05.57.png)</p>
+<p><strong>Ajax的解决方法</strong></p>
+<p>Ajex(Asynchronous JavaScript and XML)是一种有效<strong>利用JavaScript和DOM</strong>的操作，以达到<strong>局部Web页面替换加载</strong>的<strong>异步通信</strong>手段。响应中的数据量会减少。可以从已加载完成的Web页面上发起请求，只更新局部页面。</p>
+<p>但是利用Ajex实时地从服务器获取内容，可能会产生大量请求。也没有解决HTTP协议本身的问题</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-27 11.11.02.png)</p>
+<p><strong>Comet的解决方法</strong></p>
+<p>通过延迟应答，模拟实现服务器端向客户端push的功能。</p>
+<p>减少了请求数，但一次连接的持续时间变长了，为了维持连接会消耗更多的资源。也没有解决HTTP协议本身的问题</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-27 11.14.17.png)</p>
+<p><strong>SPDY的目标</strong></p>
+<p>在协议级别消除HTTP的瓶颈</p>
+<h4 id="SPDY的设计和功能"><a href="#SPDY的设计和功能" class="headerlink" title="SPDY的设计和功能"></a>SPDY的设计和功能</h4><p>在应用层和运输层之间添加会话层，并且规定通信使用SSL。SPDY以会话层形式加入，控制数据的流动，但还是采用HTTP建立通信连接，因此可照常使用HTTP的GET、POST等方法、Cookie等</p>
+<p>![](/Users/yesun/Documents/screenshots/笔记/图解http/截屏2020-10-27 11.19.07.png)</p>
+<p>使用SPDY后，HTTP额外获得以下功能：</p>
+<ul>
+<li><strong>多路复用流</strong>： 通过单一的TCP连接，可以无限制处理多个HTTP请求</li>
+<li><strong>赋予请求优先级</strong>：解决在发送多个请求时，因带宽低而响应变慢的问题</li>
+<li><strong>压缩HTTP首部</strong>：减少数据报数量和发送字节数</li>
+<li><strong>推送功能</strong>：服务器可以直接给客户端push数据</li>
+<li><strong>服务器提示功能</strong>：服务器可以主动提示客户端请求所需的资源。</li>
+</ul>
+<h4 id="SPDY消除Web瓶颈了吗"><a href="#SPDY消除Web瓶颈了吗" class="headerlink" title="SPDY消除Web瓶颈了吗"></a>SPDY消除Web瓶颈了吗</h4><p>使用SPDY时，Web内容不需要改动，但Web浏览器和服务器需要改。已经有好几家Web浏览器针对SPDY作出了调整。Web服务器也做了实验性质的应用，但导入实际应用进展不佳。</p>
+<p>因为SPDY只是将单个域名（IP地址）的通信多路复用，所以当Web网站使用多个域名下的资源时，改善效果会受限制。</p>
+<p>SPDY的确可以消除HTTP瓶颈，但是这不是Web瓶颈的唯一问题。还应从改善Web网站内容的编写方式等入手</p>
+<h3 id="使用浏览器进行全双工通信的WebSocket"><a href="#使用浏览器进行全双工通信的WebSocket" class="headerlink" title="使用浏览器进行全双工通信的WebSocket"></a>使用浏览器进行全双工通信的WebSocket</h3><p>利用Ajax和Comet通信可以提升Web的浏览速度，但是只要使用HTTP就无法彻底解决瓶颈问题。因此有了WebSocket，一套新协议和API</p>
+<h4 id="WebSocket的设计和功能"><a href="#WebSocket的设计和功能" class="headerlink" title="WebSocket的设计和功能"></a>WebSocket的设计和功能</h4><p>为了解决Ajax和Comet里XMLHttpRequest附带的缺陷所引起的问题</p>
+<h4 id="WebSocket协议"><a href="#WebSocket协议" class="headerlink" title="WebSocket协议"></a>WebSocket协议</h4><p>建立在HTTP基础上，连接的发起方仍然时客户端，而连接一旦建立，不论服务器还是客户端，任意一方都可直接向对方发送报文。</p>
+<ul>
+<li><strong>推送功能</strong></li>
+<li><strong>减少通信量</strong> 连接的开销减少，WebSocket的首部也很小</li>
+</ul>
+<p>为了实现WebSocket</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/21/KM%E7%AC%94%E8%AE%B0%20--%20%E6%B5%B7%E9%87%8F%E4%B9%8B%E9%81%93%E7%B3%BB%E5%88%97%E4%B9%8B%E8%BF%87%E8%BD%BD%E4%BF%9D%E6%8A%A4/" rel="next" title="KM笔记 -- 海量之道系列之过载保护">
+                <i class="fa fa-chevron-left"></i> KM笔记 -- 海量之道系列之过载保护
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/21/KM%E7%AC%94%E8%AE%B0%20--%20%E6%B5%B7%E9%87%8F%E4%B9%8B%E9%81%93%E7%B3%BB%E5%88%97%E4%B9%8B%E6%9C%89%E6%8D%9F%E6%9C%8D%E5%8A%A1/" rel="prev" title="KM笔记 -- 海量之道系列之有损服务">
+                KM笔记 -- 海量之道系列之有损服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">叶子</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yesunch" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:sun.ye@hotmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图解HTTP笔记"><span class="nav-number">1.</span> <span class="nav-text">图解HTTP笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第2章-简单的HTTP协议"><span class="nav-number">1.1.</span> <span class="nav-text">第2章 简单的HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过响应和请求的交换达成通信"><span class="nav-number">1.1.1.</span> <span class="nav-text">通过响应和请求的交换达成通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不保存状态协议"><span class="nav-number">1.1.2.</span> <span class="nav-text">不保存状态协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求URI定位资源"><span class="nav-number">1.1.3.</span> <span class="nav-text">请求URI定位资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP方法"><span class="nav-number">1.1.4.</span> <span class="nav-text">HTTP方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GET：获取资源"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">GET：获取资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POST：传输实体主体"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">POST：传输实体主体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PUT-传输文件"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">PUT: 传输文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DELETE-删除文件"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">DELETE: 删除文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HEAD：获得响应报文首部"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">HEAD：获得响应报文首部</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OPTIONS：询问支持的方法"><span class="nav-number">1.1.4.6.</span> <span class="nav-text">OPTIONS：询问支持的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TRACE-追踪路径"><span class="nav-number">1.1.4.7.</span> <span class="nav-text">TRACE: 追踪路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CONNECT：要求用隧道协议连接代理"><span class="nav-number">1.1.4.8.</span> <span class="nav-text">CONNECT：要求用隧道协议连接代理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久连接节省通信量"><span class="nav-number">1.1.5.</span> <span class="nav-text">持久连接节省通信量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#持久连接"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">持久连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管线化"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">管线化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Cookie进行状态管理"><span class="nav-number">1.1.6.</span> <span class="nav-text">使用Cookie进行状态管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第3章-HTTP报文内的HTTP信息"><span class="nav-number">1.2.</span> <span class="nav-text">第3章 HTTP报文内的HTTP信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP报文"><span class="nav-number">1.2.1.</span> <span class="nav-text">HTTP报文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求报文和响应报文的结构"><span class="nav-number">1.2.2.</span> <span class="nav-text">请求报文和响应报文的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码提升传输速率"><span class="nav-number">1.2.3.</span> <span class="nav-text">编码提升传输速率</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#报文主体和实体主体的差异"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">报文主体和实体主体的差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#压缩传输的内容编码"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">压缩传输的内容编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分割发送的分块传输编码"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">分割发送的分块传输编码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发送多种数据的多部分对象集合"><span class="nav-number">1.2.4.</span> <span class="nav-text">发送多种数据的多部分对象集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取部分内容的范围请求"><span class="nav-number">1.2.5.</span> <span class="nav-text">获取部分内容的范围请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容协商返回最合适的内容"><span class="nav-number">1.2.6.</span> <span class="nav-text">内容协商返回最合适的内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第4章-状态码"><span class="nav-number">1.3.</span> <span class="nav-text">第4章 状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2XX-成功"><span class="nav-number">1.3.1.</span> <span class="nav-text">2XX 成功</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#200-OK"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">200 OK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#204-No-Content"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">204 No Content</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#206-Partial-Content"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">206 Partial Content</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3XX-重定向"><span class="nav-number">1.3.2.</span> <span class="nav-text">3XX 重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#301-Moved-Permanently"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">301 Moved Permanently</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#302-Found"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">302 Found</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#303-See-Other"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">303 See Other</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#304-Not-Modified"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">304 Not Modified</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#307-Temporary-Redirect"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">307 Temporary Redirect</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4XX-客户端错误"><span class="nav-number">1.3.3.</span> <span class="nav-text">4XX 客户端错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#400-Bad-Request"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">400 Bad Request</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#401-Unauthorized"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">401 Unauthorized</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#403-Forbidden"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">403 Forbidden</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#404-Not-Found"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">404 Not Found</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5XX-服务器错误"><span class="nav-number">1.3.4.</span> <span class="nav-text">5XX 服务器错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#500-Internal-Server-Error"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">500 Internal Server Error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#503-Service-Unabailable"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">503 Service Unabailable</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第5章-与HTTP协作的Web服务器"><span class="nav-number">1.4.</span> <span class="nav-text">第5章 与HTTP协作的Web服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用单台虚拟主机实现多个域名"><span class="nav-number">1.4.1.</span> <span class="nav-text">用单台虚拟主机实现多个域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通信数据转发程序：代理、网关、隧道"><span class="nav-number">1.4.2.</span> <span class="nav-text">通信数据转发程序：代理、网关、隧道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存资源的缓存"><span class="nav-number">1.4.3.</span> <span class="nav-text">保存资源的缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存的有效期限"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">缓存的有效期限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端的缓存"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">客户端的缓存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第6章-HTTP首部"><span class="nav-number">1.5.</span> <span class="nav-text">第6章 HTTP首部</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报文首部"><span class="nav-number">1.5.1.</span> <span class="nav-text">报文首部</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP请求报文"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">HTTP请求报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP响应报文"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">HTTP响应报文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP首部字段"><span class="nav-number">1.5.2.</span> <span class="nav-text">HTTP首部字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4种首部字段类型"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">4种首部字段类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非HTTP-1-1首部字段"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">非HTTP&#x2F;1.1首部字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#End-to-end-Hop-by-hop首部"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">End-to-end, Hop-by-hop首部</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-1通用首部字段"><span class="nav-number">1.5.3.</span> <span class="nav-text">HTTP&#x2F;1.1通用首部字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-Control"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">Cache-Control</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Connection"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">Connection</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#控制不再转发给代理的首部字段"><span class="nav-number">1.5.3.2.1.</span> <span class="nav-text">控制不再转发给代理的首部字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#管理持久连接"><span class="nav-number">1.5.3.2.2.</span> <span class="nav-text">管理持久连接</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Date"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">Date</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Trailer"><span class="nav-number">1.5.3.4.</span> <span class="nav-text">Trailer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transfer-Encoding"><span class="nav-number">1.5.3.5.</span> <span class="nav-text">Transfer-Encoding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Upgrade"><span class="nav-number">1.5.3.6.</span> <span class="nav-text">Upgrade</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Via"><span class="nav-number">1.5.3.7.</span> <span class="nav-text">Via</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Warning"><span class="nav-number">1.5.3.8.</span> <span class="nav-text">Warning</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求首部字段"><span class="nav-number">1.5.4.</span> <span class="nav-text">请求首部字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Accept"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">Accept</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accept-Charset"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">Accept-Charset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accept-Encoding"><span class="nav-number">1.5.4.3.</span> <span class="nav-text">Accept-Encoding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accept-Language"><span class="nav-number">1.5.4.4.</span> <span class="nav-text">Accept-Language</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Authorization"><span class="nav-number">1.5.4.5.</span> <span class="nav-text">Authorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Expect"><span class="nav-number">1.5.4.6.</span> <span class="nav-text">Expect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#From"><span class="nav-number">1.5.4.7.</span> <span class="nav-text">From</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Host"><span class="nav-number">1.5.4.8.</span> <span class="nav-text">Host</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#If-Match"><span class="nav-number">1.5.4.9.</span> <span class="nav-text">If-Match</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#If-Modified-Since"><span class="nav-number">1.5.4.10.</span> <span class="nav-text">If-Modified-Since</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#If-None-Match"><span class="nav-number">1.5.4.11.</span> <span class="nav-text">If-None-Match</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#If-Range"><span class="nav-number">1.5.4.12.</span> <span class="nav-text">If-Range</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#If-Unmodified-Since"><span class="nav-number">1.5.4.13.</span> <span class="nav-text">If-Unmodified-Since</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Max-Forwards"><span class="nav-number">1.5.4.14.</span> <span class="nav-text">Max-Forwards</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Range"><span class="nav-number">1.5.4.15.</span> <span class="nav-text">Range</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Referer"><span class="nav-number">1.5.4.16.</span> <span class="nav-text">Referer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TE"><span class="nav-number">1.5.4.17.</span> <span class="nav-text">TE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#User-Agent"><span class="nav-number">1.5.4.18.</span> <span class="nav-text">User-Agent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应首部字段"><span class="nav-number">1.5.5.</span> <span class="nav-text">响应首部字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Accept-Ranges"><span class="nav-number">1.5.5.1.</span> <span class="nav-text">Accept-Ranges</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Age"><span class="nav-number">1.5.5.2.</span> <span class="nav-text">Age</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ETag"><span class="nav-number">1.5.5.3.</span> <span class="nav-text">ETag</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Location"><span class="nav-number">1.5.5.4.</span> <span class="nav-text">Location</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proxy-Authenticate"><span class="nav-number">1.5.5.5.</span> <span class="nav-text">Proxy-Authenticate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Retry-After"><span class="nav-number">1.5.5.6.</span> <span class="nav-text">Retry-After</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Server"><span class="nav-number">1.5.5.7.</span> <span class="nav-text">Server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vary"><span class="nav-number">1.5.5.8.</span> <span class="nav-text">Vary</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WWW-Authenticate"><span class="nav-number">1.5.5.9.</span> <span class="nav-text">WWW-Authenticate</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体首部字段"><span class="nav-number">1.5.6.</span> <span class="nav-text">实体首部字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Allow"><span class="nav-number">1.5.6.1.</span> <span class="nav-text">Allow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-Encoding"><span class="nav-number">1.5.6.2.</span> <span class="nav-text">Content-Encoding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-Language"><span class="nav-number">1.5.6.3.</span> <span class="nav-text">Content-Language</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-Length"><span class="nav-number">1.5.6.4.</span> <span class="nav-text">Content-Length</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-Location"><span class="nav-number">1.5.6.5.</span> <span class="nav-text">Content-Location</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-MD5"><span class="nav-number">1.5.6.6.</span> <span class="nav-text">Content-MD5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-Range"><span class="nav-number">1.5.6.7.</span> <span class="nav-text">Content-Range</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Expires"><span class="nav-number">1.5.6.8.</span> <span class="nav-text">Expires</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为Cookie服务的首部字段"><span class="nav-number">1.5.7.</span> <span class="nav-text">为Cookie服务的首部字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-Cookie-各字段"><span class="nav-number">1.5.7.1.</span> <span class="nav-text">Set-Cookie 各字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie-字段"><span class="nav-number">1.5.7.2.</span> <span class="nav-text">Cookie 字段</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第7章-确保Web安全的HTTPS"><span class="nav-number">1.6.</span> <span class="nav-text">第7章 确保Web安全的HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP的缺点"><span class="nav-number">1.6.1.</span> <span class="nav-text">HTTP的缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用明文可能被窃听"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">使用明文可能被窃听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不验证通信方的身份，可能遭遇伪装"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">不验证通信方的身份，可能遭遇伪装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无法证明报文完整性，可能已被篡改"><span class="nav-number">1.6.1.3.</span> <span class="nav-text">无法证明报文完整性，可能已被篡改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-加密-认证-完整性保护-HTTPS"><span class="nav-number">1.6.2.</span> <span class="nav-text">HTTP+加密+认证+完整性保护&#x3D;HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTPS是身披SSL外壳的HTTP"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">HTTPS是身披SSL外壳的HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相互交换密钥的公开密钥加密技术"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">相互交换密钥的公开密钥加密技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#证明公开密钥正确性的证书"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">证明公开密钥正确性的证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用以确认客户端的客户端证书"><span class="nav-number">1.6.2.4.</span> <span class="nav-text">用以确认客户端的客户端证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#认证机构信誉第一"><span class="nav-number">1.6.2.5.</span> <span class="nav-text">认证机构信誉第一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#由自认证机构颁发的证书成为自签名证书"><span class="nav-number">1.6.2.6.</span> <span class="nav-text">由自认证机构颁发的证书成为自签名证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中级认证机构的证书可能会变成自认证证书"><span class="nav-number">1.6.2.7.</span> <span class="nav-text">中级认证机构的证书可能会变成自认证证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTPS的通信步骤"><span class="nav-number">1.6.2.8.</span> <span class="nav-text">HTTPS的通信步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL速度慢吗"><span class="nav-number">1.6.2.9.</span> <span class="nav-text">SSL速度慢吗</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#确认访问用户身份的认证"><span class="nav-number">1.7.</span> <span class="nav-text">确认访问用户身份的认证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#何为认证"><span class="nav-number">1.7.1.</span> <span class="nav-text">何为认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BASIC认证"><span class="nav-number">1.7.2.</span> <span class="nav-text">BASIC认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DIGEST认证"><span class="nav-number">1.7.3.</span> <span class="nav-text">DIGEST认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSL客户端认证"><span class="nav-number">1.7.4.</span> <span class="nav-text">SSL客户端认证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL客户端认证步骤"><span class="nav-number">1.7.4.1.</span> <span class="nav-text">SSL客户端认证步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL客户端采用双因素认证"><span class="nav-number">1.7.4.2.</span> <span class="nav-text">SSL客户端采用双因素认证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于表单认证"><span class="nav-number">1.7.5.</span> <span class="nav-text">基于表单认证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#认证多半为基于表单认证"><span class="nav-number">1.7.5.1.</span> <span class="nav-text">认证多半为基于表单认证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Session管理和Cookie应用"><span class="nav-number">1.7.5.2.</span> <span class="nav-text">Session管理和Cookie应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于HTTP的功能追加协议"><span class="nav-number">1.8.</span> <span class="nav-text">基于HTTP的功能追加协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消除HTTP瓶颈的SPDY"><span class="nav-number">1.8.1.</span> <span class="nav-text">消除HTTP瓶颈的SPDY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP的瓶颈"><span class="nav-number">1.8.1.1.</span> <span class="nav-text">HTTP的瓶颈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SPDY的设计和功能"><span class="nav-number">1.8.1.2.</span> <span class="nav-text">SPDY的设计和功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SPDY消除Web瓶颈了吗"><span class="nav-number">1.8.1.3.</span> <span class="nav-text">SPDY消除Web瓶颈了吗</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用浏览器进行全双工通信的WebSocket"><span class="nav-number">1.8.2.</span> <span class="nav-text">使用浏览器进行全双工通信的WebSocket</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#WebSocket的设计和功能"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">WebSocket的设计和功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WebSocket协议"><span class="nav-number">1.8.2.2.</span> <span class="nav-text">WebSocket协议</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">叶子</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
